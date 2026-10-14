@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MalluLogo } from './MalluLogo';
+import { TamilLogo } from './TamilLogo';
 import { Mail, Check, Copy, AlertTriangle, HelpCircle } from 'lucide-react';
 
 const useMeta = (title: string, description: string, canonicalPath: string) => {
@@ -22,7 +22,7 @@ const useMeta = (title: string, description: string, canonicalPath: string) => {
 
         let canonical = document.querySelector('link[rel="canonical"]');
         if (canonical) {
-            canonical.setAttribute('href', `https://malayalamchat.online${canonicalPath}`);
+            canonical.setAttribute('href', `https://tamilchat.online${canonicalPath}`);
         }
     }, [title, description, canonicalPath]);
 };
@@ -46,18 +46,18 @@ const Header = ({ title }: { title: string }) => (
         </div>
         <a href="/" style={{
             background: 'var(--primary)',
-            color: '#000',
+            color: '#fff',
             padding: '0.8rem 1.5rem',
             borderRadius: '12px',
             textDecoration: 'none',
             fontWeight: 'bold',
-            boxShadow: '0 4px 15px rgba(74, 222, 128, 0.3)',
+            boxShadow: '0 4px 15px rgba(239, 68, 68, 0.35)',
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
             fontSize: '1rem'
         }}>
-            Open MalluChat Website →
+            Open TamilChat Website →
         </a>
     </div>
 );
@@ -71,8 +71,8 @@ const Section = ({ title, children }: { title: string, children: React.ReactNode
 
 export const PrivacyPage = () => {
     useMeta(
-        'Privacy Policy - Mallu Chat',
-        'Learn about Mallu Chat privacy policy, peer-to-peer WebRTC security, and zero data storage principles.',
+        'Privacy Policy - Tamil Chat',
+        'Learn about Tamil Chat privacy policy, peer-to-peer WebRTC security, and zero data storage principles.',
         '/privacy'
     );
 
@@ -82,15 +82,15 @@ export const PrivacyPage = () => {
 
             {/* Website Opening Section */}
             <div style={{
-                background: 'linear-gradient(135deg, rgba(74, 222, 128, 0.1) 0%, rgba(6, 95, 70, 0.2) 100%)',
+                background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(127, 29, 29, 0.2) 100%)',
                 padding: '2rem',
                 borderRadius: '16px',
                 marginBottom: '2rem',
                 textAlign: 'center',
-                border: '1px solid rgba(74, 222, 128, 0.2)'
+                border: '1px solid rgba(239, 68, 68, 0.2)'
             }}>
-                <div style={{ marginBottom: '1rem' }}><MalluLogo size={60} /></div>
-                <h2 style={{ color: 'var(--primary)', marginBottom: '0.5rem' }}>Experience MalluChat Online</h2>
+                <div style={{ marginBottom: '1rem' }}><TamilLogo size={60} /></div>
+                <h2 style={{ color: 'var(--primary)', marginBottom: '0.5rem' }}>Experience TamilChat Online</h2>
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>Join the fastest growing anonymous chat platform. No registration, no logs, just pure communication.</p>
                 <a href="/" style={{
                     background: 'var(--primary)',
@@ -105,7 +105,7 @@ export const PrivacyPage = () => {
 
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}><em>Effective Date: February 2026</em></p>
 
-            <p style={{ marginBottom: '1.5rem', color: 'var(--text-muted)' }}>MalayalamChat.online operates a privacy-first, peer-to-peer communication model. This policy outlines our technical architecture and strict adherence to data minimization principles.</p>
+            <p style={{ marginBottom: '1.5rem', color: 'var(--text-muted)' }}>TamilChat.online operates a privacy-first, peer-to-peer communication model. This policy outlines our technical architecture and strict adherence to data minimization principles.</p>
 
             <Section title="1. No Personal Data Collection">
                 <p>Our platform strictly operates without user accounts. We DO NOT collect, request, or store:</p>
@@ -117,7 +117,7 @@ export const PrivacyPage = () => {
             </Section>
 
             <Section title="2. Peer-to-Peer Architecture (Private Rooms)">
-                <p>Private communications on MalluChat utilize WebRTC technology. This establishes a direct, peer-to-peer (P2P) connection between users. We act as a neutral signaling bridge to initiate the connection. We do not intercept, monitor, or store any text chat messages, audio data, or video streams transmitted through these direct links.</p>
+                <p>Private communications on TamilChat utilize WebRTC technology. This establishes a direct, peer-to-peer (P2P) connection between users. We act as a neutral signaling bridge to initiate the connection. We do not intercept, monitor, or store any text chat messages, audio data, or video streams transmitted through these direct links.</p>
             </Section>
 
             <Section title="3. Ephemeral Public Chat">
@@ -141,8 +141,8 @@ export const PrivacyPage = () => {
 
 export const TermsPage = () => {
     useMeta(
-        'Terms & Conditions - Mallu Chat',
-        'Read Mallu Chat terms and conditions, legal intermediary classification, user responsibilities, and platform rules.',
+        'Terms & Conditions - Tamil Chat',
+        'Read Tamil Chat terms and conditions, legal intermediary classification, user responsibilities, and platform rules.',
         '/terms'
     );
 
@@ -152,20 +152,20 @@ export const TermsPage = () => {
 
             {/* Website Opening Section */}
             <div style={{
-                background: 'linear-gradient(135deg, rgba(74, 222, 128, 0.1) 0%, rgba(6, 95, 70, 0.2) 100%)',
+                background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(127, 29, 29, 0.2) 100%)',
                 padding: '2.5rem 2rem',
                 borderRadius: '24px',
                 marginBottom: '3rem',
                 textAlign: 'center',
-                border: '1px solid rgba(74, 222, 128, 0.3)',
+                border: '1px solid rgba(239, 68, 68, 0.3)',
                 boxShadow: '0 8px 32px rgba(0,0,0,0.2)'
             }}>
-                <div style={{ marginBottom: '1.5rem' }}><MalluLogo size={80} /></div>
-                <h2 style={{ color: 'var(--primary)', marginBottom: '0.8rem', fontSize: '2.2rem', fontWeight: '800' }}>Welcome to MalluChat</h2>
-                <p style={{ color: 'var(--text-main)', fontSize: '1.1rem', marginBottom: '2rem', maxWidth: '500px', margin: '0 auto 2rem' }}>The safest place for private Malayalee conversations. Click below to enter the platform directly.</p>
+                <div style={{ marginBottom: '1.5rem' }}><TamilLogo size={80} /></div>
+                <h2 style={{ color: 'var(--primary)', marginBottom: '0.8rem', fontSize: '2.2rem', fontWeight: '800' }}>Welcome to TamilChat</h2>
+                <p style={{ color: 'var(--text-main)', fontSize: '1.1rem', marginBottom: '2rem', maxWidth: '500px', margin: '0 auto 2rem' }}>The safest place for private Tamil conversations. Click below to enter the platform directly.</p>
                 <a href="/" style={{
                     background: 'var(--primary)',
-                    color: '#000',
+                    color: '#fff',
                     padding: '1rem 3rem',
                     borderRadius: '16px',
                     textDecoration: 'none',
@@ -174,17 +174,17 @@ export const TermsPage = () => {
                     fontSize: '1.2rem',
                     textTransform: 'uppercase',
                     letterSpacing: '1px',
-                    boxShadow: '0 4px 20px rgba(74, 222, 128, 0.4)'
+                    boxShadow: '0 4px 20px rgba(239, 68, 68, 0.4)'
                 }}>Enter Chat Room →</a>
             </div>
 
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}><em>Effective Date: February 2026</em></p>
 
-            <p style={{ marginBottom: '1.5rem', color: 'var(--text-muted)' }}>By accessing MalayalamChat.online, you expressly agree to these Terms and Conditions.</p>
+            <p style={{ marginBottom: '1.5rem', color: 'var(--text-muted)' }}>By accessing TamilChat.online, you expressly agree to these Terms and Conditions.</p>
 
             <Section title="1. Legal Classification & Intermediary Status">
-                <p>MalluChat is strictly classified as an <strong>&quot;Intermediary&quot;</strong> under Section 2(w) of the Information Technology Act, 2000 (India). We claim comprehensive Safe Harbour protection under Section 79 of the IT Act. We provide a neutral technological framework allowing users to transmit information.</p>
-                <p style={{ marginTop: '0.5rem' }}>Specifically, MalluChat DOES NOT:<br />
+                <p>TamilChat is strictly classified as an <strong>&quot;Intermediary&quot;</strong> under Section 2(w) of the Information Technology Act, 2000 (India). We claim comprehensive Safe Harbour protection under Section 79 of the IT Act. We provide a neutral technological framework allowing users to transmit information.</p>
+                <p style={{ marginTop: '0.5rem' }}>Specifically, TamilChat DOES NOT:<br />
                     (a) Initiate the transmission of communications.<br />
                     (b) Select the receiver of the transmission.<br />
                     (c) Select or modify the information contained in the transmission.<br />
@@ -197,11 +197,11 @@ export const TermsPage = () => {
             </Section>
 
             <Section title="3. Limitation of Liability">
-                <p style={{ textTransform: 'uppercase', fontSize: '0.85rem' }}>To the maximum extent permitted by applicable law, under no circumstances shall MalluChat, its founders, operators, developers, or affiliates be held liable for any direct, indirect, incidental, punitive, special, or consequential damages resulting from (i) your access to or inability to access the platform; (ii) any conduct or content generated by any third party; (iii) any unauthorized access, use, or alteration of transmissions; or (iv) any misuse of the peer-to-peer private rooms.</p>
+                <p style={{ textTransform: 'uppercase', fontSize: '0.85rem' }}>To the maximum extent permitted by applicable law, under no circumstances shall TamilChat, its founders, operators, developers, or affiliates be held liable for any direct, indirect, incidental, punitive, special, or consequential damages resulting from (i) your access to or inability to access the platform; (ii) any conduct or content generated by any third party; (iii) any unauthorized access, use, or alteration of transmissions; or (iv) any misuse of the peer-to-peer private rooms.</p>
             </Section>
 
             <Section title="4. Indemnification">
-                <p>You agree to indemnify, defend, and hold harmless MalluChat and its operators from any claims, liabilities, damages, and expenses (including legal fees) arising from your use of the platform, your violation of these terms, or your infringement of any third-party rights.</p>
+                <p>You agree to indemnify, defend, and hold harmless TamilChat and its operators from any claims, liabilities, damages, and expenses (including legal fees) arising from your use of the platform, your violation of these terms, or your infringement of any third-party rights.</p>
             </Section>
 
             <Section title="5. Enforcement & Government Cooperation">
@@ -221,8 +221,8 @@ export const TermsPage = () => {
 
 export const AUPPage = () => {
     useMeta(
-        'Acceptable Use Policy - Mallu Chat',
-        'Review acceptable use policies and community rules for Mallu Chat online chat platform.',
+        'Acceptable Use Policy - Tamil Chat',
+        'Review acceptable use policies and community rules for Tamil Chat online chat platform.',
         '/aup'
     );
 
@@ -247,7 +247,7 @@ export const AUPPage = () => {
             </Section>
 
             <Section title="Enforcement Actions">
-                <p>MalluChat reserves the right to immediately terminate the session, restrict IP access, or implement technical blocks against users found violating these policies without prior warning. Suspected severe illegal activities will prompt cooperation with relevant law enforcement structures.</p>
+                <p>TamilChat reserves the right to immediately terminate the session, restrict IP access, or implement technical blocks against users found violating these policies without prior warning. Suspected severe illegal activities will prompt cooperation with relevant law enforcement structures.</p>
             </Section>
         </div>
     );
@@ -255,8 +255,8 @@ export const AUPPage = () => {
 
 export const DisclaimerPage = () => {
     useMeta(
-        'Legal Disclaimer & Grievance Protocol - Mallu Chat',
-        'Legal disclaimer, intermediary status, and Grievance Officer details for Mallu Chat under IT Act 2000.',
+        'Legal Disclaimer & Grievance Protocol - Tamil Chat',
+        'Legal disclaimer, intermediary status, and Grievance Officer details for Tamil Chat under IT Act 2000.',
         '/disclaimer'
     );
 
@@ -266,7 +266,7 @@ export const DisclaimerPage = () => {
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}><em>Effective Date: February 2026</em></p>
 
             <Section title="Neutral Technological Intermediary">
-                <p>MalluChat operates strictly as a neutral technology provider allowing decentralized user communication. We do not initiate, select, or modify any user transmissions. We do not monitor private peer-to-peer communications. Public chat is transient and not archived. Use of the platform is at the user&apos;s own risk.</p>
+                <p>TamilChat operates strictly as a neutral technology provider allowing decentralized user communication. We do not initiate, select, or modify any user transmissions. We do not monitor private peer-to-peer communications. Public chat is transient and not archived. Use of the platform is at the user&apos;s own risk.</p>
             </Section>
 
             <Section title="Grievance Officer (India Compliance)">
@@ -282,7 +282,7 @@ export const DisclaimerPage = () => {
                         <span>Chief Grievance Officer</span>
 
                         <strong style={{ color: '#fff' }}>Email:</strong>
-                        <a href="mailto:grievance@malayalamchat.online" style={{ color: 'var(--primary)', textDecoration: 'none' }}>grievance@malayalamchat.online</a>
+                        <a href="mailto:grievance@tamilchat.online" style={{ color: 'var(--primary)', textDecoration: 'none' }}>grievance@tamilchat.online</a>
 
                         <strong style={{ color: '#fff' }}>Jurisdiction:</strong>
                         <span>Republic of India</span>
@@ -301,15 +301,15 @@ export const DisclaimerPage = () => {
 
 export const PaymentHelpPage = () => {
     useMeta(
-        'Payment Support & Refund Policy - MalluChat',
-        'Official Payment Support, Billing Assistance, and Policy details for MalluChat and Twingle. Contact teamtwingle@gmail.com for payment help.',
+        'Payment Support & Refund Policy - TamilChat',
+        'Official Payment Support, Billing Assistance, and Policy details for TamilChat. Contact teamtwingle@gmail.com for payment help.',
         '/payment-help'
     );
 
     const [issueCategory, setIssueCategory] = useState('Payment deducted, tokens not unlocked');
     const [senderUsername, setSenderUsername] = useState(() => {
         if (typeof window !== 'undefined') {
-            return localStorage.getItem('malluchat_username') || '';
+            return localStorage.getItem('tamilchat_username') || '';
         }
         return '';
     });
@@ -327,9 +327,9 @@ export const PaymentHelpPage = () => {
     ];
 
     const generateEmailBody = () => {
-        return `Hello Twingle & MalluChat Support Team,
+        return `Hello TamilChat Support Team,
 
-I am writing regarding a payment issue on MalluChat.online / Twingle.online.
+I am writing regarding a payment issue on TamilChat.online.
 
 --- Issue Summary ---
 Category: ${issueCategory}
@@ -352,7 +352,7 @@ Thank you!`;
         setTimeout(() => setCopied(false), 2500);
     };
 
-    const mailtoUrl = `mailto:teamtwingle@gmail.com?subject=${encodeURIComponent(`MalluChat Payment Support: ${issueCategory} (Txn: ${upiTxnId || 'Pending'})`)}&body=${encodeURIComponent(generateEmailBody())}`;
+    const mailtoUrl = `mailto:teamtwingle@gmail.com?subject=${encodeURIComponent(`TamilChat Payment Support: ${issueCategory} (Txn: ${upiTxnId || 'Pending'})`)}&body=${encodeURIComponent(generateEmailBody())}`;
 
     return (
         <div style={containerStyle} className="glass">
@@ -373,15 +373,15 @@ Thank you!`;
                 <div>
                     <h3 style={{ color: '#ef4444', fontSize: '1.1rem', margin: '0 0 0.4rem 0' }}>Strict Non-Refundable Policy</h3>
                     <p style={{ color: 'var(--text-main)', fontSize: '0.92rem', margin: 0, lineHeight: '1.5' }}>
-                        All payments and contributions made on <strong>MalluChat</strong> and <strong>Twingle</strong> are strictly non-refundable and are dedicated directly toward calling tokens, peer-to-peer WebRTC server maintenance, and premium account access privileges.
+                        All payments and contributions made on <strong>TamilChat</strong> are strictly non-refundable and are dedicated directly toward calling tokens, peer-to-peer WebRTC server maintenance, and premium account access privileges.
                     </p>
                 </div>
             </div>
 
             {/* Turnaround Time Notice */}
             <div style={{
-                background: 'rgba(74, 222, 128, 0.08)',
-                border: '1px solid rgba(74, 222, 128, 0.25)',
+                background: 'rgba(239, 68, 68, 0.08)',
+                border: '1px solid rgba(239, 68, 68, 0.25)',
                 borderRadius: '16px',
                 padding: '1.25rem 1.5rem',
                 marginBottom: '2rem',
@@ -442,13 +442,13 @@ Thank you!`;
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1rem' }}>
                         <div>
                             <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '0.4rem' }}>
-                                Your MalluChat Username:
+                                Your TamilChat Username:
                             </label>
                             <input
                                 type="text"
                                 value={senderUsername}
                                 onChange={(e) => setSenderUsername(e.target.value)}
-                                placeholder="e.g. Kochi_Mallu"
+                                placeholder="e.g. Chennai_Macha"
                                 style={{
                                     width: '100%',
                                     background: 'rgba(255, 255, 255, 0.05)',
@@ -557,7 +557,7 @@ Thank you!`;
                                 flex: 1,
                                 minWidth: '220px',
                                 background: 'var(--primary)',
-                                color: '#000',
+                                color: '#fff',
                                 padding: '0.85rem 1.25rem',
                                 borderRadius: '12px',
                                 fontWeight: 700,
@@ -566,7 +566,7 @@ Thank you!`;
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 gap: '8px',
-                                boxShadow: '0 4px 15px rgba(74, 222, 128, 0.3)',
+                                boxShadow: '0 4px 15px rgba(239, 68, 68, 0.35)',
                                 fontSize: '0.95rem'
                             }}
                         >
@@ -577,7 +577,7 @@ Thank you!`;
                             type="button"
                             onClick={handleCopy}
                             style={{
-                                background: copied ? 'rgba(74, 222, 128, 0.2)' : 'rgba(255, 255, 255, 0.08)',
+                                background: copied ? 'rgba(239, 68, 68, 0.2)' : 'rgba(255, 255, 255, 0.08)',
                                 border: '1px solid var(--panel-border)',
                                 color: copied ? 'var(--primary)' : 'var(--text-main)',
                                 padding: '0.85rem 1.25rem',

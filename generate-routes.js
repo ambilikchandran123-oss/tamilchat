@@ -7,191 +7,123 @@ const __dirname = path.dirname(__filename);
 
 // Define metadata for all sub-routes to optimize SEO and prevent duplicate canonical penalties
 const routeMetadata = {
-  'malayalam-chatting-website': {
-    title: 'Malayalam Chatting Website - #1 Free Kerala Online Chat & Video Call | MalayalamChat',
-    description: 'Kerala\'s #1 Malayalam chatting website for free anonymous chat rooms, roundam chating, stranger video calling, & 1-on-1 Malayalam chat with zero registration.',
-    h1: 'Malayalam Chatting Website - #1 Free Kerala Online Chat Rooms',
-    intro: 'Discover the #1 <strong>Malayalam chatting website</strong> (<a href="https://malayalamchat.online/">MalayalamChat.online</a>) for Malayalees worldwide. Chat anonymously, make new Kerala friends, experience Malayalam roundam chating, and start free 1-on-1 video calls.'
+  // --- Tamil Primary Routes ---
+  'tamil-chatting-website': {
+    title: 'Tamil Chatting Website - #1 Free Tamil Nadu Online Chat & Video Call | TamilChat',
+    description: 'Tamil Nadu\'s #1 Tamil chatting website for free anonymous chat rooms, stranger video calling, & 1-on-1 Tamil chat with zero registration.',
+    h1: 'Tamil Chatting Website - #1 Free Tamil Nadu Online Chat Rooms',
+    intro: 'Discover the #1 <strong>Tamil chatting website</strong> (<a href="https://tamilchat.online/">TamilChat.online</a>) for Tamilians worldwide. Chat anonymously, make new friends across Chennai, Kovai, and Madurai, and start free 1-on-1 video calls.'
   },
-  'malayalam-video-call': {
-    title: 'Malayalam Video Call - Free 1-on-1 Malayalam Video Chat Online | MalayalamChat',
-    description: 'Best Malayalam video call platform online. Connect with Kerala strangers for free live video calls, random video matching, and audio chats without registration.',
-    h1: 'Malayalam Video Call Online - Free 1-on-1 Kerala Video Chat',
-    intro: 'Join <strong>Malayalam Video Call</strong> on MalayalamChat.online. Connect 1-on-1 with Malayalam speakers across Kerala (Kochi, Trivandrum, Kozhikode, Thrissur) and Gulf NRIs with zero paywalls and end-to-end encryption.'
+  'tamil-video-call': {
+    title: 'Tamil Video Call - Free 1-on-1 Tamil Video Chat Online | TamilChat',
+    description: 'Best Tamil video call platform online. Connect with Tamil strangers for free live video calls, random video matching, and audio chats without registration.',
+    h1: 'Tamil Video Call Online - Free 1-on-1 Tamil Video Chat',
+    intro: 'Join <strong>Tamil Video Call</strong> on TamilChat.online. Connect 1-on-1 with Tamil speakers across Chennai, Coimbatore, Madurai, Trichy, Salem, and global Tamils with zero paywalls and end-to-end encryption.'
   },
-  'malayalam-chat-online': {
-    title: 'Malayalam Chat Online - Meet Kerala Strangers & Chat Rooms | MalayalamChat',
-    description: 'Join Malayalam Chat Online to connect with Malayalees in Kochi, Trivandrum, Kozhikode, and Gulf NRIs. 100% free text & video chat without registration.',
-    h1: 'Malayalam Chat Online - Meet Kerala Strangers & Friends',
-    intro: 'Connect on <strong>Malayalam Chat Online</strong>. Talk with Malayalees across Kerala and abroad in safe, moderated Malayalam text and video lobbies with zero registration.'
+  'tamil-chat-online': {
+    title: 'Tamil Chat Online - Meet Tamil Nadu Strangers & Chat Rooms | TamilChat',
+    description: 'Join Tamil Chat Online to connect with Tamilians in Chennai, Kovai, Madurai, and global Tamils. 100% free text & video chat without registration.',
+    h1: 'Tamil Chat Online - Meet Tamil Nadu Strangers & Friends',
+    intro: 'Connect on <strong>Tamil Chat Online</strong>. Talk with Tamilians across Tamil Nadu and abroad in safe, moderated Tamil text and video lobbies with zero registration.'
   },
-  'mallu-stranger-chat-website': {
-    title: 'Mallu Stranger Chat Website - #1 Free Malayalam Strangers Chat & Video | MalayalamChat',
-    description: 'Join the #1 Mallu stranger chat website on MalayalamChat.online. Instant anonymous Malayalam strangers chatting, live Kerala chat rooms, & 1-on-1 random video calls with zero registration.',
-    h1: 'Mallu Stranger Chat Website - Anonymous Malayalam Chat with Strangers',
-    intro: 'Welcome to MalayalamChat.online, Kerala&apos;s leading <strong>Mallu stranger chat website</strong> and top destination for <strong>Malayalam strangers chatting</strong>. Connect with friendly Malayalis across Kerala (Kochi, Trivandrum, Kozhikode, Thrissur, Malappuram) and Gulf NRIs in seconds with zero registration or logins.'
+  'tamil-stranger-chat-website': {
+    title: 'Tamil Stranger Chat Website - #1 Free Tamil Strangers Chat & Video | TamilChat',
+    description: 'Join the #1 Tamil stranger chat website on TamilChat.online. Instant anonymous Tamil strangers chatting, live Tamil Nadu chat rooms, & 1-on-1 random video calls with zero registration.',
+    h1: 'Tamil Stranger Chat Website - Anonymous Tamil Chat with Strangers',
+    intro: 'Welcome to TamilChat.online, Tamil Nadu\'s leading <strong>Tamil stranger chat website</strong>. Connect with friendly Tamilians across Chennai, Kovai, Madurai, Trichy, Salem, and global Tamils in seconds with zero registration.'
   },
-  'mallu-strangers-chatting-website': {
-    title: 'Mallu Strangers Chatting Website - Free Malayalam Stranger Chat Online | MalayalamChat',
-    description: 'Best Mallu strangers chatting website for free anonymous Malayalam chat, stranger text matching, and private 1-on-1 WebRTC video calls with zero signup.',
-    h1: 'Mallu Strangers Chatting Website - Free Malayalam Stranger Chat Online',
-    intro: 'Looking for a reliable <strong>Mallu strangers chatting website</strong>? MalayalamChat offers instant anonymous connections with Malayalam-speaking strangers worldwide for text chats and encrypted video calls.'
+  'tamil-strangers-chat': {
+    title: 'Tamil Strangers Chat - Chat with Strangers in Tamil Online | TamilChat',
+    description: 'Join Tamil Strangers Chat on TamilChat.online. Talk and video call with random strangers in Tamil Nadu and worldwide. 100% free anonymous chat, zero registration.',
+    h1: 'Tamil Strangers Chat - Chat with Strangers in Tamil Online',
+    intro: 'Connect with thousands of active Tamil speakers on <strong>Tamil Strangers Chat</strong>. Enjoy anonymous 1-on-1 chats and high-definition WebRTC video calls with zero registration.'
   },
-  'mallu-strangers-chat': {
-    title: 'Mallu Strangers Chat - Chat with Strangers in Malayalam Online | MalayalamChat',
-    description: 'Join Mallu Strangers Chat on MalayalamChat.online. Talk and video call with random strangers in Kerala and worldwide. 100% free anonymous chat, zero registration.',
-    h1: 'Mallu Strangers Chat - Chat with Strangers in Malayalam Online',
-    intro: 'Connect with thousands of active Malayalam speakers on <strong>Mallu Strangers Chat</strong>. Enjoy anonymous 1-on-1 chats and high-definition WebRTC video calls with zero registration.'
+  'tamil-random-chatting-website': {
+    title: 'Tamil Random Chatting Website - Instant Tamil Stranger Match | TamilChat',
+    description: 'Top-ranked Tamil random chatting website for instant Tamil stranger chat, live Tamil Nadu random matching, & 1-on-1 WebRTC video calls without signup.',
+    h1: 'Tamil Random Chatting Website - Instant Tamil Stranger Match',
+    intro: 'Welcome to the premier <strong>Tamil random chatting website</strong> (<a href="https://tamilchat.online/">TamilChat.online</a>). Connect with online Tamil strangers in one tap with zero registration.'
   },
-  'mallu-stranger-chat': {
-    title: 'Mallu Stranger Chat Online - Free Anonymous Malayalam Chat Rooms | MalayalamChat',
-    description: 'Connect instantly on Mallu Stranger Chat. Enjoy free anonymous Malayalam text chat rooms and encrypted stranger video calls without registration.',
-    h1: 'Mallu Stranger Chat Online - Free Anonymous Malayalam Chat Rooms',
-    intro: 'Experience Kerala&apos;s favorite <strong>Mallu stranger chat</strong> online. Talk to random strangers in Malayalam without sharing personal info, phone numbers, or passwords.'
+  'tamil-chat-rooms': {
+    title: 'Tamil Chat Rooms - #1 Tamil Chat Rooms & Tamil Nadu Live Chat | TamilChat',
+    description: 'Join the #1 Tamil Chat Room on TamilChat.online. Real-time Tamil chat rooms, Tamil Nadu chatroom discussions, stranger video calls, & zero registration.',
+    h1: 'Tamil Chat Rooms - Free Tamil Chat Rooms Online',
+    intro: 'Welcome to active <strong>Tamil Chat Rooms</strong>! Join ongoing Tamil discussions, meet friends from Chennai, Coimbatore, Madurai, Trichy, Salem, and global Tamils.'
   },
-  'strangers-mallu-chat': {
-    title: 'Mallu Strangers Chat Online - Free Anonymous Malayalam Chat | MalayalamChat',
-    description: 'Connect instantly on Mallu Strangers Chat. Enjoy free anonymous Malayalam text chat rooms and encrypted stranger video calls without registration.',
-    h1: 'Mallu Strangers Chat Online - Free Anonymous Malayalam Chat',
-    intro: 'Looking to meet Malayali strangers? <strong>Strangers Mallu Chat</strong> on MalayalamChat.online connects you with verified active users across Kerala and the Gulf for text and video chats.'
+  'tamil-chat-live': {
+    title: 'Tamil Chat Live - Real-Time Live Tamil Chat & Video Calls | TamilChat',
+    description: 'Join Live Tamil Chat on TamilChat.online! Enjoy real-time live Tamil chat rooms, instant 1-on-1 stranger video calls, and zero registration.',
+    h1: 'Tamil Chat Live - Real-Time Live Tamil Chat & Video Calls',
+    intro: 'Welcome to <strong>Tamil Chat Live</strong>. Experience instant live Tamil messaging, Tamil Nadu public lobbies, and stranger video matching in real time.'
   },
-  'chat-with-strangers-in-mallu': {
-    title: 'Chat with Strangers in Mallu - Malayalam Strangers Chat & Video | MalayalamChat',
-    description: 'Looking to chat with strangers in Mallu? Join MalayalamChat for instant live Malayalam stranger chat rooms, P2P video calls, and anonymous messaging.',
-    h1: 'Chat with Strangers in Mallu - Live Malayalam Chat & Video Calls',
-    intro: 'Easily <strong>chat with strangers in Mallu</strong>! Jump straight into Malayalam conversations with friendly people from all districts of Kerala with zero signup fees.'
+  'tamil-free-video-call': {
+    title: 'Tamil Video Call Free - Tamil Free Video Calling Website | TamilChat',
+    description: 'Start a Tamil video call free on TamilChat. High-definition 1-on-1 random Tamil video calls with zero coins, downloads, or registration.',
+    h1: 'Tamil Video Call Free - Free Tamil Video Calling Website',
+    intro: 'Enjoy unlimited <strong>Tamil video call free</strong>! Connect 1-on-1 with Tamil-speaking strangers with crystal-clear audio and video without paying coins.'
   },
-  'mallu-random-chatting-website': {
-    title: 'Mallu Random Chatting Website - Malayalam Roundam Chating & Calling | MalayalamChat',
-    description: 'Top-ranked Mallu random chatting website for instant Malayalam roundam chating, live Kerala random matching, & 1-on-1 WebRTC video calls without signup.',
-    h1: 'Mallu Random Chatting Website - Malayalam Roundam Chating & Stranger Match',
-    intro: 'Welcome to the premier <strong>Mallu random chatting website</strong> (<a href="https://malayalamchat.online/">MalayalamChat.online</a>). If you are looking for <strong>Malayalam roundam chating</strong>, <strong>Mallu random chat</strong>, or <strong>Malayalam random call</strong>, connect with online Malayali strangers in one tap with zero registration.'
+  'tamil-random-video-call': {
+    title: 'Tamil Random Video Call Online - Tamil Nadu Stranger Match | TamilChat',
+    description: 'Instant Tamil random video calling. Connect 1-on-1 with Tamil strangers for live video calls and encrypted chat.',
+    h1: 'Tamil Random Video Call Online - Tamil Nadu Stranger Match',
+    intro: 'Single-click <strong>Tamil random video call</strong> matching! Connect with live Tamil strangers across Tamil Nadu and worldwide in seconds.'
   },
-  'mallu-random-chat': {
-    title: 'Mallu Random Chat - Free Malayalam Roundam Chating Online | MalayalamChat',
-    description: 'Connect on Mallu Random Chat for instant anonymous Malayalam roundam chating, stranger matches, and free 1-on-1 video calling with zero signups.',
-    h1: 'Mallu Random Chat - Instant Malayalam Stranger Matching & Roundam Chating',
-    intro: 'Experience fast, anonymous <strong>Mallu random chat</strong> on MalayalamChat.online. Meet random Kerala boys and girls online for fun conversations, banter, and HD video calls.'
+  'tamil-chatting-app': {
+    title: 'Tamil Chat App - Tamil Stranger Video Call Online | TamilChat',
+    description: 'Use Tamil Chat App online for instant stranger video calling, anonymous group chat rooms, and web P2P calls on mobile and desktop.',
+    h1: 'Tamil Chat App - Tamil Stranger Chat & Video Call',
+    intro: 'Use the <strong>Tamil Chat App</strong> directly in your mobile or desktop browser for fast stranger chat and WebRTC video calling.'
   },
-  'mallu-chatting-website': {
-    title: 'Mallu Chat Website - #1 Mallu Chatting Website & Kerala Live Chat | MalayalamChat',
-    description: 'Looking for the top Mallu chat website? MalayalamChat is Kerala\'s #1 Malayalam chatting website for anonymous live rooms, Mallu video calls, and stranger chat.',
-    h1: 'Mallu Chat Website - #1 Mallu Chatting Website',
-    intro: 'Looking for the best <strong>Mallu chat website</strong> or <strong>Malayalam chatting website</strong>? MalayalamChat is Kerala&apos;s favorite online chat platform for live Kerala group lobbies, anonymous stranger chat, and WebRTC video calling.'
+  'tamil-telegram-chatting': {
+    title: 'Tamil Telegram Chat Alternative - Tamil Stranger Chat | TamilChat',
+    description: 'Looking for Tamil Telegram chat groups? Join TamilChat for instant live Tamil stranger chat rooms, P2P video calls, and voice chat.',
+    h1: 'Tamil Telegram Chat Alternative - Live Stranger Chat Rooms',
+    intro: 'The ultimate <strong>Tamil Telegram chat</strong> alternative with instant live chat rooms, zero phone number sharing, and direct WebRTC video calls.'
   },
-  'mallu-chat-website': {
-    title: 'Mallu Chat Website - #1 Malayalam Chatting Website & Kerala Live Chat | MalayalamChat',
-    description: 'Looking for the top Mallu chat website? MalayalamChat is Kerala\'s #1 Malayalam chatting website for anonymous live rooms, Mallu video calls, and stranger chat.',
-    h1: 'Mallu Chat Website - #1 Mallu Chatting Website',
-    intro: 'Welcome to the #1 <strong>Mallu Chat Website</strong> online! Connect with Malayalees across Kerala and the GCC for free live chat, voice notes, and 1-on-1 video calls.'
+  'tamil-open-chat': {
+    title: 'Tamil Open Chat - Free Tamil Live Chat Online | TamilChat',
+    description: 'Experience Tamil Open Chat on TamilChat.online. Fast, open Tamil chat rooms, stranger connections, and instant video calling with zero signups.',
+    h1: 'Tamil Open Chat - Free Tamil Live Chat Online',
+    intro: 'Join <strong>Tamil Open Chat</strong> for completely open, free-access Tamil conversations. No registration or passwords required.'
   },
-  'mallu-chat-rooms': {
-    title: 'Mallu Chat Room - #1 Malayalam Chat Rooms & Kerala Live Chat | MalayalamChat',
-    description: 'Join the #1 Mallu Chat Room on MalayalamChat.online. Real-time Malayalam chat rooms, Kerala chatroom discussions, stranger video calls, & zero registration.',
-    h1: 'Mallu Chat Room - Free Malayalam Chat Rooms Online',
-    intro: 'Welcome to active <strong>Mallu Chat Rooms</strong>! Join ongoing Kerala discussions, meet friends from Kochi, Trivandrum, Kozhikode, Thrissur, Malappuram, and Gulf NRIs.'
-  },
-  'mallu-chat-room': {
-    title: 'Mallu Chat Room - #1 Malayalam Chat Rooms & Kerala Live Chat | MalayalamChat',
-    description: 'Best Mallu chat room online. Connect with Malayalees across Kerala and Gulf NRIs in instant free chat rooms with zero signup.',
-    h1: 'Mallu Chat Room Online - Free Kerala Chat & Video Calls',
-    intro: 'Enter the top <strong>Mallu chat room online</strong>. Connect with fellow Malayalis for text, voice notes, and 1-on-1 random video calls.'
-  },
-  'mallu-chatroom': {
-    title: 'Mallu Chatroom - Free Malayalam Chat Rooms Online | MalayalamChat',
-    description: 'Enter the live Mallu chatroom on MalayalamChat. Meet new Malayalam friends, join public Kerala lobbies, or start private video calls instantly.',
-    h1: 'Mallu Chatroom - Free Malayalam Chat Rooms Online',
-    intro: 'Step into the live <strong>Mallu chatroom</strong> on MalayalamChat. Enjoy real-time interactions with Malayalam speakers in a secure, anonymous environment.'
-  },
-  'mallu-video-call': {
-    title: 'Mallu Video Call - Free 1-on-1 Malayalam Video Call & Random Chat | MalayalamChat',
-    description: 'Connect instantly for Mallu Video Call on MalayalamChat.online. Free 1-on-1 Malayalam video call online, Mallu random call matching, and live stranger chat with zero registration.',
-    h1: 'Mallu Video Call Online - Free 1-on-1 Malayalam Video Chat',
-    intro: 'Start a high-definition <strong>Mallu video call</strong> online. Enjoy encrypted peer-to-peer WebRTC video chats with Malayali strangers with zero coins or fees.'
-  },
-  'mallu-random-call': {
-    title: 'Mallu Random Call - Free Malayalam Video Call & Stranger Chat | MalayalamChat',
-    description: 'Connect on Mallu Random Call for instant 1-on-1 Malayalam video calls and stranger voice chat with zero coins or downloads.',
-    h1: 'Mallu Random Call - Instant Malayalam Video Matching',
-    intro: 'Enjoy instant <strong>Mallu random call</strong> matching! Connect face-to-face with friendly Malayalam speakers in high-definition WebRTC video calls.'
-  },
-  'mallu-open-chat': {
-    title: 'Mallu Open Chat - Free Malayalam Live Chat Online | MalayalamChat',
-    description: 'Experience Mallu Open Chat on MalayalamChat.online. Fast, open Malayalam chat rooms, stranger connections, and instant video calling with zero signups.',
-    h1: 'Mallu Open Chat - Free Malayalam Live Chat Online',
-    intro: 'Join <strong>Mallu Open Chat</strong> for completely open, free-access Malayalam conversations. No registration or passwords required.'
-  },
-  'mallu-chat-live': {
-    title: 'Mallu Chat Live - Live Malayalam Chat & Instant Kerala Chat Rooms | MalayalamChat',
-    description: 'Join Live Mallu Chat on MalayalamChat.online! Enjoy real-time live Malayalam chat rooms, instant 1-on-1 stranger video calls, and zero registration.',
-    h1: 'Mallu Chat Live - Real-Time Live Malayalam Chat & Video Calls',
-    intro: 'Welcome to <strong>Mallu Chat Live</strong> and <strong>Live Mallu Chat</strong>. Experience instant live Malayalam messaging, Kerala public lobbies, and stranger video matching in real time.'
-  },
-  'live-mallu-chat': {
-    title: 'Live Mallu Chat - Real-Time Malayalam Chat Rooms & Video Call | MalayalamChat',
-    description: 'Experience Live Mallu Chat on MalayalamChat.online. Real-time live Malayalam chat rooms, instant stranger video calls, and zero registration.',
-    h1: 'Live Mallu Chat - Real-Time Kerala Chat Rooms',
-    intro: 'Connect on <strong>Live Mallu Chat</strong> to talk with active Malayalees worldwide with zero signups or phone numbers.'
-  },
-  'mallu-free-video-call': {
-    title: 'Mallu Video Call Free - Malayalam Free Video Calling Website | MalayalamChat',
-    description: 'Start a Mallu video call free on MalayalamChat. High-definition 1-on-1 random Malayalam video calls with zero coins, downloads, or registration.',
-    h1: 'Mallu Video Call Free - Free Malayalam Video Calling Website',
-    intro: 'Enjoy unlimited <strong>Mallu video call free</strong>! Connect 1-on-1 with Malayalam-speaking strangers with crystal-clear audio and video without paying coins.'
-  },
-  'mallu-random-video-call': {
-    title: 'Mallu Random Video Call Online - Kerala Stranger Match | MalayalamChat',
-    description: 'Instant Mallu random video calling. Connect 1-on-1 with Malayalam strangers for live video calls and encrypted chat.',
-    h1: 'Mallu Random Video Call Online - Kerala Stranger Match',
-    intro: 'Single-click <strong>Mallu random video call</strong> matching! Connect with live Malayali strangers across Kerala and worldwide in seconds.'
-  },
-  'mallu-chatting-app': {
-    title: 'Mallu Chat App - Malayalam Stranger Video Call Online | MalayalamChat',
-    description: 'Use Mallu Chat App online for instant stranger video calling, anonymous group chat rooms, and web P2P calls on mobile and desktop.',
-    h1: 'Mallu Chat App - Malayalam Stranger Chat & Video Call',
-    intro: 'Use the <strong>Mallu Chat App</strong> directly in your mobile browser or install the Android APK for fast stranger chat and WebRTC video calling.'
-  },
-  'mallu-telegram-chatting': {
-    title: 'Mallu Telegram Chat Alternative - Malayalam Stranger Chat | MalayalamChat',
-    description: 'Looking for Mallu Telegram chat groups? Join MalayalamChat for instant live Malayalam stranger chat rooms, P2P video calls, and voice chat.',
-    h1: 'Mallu Telegram Chat Alternative - Live Stranger Chat Rooms',
-    intro: 'The ultimate <strong>Mallu Telegram chat</strong> alternative with instant live chat rooms, zero phone number sharing, and direct WebRTC video calls.'
-  },
-  'telegram-alternative-group-chat': {
-    title: 'Telegram Alternative Group Chat for Malayalam Speakers | MalayalamChat',
-    description: 'Best Telegram alternative for anonymous Malayalam group chats, stranger video calls, and Kerala online chat rooms.',
-    h1: 'Telegram Alternative Group Chat for Malayalam Speakers',
-    intro: 'Join the best <strong>Telegram alternative group chat</strong> tailored for Malayalam speakers. Free anonymous text and video chat with zero installation.'
-  },
+
+  // --- Policy & Info Routes ---
   'privacy': {
-    title: 'Privacy Policy | MalayalamChat Online',
-    description: 'Privacy Policy for MalayalamChat online strangers chat and free video calling website.',
-    h1: 'Privacy Policy - MalayalamChat',
-    intro: 'Learn how MalayalamChat protects your privacy with zero data tracking, anonymous handles, and encrypted peer-to-peer communication.'
+    title: 'Privacy Policy | TamilChat Online',
+    description: 'Privacy Policy for TamilChat online strangers chat and free video calling website.',
+    h1: 'Privacy Policy - TamilChat',
+    intro: 'Learn how TamilChat protects your privacy with zero data tracking, anonymous handles, and encrypted peer-to-peer communication.'
   },
   'terms': {
-    title: 'Terms of Service | MalayalamChat Online',
-    description: 'Terms of Service for using MalayalamChat online live video chat and Kerala chat rooms.',
-    h1: 'Terms of Service - MalayalamChat',
-    intro: 'Please review the Terms of Service for using MalayalamChat.online Malayalam chat rooms and video calling services.'
+    title: 'Terms of Service | TamilChat Online',
+    description: 'Terms of Service for using TamilChat online live video chat and Tamil chat rooms.',
+    h1: 'Terms of Service - TamilChat',
+    intro: 'Please review the Terms of Service for using TamilChat.online Tamil chat rooms and video calling services.'
   },
   'aup': {
-    title: 'Acceptable Use Policy | MalayalamChat Online',
-    description: 'Acceptable Use Policy for MalayalamChat online strangers video calling and group chat.',
-    h1: 'Acceptable Use Policy - MalayalamChat',
-    intro: 'Guidelines and acceptable conduct for maintaining a safe, respectful, and friendly Malayalam chat community.'
+    title: 'Acceptable Use Policy | TamilChat Online',
+    description: 'Acceptable Use Policy for TamilChat online strangers video calling and group chat.',
+    h1: 'Acceptable Use Policy - TamilChat',
+    intro: 'Guidelines and acceptable conduct for maintaining a safe, respectful, and friendly Tamil chat community.'
   },
   'disclaimer': {
-    title: 'Disclaimer | MalayalamChat Online',
-    description: 'Disclaimer for MalayalamChat free online video call and strangers chat platform.',
-    h1: 'Disclaimer - MalayalamChat',
-    intro: 'Service disclaimer regarding user-generated content and third-party interactions on MalayalamChat.online.'
+    title: 'Disclaimer | TamilChat Online',
+    description: 'Disclaimer for TamilChat free online video call and strangers chat platform.',
+    h1: 'Disclaimer - TamilChat',
+    intro: 'Service disclaimer regarding user-generated content and third-party interactions on TamilChat.online.'
   },
   'payment-help': {
-    title: 'Payment Support & Refund Policy | MalayalamChat Online',
-    description: 'Payment support, billing assistance, and non-refundable policy details for MalluChat and Twingle. Contact teamtwingle@gmail.com.',
-    h1: 'Payment Support & Refund Policy - MalayalamChat',
-    intro: 'Official billing and payment support center for MalayalamChat.online and Twingle.online. Learn about our non-refundable policy and contact support.'
+    title: 'Payment Support & Refund Policy | TamilChat Online',
+    description: 'Payment support, billing assistance, and non-refundable policy details for TamilChat. Contact teamtwingle@gmail.com.',
+    h1: 'Payment Support & Refund Policy - TamilChat',
+    intro: 'Official billing and payment support center for TamilChat.online. Learn about our non-refundable policy and contact support.'
+  },
+
+  'telegram-alternative-group-chat': {
+    title: 'Telegram Alternative Group Chat | TamilChat',
+    description: 'Best Telegram alternative for anonymous group chats and video calls.',
+    h1: 'Telegram Alternative Group Chat',
+    intro: 'Join the best Telegram alternative group chat.'
   }
 };
 
@@ -209,14 +141,14 @@ console.log('Generating static folders and index.html files with route-specific 
 
 Object.entries(routeMetadata).forEach(([route, meta]) => {
   const routeDir = path.join(distDir, route);
-  const routeUrl = `https://malayalamchat.online/${route}`;
+  const routeUrl = `https://tamilchat.online/${route}`;
   
   if (!fs.existsSync(routeDir)) {
     fs.mkdirSync(routeDir, { recursive: true });
   }
   
   let customizedHtml = indexContent
-    .replace('<link rel="canonical" href="https://malayalamchat.online/" />', `<link rel="canonical" href="${routeUrl}" />`)
+    .replace('<link rel="canonical" href="https://tamilchat.online/" />', `<link rel="canonical" href="${routeUrl}" />`)
     .replace(/<title>.*?<\/title>/, `<title>${meta.title}</title>`)
     .replace(/<meta name="title" content=".*?" \/>/, `<meta name="title" content="${meta.title}" />`)
     .replace(/<meta name="description"\s+content=".*?" \/>/s, `<meta name="description" content="${meta.description}" />`)
@@ -230,7 +162,7 @@ Object.entries(routeMetadata).forEach(([route, meta]) => {
   if (meta.h1) {
     customizedHtml = customizedHtml.replace(
       /<h1 style="[^"]*">.*?<\/h1>/,
-      `<h1 style="color: #4ade80; font-size: 1.8rem; margin-bottom: 0.3rem;">${meta.h1}</h1>`
+      `<h1 style="color: #ef4444; font-size: 1.8rem; margin-bottom: 0.3rem;">${meta.h1}</h1>`
     );
   }
 

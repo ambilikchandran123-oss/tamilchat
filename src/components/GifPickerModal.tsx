@@ -8,86 +8,106 @@ interface GifPickerModalProps {
   onSelectGif: (gifUrl: string, title?: string) => void;
 }
 
-// Authentic Verified Malayalam Movie & Character GIFs
+// Authentic Verified Tamil Cinema Movie & Character GIFs
 const CURATED_GIFS: Record<string, { id: string; url: string; title: string; tags?: string[] }[]> = {
-  malayalam: [
-    { id: 'm1', url: 'https://media.giphy.com/media/SPxbUDEqoJMFfzIo4o/giphy.gif', title: 'Manavalan Glasses (Salim Kumar)', tags: ['salimkumar', 'manavalan', 'malayalam', 'funny'] },
-    { id: 'm2', url: 'https://media.giphy.com/media/Air56nKsn1iAoPm5RZ/giphy.gif', title: 'Mohanlal Salute Mass', tags: ['mohanlal', 'lalettan', 'mass', 'malayalam'] },
-    { id: 'm3', url: 'https://media.giphy.com/media/asMVvV4fOXFcfm6OuM/giphy.gif', title: 'Mammootty "Is That So?"', tags: ['mammootty', 'mammookka', 'malayalam', 'reaction'] },
-    { id: 'm4', url: 'https://media.giphy.com/media/bpyQShzuDh5lLC70wN/giphy.gif', title: 'Premam Malar Teacher Smile', tags: ['premam', 'saipallavi', 'love', 'malayalam'] },
-    { id: 'm5', url: 'https://media.giphy.com/media/3oxRmoWRSnxmiJmBaw/giphy.gif', title: 'Salim Kumar Pulival Kalyanam', tags: ['salimkumar', 'comedy', 'malayalam'] },
-    { id: 'm6', url: 'https://media.giphy.com/media/btdKdBz6Pw4Ks/giphy.gif', title: 'Marykkundoru Kunjaadu Comedy', tags: ['dileep', 'salimkumar', 'malayalam'] },
-    { id: 'm7', url: 'https://media.giphy.com/media/aVMiF9Tc57zkXfZ7IK/giphy.gif', title: 'Nivin Pauly Premam Swag', tags: ['nivinpauly', 'premam', 'mass', 'malayalam'] },
-    { id: 'm8', url: 'https://media.giphy.com/media/duTokUNkqqQAiHnOeM/giphy.gif', title: 'Mammootty Mammookka Reaction', tags: ['mammootty', 'mammookka', 'malayalam'] },
-    { id: 'm9', url: 'https://media.giphy.com/media/ebcTSCa5r2VHFK1zPS/giphy.gif', title: 'Mammootty Bheeshma Parvam', tags: ['mammootty', 'bheeshmaparvam', 'mass'] },
-    { id: 'm10', url: 'https://media.giphy.com/media/AmyldVlxkmut0XyRqB/giphy.gif', title: 'Mohanlal Smile', tags: ['mohanlal', 'lalettan', 'smile'] }
+  tamil: [
+    { id: 't1', url: 'https://media.tenor.com/g0HKqQ11kvsAAAAM/tcr-pokkiri-vadivelu.gif', title: 'Vadivelu Pokkiri Swag', tags: ['vadivelu', 'comedy', 'tamil', 'funny', 'வடிவேலு', 'பொக்கிரி'] },
+    { id: 't2', url: 'https://media.tenor.com/RNpAXqj4Ap0AAAAM/chumma-adhirthille-rajinikanth.gif', title: 'Rajinikanth Chumma Adhirudhillai', tags: ['rajinikanth', 'rajini', 'thalaivar', 'sivaji', 'tamil', 'ரஜினி'] },
+    { id: 't3', url: 'https://media.tenor.com/olPBYDV_kdsAAAAM/master-vijay.gif', title: 'Thalapathy Vijay Master Swag', tags: ['vijay', 'thalapathy', 'master', 'tamil', 'விஜய்', 'தளபதி'] },
+    { id: 't4', url: 'https://media.tenor.com/Tk6N8ftUFTUAAAAM/ajith-gifs-thala-ajith.gif', title: 'Thala Ajith Mankatha Laugh', tags: ['ajith', 'thala', 'mankatha', 'tamil', 'அஜித்', 'தல'] },
+    { id: 't5', url: 'https://media.tenor.com/xSBgnLQOO7oAAAAM/santhanam-dialogue-dialogue.gif', title: 'Santhanam Legendary Punch Counter', tags: ['santhanam', 'comedy', 'tamil', 'சந்தானம்', 'கவுண்டர்'] },
+    { id: 't6', url: 'https://media.tenor.com/7k-PWk1_qd0AAAAM/soorarai-pottru-kaatu-payale.gif', title: 'Suriya Soorarai Pottru Romance', tags: ['suriya', 'sooraraipottru', 'love', 'tamil', 'சூர்யா', 'காதல்'] },
+    { id: 't7', url: 'https://media.tenor.com/bDXihdnBFG8AAAAM/leo-thalapathy-vijay.gif', title: 'Vijay Leo Bloody Sweet', tags: ['vijay', 'leo', 'mass', 'tamil', 'விஜய்', 'லியோ'] },
+    { id: 't8', url: 'https://media.tenor.com/69_4HsLFbVgAAAAM/ajith-thala.gif', title: 'Thala Ajith Billa Sunglasses', tags: ['ajith', 'thala', 'billa', 'tamil', 'அஜித்', 'பில்லா'] },
+    { id: 't9', url: 'https://media.tenor.com/nzBDLgtW4WYAAAAM/comedy-vadivelu-laughing.gif', title: 'Vadivelu Comedy Laugh', tags: ['vadivelu', 'comedy', 'tamil', 'வடிவேலு', 'சிரிப்பு'] },
+    { id: 't10', url: 'https://media.tenor.com/j9T8usftqBUAAAAM/flying-kiss-yogi-babu.gif', title: 'Yogi Babu Flying Kiss', tags: ['yogibabu', 'comedy', 'tamil', 'யோகிபாபு'] }
   ],
-  mohanlal: [
-    { id: 'lal1', url: 'https://media.giphy.com/media/Air56nKsn1iAoPm5RZ/giphy.gif', title: 'Mohanlal Salute Mass', tags: ['mohanlal', 'salute', 'mass'] },
-    { id: 'lal2', url: 'https://media.giphy.com/media/AmyldVlxkmut0XyRqB/giphy.gif', title: 'Mohanlal Charm Smile', tags: ['mohanlal', 'smile', 'lalettan'] },
-    { id: 'lal3', url: 'https://media.giphy.com/media/mbcD95pcHZbL1wdIZz/giphy.gif', title: 'Mohanlal Dance Move', tags: ['mohanlal', 'dance'] },
-    { id: 'lal4', url: 'https://media.giphy.com/media/mzZlll5ARLZDGCtRoO/giphy.gif', title: 'Mohanlal Crying Meme', tags: ['mohanlal', 'cry', 'funny'] },
-    { id: 'lal5', url: 'https://media.giphy.com/media/5eFQJhNd7woE0a6pM3/giphy.gif', title: 'Lalettan Movie Swag', tags: ['mohanlal', 'lalettan'] },
-    { id: 'lal6', url: 'https://media.giphy.com/media/FFKlScm1ivGq4JfbWt/giphy.gif', title: 'Harikrishnans Mohanlal & Mammootty', tags: ['mohanlal', 'mammootty'] }
+  vadivelu: [
+    { id: 'vad1', url: 'https://media.tenor.com/g0HKqQ11kvsAAAAM/tcr-pokkiri-vadivelu.gif', title: 'Vadivelu "Aaha Enna Oru Anbu"', tags: ['vadivelu', 'comedy', 'vaigaipuyal', 'வடிவேலு', 'வைகைப்புயல்', 'ஆஹா'] },
+    { id: 'vad2', url: 'https://media.tenor.com/i0CiT2GM-WkAAAAM/vadivelu-marudhamalai-funny-expression-vadivelu-marudhamalai-smile.gif', title: 'Vadivelu Marudhamalai Smile', tags: ['vadivelu', 'marudhamalai', 'வடிவேலு', 'மருதமலை'] },
+    { id: 'vad3', url: 'https://media.tenor.com/FjfqQxIKoXAAAAAM/aayutham-aruva.gif', title: 'Vadivelu "Aayutham Aruva" Shock', tags: ['vadivelu', 'reaction', 'வடிவேலு', 'ஆயுதம்'] },
+    { id: 'vad4', url: 'https://media.tenor.com/nzBDLgtW4WYAAAAM/comedy-vadivelu-laughing.gif', title: 'Vadivelu Non-stop Laugh', tags: ['vadivelu', 'comedy', 'வடிவேலு', 'சிரிப்பு'] },
+    { id: 'vad5', url: 'https://media.tenor.com/SY4QbY3hkkwAAAAM/vadivelu-vadivelu-comedy.gif', title: 'Vadivelu "Naanum Rowdy Dhaan"', tags: ['vadivelu', 'rowdy', 'வடிவேலு'] },
+    { id: 'vad6', url: 'https://media.tenor.com/sw_n99tiy_wAAAAM/smile-vadivelu-reaction.gif', title: 'Vadivelu Wink Expression', tags: ['vadivelu', 'wink', 'வடிவேலு'] }
   ],
-  mammootty: [
-    { id: 'mam1', url: 'https://media.giphy.com/media/asMVvV4fOXFcfm6OuM/giphy.gif', title: 'Mammootty "Is That So?" Reaction', tags: ['mammootty', 'mammookka'] },
-    { id: 'mam2', url: 'https://media.giphy.com/media/duTokUNkqqQAiHnOeM/giphy.gif', title: 'Mammootty Mammookka Smile', tags: ['mammootty', 'smile'] },
-    { id: 'mam3', url: 'https://media.giphy.com/media/LIpi6bKcFVKfZb5Hxe/giphy.gif', title: 'Mammootty Kasaba Mass', tags: ['mammootty', 'kasaba', 'mass'] },
-    { id: 'mam4', url: 'https://media.giphy.com/media/ebcTSCa5r2VHFK1zPS/giphy.gif', title: 'Mammootty Bheeshma Parvam Walk', tags: ['mammootty', 'bheeshmaparvam'] },
-    { id: 'mam5', url: 'https://media.giphy.com/media/dHD3QObxk9Hk6mRsDe/giphy.gif', title: 'Mammootty Kasaba Sunglasses', tags: ['mammootty', 'glasses'] },
-    { id: 'mam6', url: 'https://media.giphy.com/media/Y6CIo9NccFMzdZlKBo/giphy.gif', title: 'Mammootty Special Expression', tags: ['mammootty', 'special'] }
+  rajini: [
+    { id: 'raj1', url: 'https://media.tenor.com/RNpAXqj4Ap0AAAAM/chumma-adhirthille-rajinikanth.gif', title: 'Rajini Sivaji "Chumma Adhirudhillai"', tags: ['rajinikanth', 'sivaji', 'thalaivar', 'ரஜினி', 'தலைவர்', 'சிவாஜி'] },
+    { id: 'raj2', url: 'https://media.tenor.com/lHfG03rVFWAAAAAM/vanakkam-rajinikanth.gif', title: 'Superstar Vanakkam Swag', tags: ['rajinikanth', 'vanakkam', 'thalaivar', 'வணக்கம்'] },
+    { id: 'raj3', url: 'https://media.tenor.com/UFqWBlGnEsoAAAAM/coolie-rajinikanth.gif', title: 'Coolie Rajini Mass Look', tags: ['rajinikanth', 'coolie', 'mass', 'கூலி'] },
+    { id: 'raj4', url: 'https://media.tenor.com/PGLMkx7oy1IAAAAM/style-rajini.gif', title: 'Rajinikanth Sunglasses Flip Style', tags: ['rajini', 'style', 'flip', 'ஸ்டைல்'] },
+    { id: 'raj5', url: 'https://media.tenor.com/l0AKkRWZSvYAAAAM/chitti-evil-laugh.gif', title: 'Enthiran Chitti Evil Laugh', tags: ['rajini', 'chitti', 'enthiran', 'எந்திரன்', 'சிட்டி'] },
+    { id: 'raj6', url: 'https://media.tenor.com/21-FdcBvqjsAAAAM/rajinikanth-angry.gif', title: 'Superstar Intense Anger Mass', tags: ['rajini', 'anger', 'mass', 'ரஜினி'] }
   ],
-  salimkumar: [
-    { id: 'sk1', url: 'https://media.giphy.com/media/SPxbUDEqoJMFfzIo4o/giphy.gif', title: 'Manavalan Glasses (Pulival Kalyanam)', tags: ['salimkumar', 'manavalan'] },
-    { id: 'sk2', url: 'https://media.giphy.com/media/3oxRmoWRSnxmiJmBaw/giphy.gif', title: 'Salim Kumar Classic Reaction', tags: ['salimkumar', 'reaction'] },
-    { id: 'sk3', url: 'https://media.giphy.com/media/MoDHlX4whLqqQ/giphy.gif', title: 'Salim Kumar Comedy Laugh', tags: ['salimkumar', 'laugh'] },
-    { id: 'sk4', url: 'https://media.giphy.com/media/W76Qa07KYacj1OxCaW/giphy.gif', title: 'Salim Kumar Crying Reaction', tags: ['salimkumar', 'cry'] },
-    { id: 'sk5', url: 'https://media.giphy.com/media/KkLQGyM9vCRuOImxkc/giphy.gif', title: 'Salim Kumar & Dileep Scene', tags: ['salimkumar', 'dileep'] }
+  thalapathy: [
+    { id: 'vj1', url: 'https://media.tenor.com/olPBYDV_kdsAAAAM/master-vijay.gif', title: 'Thalapathy Vijay Master Swag', tags: ['vijay', 'thalapathy', 'master', 'விஜய்', 'தளபதி', 'மாஸ்டர்'] },
+    { id: 'vj2', url: 'https://media.tenor.com/bDXihdnBFG8AAAAM/leo-thalapathy-vijay.gif', title: 'Vijay Leo Bloody Sweet', tags: ['vijay', 'leo', 'mass', 'லியோ', 'தளபதி'] },
+    { id: 'vj3', url: 'https://media.tenor.com/gpt_2-8SMkUAAAAM/vijay-vijay-varisu.gif', title: 'Thalapathy Varisu Charming Smile', tags: ['vijay', 'varisu', 'smile', 'வாரிசு'] },
+    { id: 'vj4', url: 'https://media.tenor.com/RE3Wa-pWbcsAAAAM/beast-vijay-vijay.gif', title: 'Vijay Beast Mode Walk', tags: ['vijay', 'beast', 'mass', 'பீஸ்ட்'] },
+    { id: 'vj5', url: 'https://media.tenor.com/csOG2HrueCsAAAAM/vijay-amaithi-vijay-gif.gif', title: 'Vijay "Amaithi" Calm Down Gesture', tags: ['vijay', 'amaithi', 'peace', 'அமைதி'] },
+    { id: 'vj6', url: 'https://media.tenor.com/XB_m0VpYCL8AAAAM/master-tamil-thalapathy-vijay-master-vijay.gif', title: 'Vijay Master Dance Step', tags: ['vijay', 'dance', 'master'] }
   ],
-  mallulove: [
-    { id: 'ml1', url: 'https://media.giphy.com/media/bpyQShzuDh5lLC70wN/giphy.gif', title: 'Premam Sai Pallavi Malar Smile', tags: ['premam', 'saipallavi', 'love'] },
-    { id: 'ml2', url: 'https://media.giphy.com/media/aVMiF9Tc57zkXfZ7IK/giphy.gif', title: 'Premam Nivin Pauly Mass Swag', tags: ['premam', 'nivinpauly'] },
-    { id: 'ml3', url: 'https://media.giphy.com/media/AYpTVR2cfJsbZQtgOq/giphy.gif', title: 'Premam College Entry', tags: ['premam', 'college'] },
-    { id: 'ml4', url: 'https://media.giphy.com/media/FtwFZ1HIwivnjA48ez/giphy.gif', title: 'Sai Pallavi Cute Blushing', tags: ['saipallavi', 'cute'] },
-    { id: 'ml5', url: 'https://media.giphy.com/media/2bc8oSPHnc0aA/giphy.gif', title: 'Premam Classic Romantic Scene', tags: ['premam', 'romance'] },
-    { id: 'ml6', url: 'https://media.giphy.com/media/9ALlOPjnRzJzl6E6Yz/giphy.gif', title: 'Pranav Mohanlal Hridayam', tags: ['pranav', 'hridayam'] }
+  thala: [
+    { id: 'aj1', url: 'https://media.tenor.com/Tk6N8ftUFTUAAAAM/ajith-gifs-thala-ajith.gif', title: 'Thala Ajith Mankatha Laugh', tags: ['ajith', 'thala', 'mankatha', 'அஜித்', 'தல', 'மங்காத்தா'] },
+    { id: 'aj2', url: 'https://media.tenor.com/--spAOYsDaYAAAAM/ajith-hi-hello-tamil-hi-hello.gif', title: 'Ajith "Hi Hello" Friendly Wave', tags: ['ajith', 'hello', 'wave', 'ஹலோ'] },
+    { id: 'aj3', url: 'https://media.tenor.com/69_4HsLFbVgAAAAM/ajith-thala.gif', title: 'Ajith Billa Sunglasses Walk', tags: ['ajith', 'billa', 'swag', 'பில்லா', 'தல'] },
+    { id: 'aj4', url: 'https://media.tenor.com/EdL0TT_b_K0AAAAM/ganesh-vedhalam.gif', title: 'Thala Vedalam "Therikka Vidalama"', tags: ['ajith', 'vedalam', 'mass', 'வேதாளம்'] },
+    { id: 'aj5', url: 'https://media.tenor.com/bCe_HkNjUegAAAAM/thunivu-ajith-trailer-ajith-kumar-smiling.gif', title: 'Ajith Thunivu Dark Smile', tags: ['ajith', 'thunivu', 'smile', 'துணிவு'] },
+    { id: 'aj6', url: 'https://media.tenor.com/kAVe8pZZBrMAAAAM/ajith-kumar-ajith.gif', title: 'Ajith Kumar Classic Grin', tags: ['ajith', 'smile', 'அஜித்'] }
+  ],
+  santhanam: [
+    { id: 'san1', url: 'https://media.tenor.com/xSBgnLQOO7oAAAAM/santhanam-dialogue-dialogue.gif', title: 'Santhanam Punch Counter', tags: ['santhanam', 'comedy', 'funny', 'tamil', 'சந்தானம்', 'காமெடி'] },
+    { id: 'san2', url: 'https://media.tenor.com/yCaG4rrSbtgAAAAM/kalakalappu-santhanam.gif', title: 'Santhanam Kalakalappu Funny Look', tags: ['santhanam', 'kalakalappu', 'கலகலப்பு'] },
+    { id: 'san3', url: 'https://media.tenor.com/MAc5WiOwGrQAAAAM/startamilchatin-poda.gif', title: 'Santhanam "Poda Venna" Roast', tags: ['santhanam', 'roast', 'போடா'] },
+    { id: 'san4', url: 'https://media.tenor.com/j9T8usftqBUAAAAM/flying-kiss-yogi-babu.gif', title: 'Yogi Babu Flying Kiss Comedy', tags: ['yogibabu', 'comedy', 'tamil', 'யோகி பாபு'] },
+    { id: 'san5', url: 'https://media.tenor.com/_NMtr1OLwTEAAAAM/senthil-goundamani.gif', title: 'Goundamani & Senthil Banana Comedy', tags: ['goundamani', 'senthil', 'comedy', 'கவுண்டமணி', 'செந்தில்'] },
+    { id: 'san6', url: 'https://media.tenor.com/xILfaAHFCNMAAAAM/tamil-comedy-fight-meme.gif', title: 'Vivek Sarcastic Reaction', tags: ['vivek', 'comedy', 'tamil', 'விவேக்'] }
+  ],
+  tamillove: [
+    { id: 'tl1', url: 'https://media.tenor.com/7k-PWk1_qd0AAAAM/soorarai-pottru-kaatu-payale.gif', title: 'Soorarai Pottru Kaattu Payale', tags: ['suriya', 'soorarai', 'love', 'காதல்', 'சூர்யா'] },
+    { id: 'tl2', url: 'https://media.tenor.com/alLIlMs9x3YAAAAM/romance-nithya.gif', title: 'Thiruchitrambalam Cute Romance', tags: ['dhanush', 'nithyamenen', 'love', 'திருச்சிற்றம்பலம்'] },
+    { id: 'tl3', url: 'https://media.tenor.com/p2NW3rJ8axoAAAAM/vijay-vijay-sethupathi.gif', title: 'Vijay Sethupathi Sweet Smile', tags: ['vjs', 'vijaysethupathi', 'smile', 'விஜய் சேதுபதி'] },
+    { id: 'tl4', url: 'https://media.tenor.com/A3-GwLyA6foAAAAM/romance-suriya.gif', title: 'Suriya Vaaranam Aayiram Stare', tags: ['suriya', 'romance', 'வாரணம் ஆயிரம்'] },
+    { id: 'tl5', url: 'https://media.tenor.com/qP4Seaalb3gAAAAM/suriya-tamil.gif', title: 'Suriya Loving Smile', tags: ['suriya', 'smile', 'காதல்'] }
   ],
   trending: [
-    { id: 'tr1', url: 'https://media.giphy.com/media/Air56nKsn1iAoPm5RZ/giphy.gif', title: 'Mohanlal Salute Mass' },
-    { id: 'tr2', url: 'https://media.giphy.com/media/SPxbUDEqoJMFfzIo4o/giphy.gif', title: 'Salim Kumar Manavalan' },
-    { id: 'tr3', url: 'https://media.giphy.com/media/asMVvV4fOXFcfm6OuM/giphy.gif', title: 'Mammootty Reaction' },
-    { id: 'tr4', url: 'https://media.giphy.com/media/bpyQShzuDh5lLC70wN/giphy.gif', title: 'Premam Sai Pallavi Smile' },
-    { id: 'tr5', url: 'https://media.giphy.com/media/ebcTSCa5r2VHFK1zPS/giphy.gif', title: 'Mammootty Bheeshma Parvam' },
-    { id: 'tr6', url: 'https://media.giphy.com/media/aVMiF9Tc57zkXfZ7IK/giphy.gif', title: 'Nivin Pauly Swag' }
+    { id: 'tr1', url: 'https://media.tenor.com/RNpAXqj4Ap0AAAAM/chumma-adhirthille-rajinikanth.gif', title: 'Superstar Rajini Sivaji Chumma Adhirudhillai', tags: ['trending', 'rajini', 'ரஜினி'] },
+    { id: 'tr2', url: 'https://media.tenor.com/g0HKqQ11kvsAAAAM/tcr-pokkiri-vadivelu.gif', title: 'Vadivelu Pokkiri Swag', tags: ['trending', 'vadivelu', 'வடிவேலு'] },
+    { id: 'tr3', url: 'https://media.tenor.com/bDXihdnBFG8AAAAM/leo-thalapathy-vijay.gif', title: 'Thalapathy Vijay Leo Bloody Sweet', tags: ['trending', 'vijay', 'விஜய்'] },
+    { id: 'tr4', url: 'https://media.tenor.com/Tk6N8ftUFTUAAAAM/ajith-gifs-thala-ajith.gif', title: 'Thala Ajith Mankatha Laugh', tags: ['trending', 'ajith', 'அஜித்'] },
+    { id: 'tr5', url: 'https://media.tenor.com/xSBgnLQOO7oAAAAM/santhanam-dialogue-dialogue.gif', title: 'Santhanam Punch Counter', tags: ['trending', 'santhanam', 'சந்தானம்'] },
+    { id: 'tr6', url: 'https://media.tenor.com/7k-PWk1_qd0AAAAM/soorarai-pottru-kaatu-payale.gif', title: 'Suriya Romance Vibe', tags: ['trending', 'suriya', 'சூர்யா'] },
+    { id: 'tr7', url: 'https://media.tenor.com/j9T8usftqBUAAAAM/flying-kiss-yogi-babu.gif', title: 'Yogi Babu Flying Kiss', tags: ['trending', 'yogibabu', 'யோகிபாபு'] },
+    { id: 'tr8', url: 'https://media.tenor.com/olPBYDV_kdsAAAAM/master-vijay.gif', title: 'Master JD Vijay Swag', tags: ['trending', 'vijay', 'விஜய்'] }
   ]
 };
 
 const CATEGORIES = [
-  { id: 'malayalam', label: '🌴 Mallu Memes' },
-  { id: 'mohanlal', label: '👑 Mohanlal' },
-  { id: 'mammootty', label: '🔥 Mammootty' },
-  { id: 'salimkumar', label: '😂 Salim Kumar' },
-  { id: 'mallulove', label: '😍 Premam & Love' },
-  { id: 'trending', label: '🔥 Trending' }
+  { id: 'tamil', label: '🛕 Tamil Memes • தமிழ்' },
+  { id: 'vadivelu', label: '😂 Vaigai Puyal Vadivelu' },
+  { id: 'rajini', label: '👑 Superstar Rajini' },
+  { id: 'thalapathy', label: '⚡ Thalapathy Vijay' },
+  { id: 'thala', label: '🔥 Thala Ajith' },
+  { id: 'santhanam', label: '🤣 Santhanam & Comedy' },
+  { id: 'tamillove', label: '😍 Kollywood Romance' },
+  { id: 'trending', label: '🚀 Trending Tamil' }
 ];
 
 export const GifPickerModal: React.FC<GifPickerModalProps> = ({ isOpen, onClose, onSelectGif }) => {
   const [activeTab, setActiveTab] = useState<'search' | 'upload'>('search');
-  const [selectedCategory, setSelectedCategory] = useState<string>('malayalam');
+  const [selectedCategory, setSelectedCategory] = useState<string>('tamil');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [gifs, setGifs] = useState<{ id: string; url: string; title: string }[]>(CURATED_GIFS.malayalam);
+  const [gifs, setGifs] = useState<{ id: string; url: string; title: string }[]>(CURATED_GIFS.tamil);
   const [loading, setLoading] = useState<boolean>(false);
 
   // Upload/Custom URL state
   const [customUrl, setCustomUrl] = useState<string>('');
   const [isUploading, setIsUploading] = useState<boolean>(false);
 
-  // Search logic: matches local Malayalam tags and title
+  // Search logic: matches local Tamil tags and title
   const performSearch = useCallback((query: string) => {
     const q = query.toLowerCase().trim();
     if (!q) {
-      setGifs(CURATED_GIFS[selectedCategory] || CURATED_GIFS.malayalam);
+      setGifs(CURATED_GIFS[selectedCategory] || CURATED_GIFS.tamil);
       return;
     }
 
@@ -108,7 +128,7 @@ export const GifPickerModal: React.FC<GifPickerModalProps> = ({ isOpen, onClose,
     if (results.length > 0) {
       setGifs(results);
     } else {
-      setGifs(CURATED_GIFS[selectedCategory] || CURATED_GIFS.malayalam);
+      setGifs(CURATED_GIFS[selectedCategory] || CURATED_GIFS.tamil);
     }
     setLoading(false);
   }, [selectedCategory]);
@@ -116,7 +136,7 @@ export const GifPickerModal: React.FC<GifPickerModalProps> = ({ isOpen, onClose,
   // Handle Search Input Change with Debounce
   useEffect(() => {
     if (!searchQuery.trim()) {
-      setGifs(CURATED_GIFS[selectedCategory] || CURATED_GIFS.malayalam);
+      setGifs(CURATED_GIFS[selectedCategory] || CURATED_GIFS.tamil);
       return;
     }
 
@@ -130,7 +150,7 @@ export const GifPickerModal: React.FC<GifPickerModalProps> = ({ isOpen, onClose,
   const handleCategoryClick = (catId: string) => {
     setSelectedCategory(catId);
     setSearchQuery('');
-    setGifs(CURATED_GIFS[catId] || CURATED_GIFS.malayalam);
+    setGifs(CURATED_GIFS[catId] || CURATED_GIFS.tamil);
   };
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -209,7 +229,7 @@ export const GifPickerModal: React.FC<GifPickerModalProps> = ({ isOpen, onClose,
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Sparkles size={20} style={{ color: 'var(--primary)' }} />
             <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-main)' }}>
-              Send Mallu & Malayalam GIFs
+              Send Tamil & Kollywood GIFs • தமிழ் ஜிஃப்ஸ்
             </h3>
           </div>
 
@@ -248,7 +268,7 @@ export const GifPickerModal: React.FC<GifPickerModalProps> = ({ isOpen, onClose,
             }}
             onClick={() => setActiveTab('search')}
           >
-            <Search size={16} /> Malayalam GIF Collection
+            <Search size={16} /> Tamil GIF Collection
           </button>
 
           <button
@@ -291,9 +311,15 @@ export const GifPickerModal: React.FC<GifPickerModalProps> = ({ isOpen, onClose,
                 <Search size={18} style={{ position: 'absolute', left: '12px', color: 'var(--text-muted)' }} />
                 <input
                   type="text"
-                  placeholder="Search (e.g. Mohanlal, Mammootty, Salim Kumar, Premam)..."
+                  enterKeyHint="search"
+                  placeholder="Search Tamil GIFs (e.g. Vadivelu, Rajini, Vijay, Ajith, Santhanam, வடிவேலு)..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      (e.target as HTMLElement)?.blur();
+                    }
+                  }}
                   style={{
                     width: '100%',
                     padding: '0.65rem 0.75rem 0.65rem 2.5rem',
@@ -336,7 +362,7 @@ export const GifPickerModal: React.FC<GifPickerModalProps> = ({ isOpen, onClose,
                     fontSize: '0.8rem',
                     fontWeight: selectedCategory === cat.id && !searchQuery ? 700 : 500,
                     background: selectedCategory === cat.id && !searchQuery ? 'var(--primary)' : 'rgba(255,255,255,0.08)',
-                    color: selectedCategory === cat.id && !searchQuery ? '#000' : 'var(--text-main)',
+                    color: selectedCategory === cat.id && !searchQuery ? '#fff' : 'var(--text-main)',
                     border: 'none',
                     cursor: 'pointer',
                     transition: 'all 0.2s ease'
@@ -368,6 +394,9 @@ export const GifPickerModal: React.FC<GifPickerModalProps> = ({ isOpen, onClose,
                   <div
                     key={gif.id}
                     onClick={() => {
+                      if (typeof document !== 'undefined') {
+                        (document.activeElement as HTMLElement)?.blur();
+                      }
                       onSelectGif(gif.url, gif.title);
                       onClose();
                     }}
@@ -447,7 +476,7 @@ export const GifPickerModal: React.FC<GifPickerModalProps> = ({ isOpen, onClose,
               <div>
                 <h4 style={{ margin: '0 0 4px 0', color: 'var(--text-main)' }}>Upload Custom GIF</h4>
                 <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-muted)' }}>
-                  Upload any Malayalam or animated GIF file from your device
+                  Upload any Tamil or animated GIF file from your device
                 </p>
               </div>
 
@@ -466,7 +495,7 @@ export const GifPickerModal: React.FC<GifPickerModalProps> = ({ isOpen, onClose,
                 {isUploading ? 'Uploading...' : 'Choose GIF File'}
                 <input
                   type="file"
-                  accept="image/gif,image/*"
+                  accept="image/gif"
                   onChange={handleFileUpload}
                   disabled={isUploading}
                   style={{ display: 'none' }}

@@ -4,20 +4,20 @@ import 'package:permission_handler/permission_handler.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MalluChatApp());
+  runApp(const TamilChatApp());
 }
 
-class MalluChatApp extends StatelessWidget {
-  const MalluChatApp({super.key});
+class TamilChatApp extends StatelessWidget {
+  const TamilChatApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'MalayalamChat',
+      title: 'TamilChat',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
       home: const WebViewScreen(),
     );
@@ -35,7 +35,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
   final GlobalKey webViewKey = GlobalKey();
   InAppWebViewController? webViewController;
   InAppWebViewSettings settings = InAppWebViewSettings(
-      userAgent: "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36 MalluChatApp",
+      userAgent: "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36 TamilChatApp",
       mediaPlaybackRequiresUserGesture: false,
       allowsInlineMediaPlayback: true,
       iframeAllowFullscreen: true,
@@ -51,7 +51,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
       body: SafeArea(
         child: InAppWebView(
           key: webViewKey,
-          initialUrlRequest: URLRequest(url: WebUri("https://malayalamchat.online")),
+          initialUrlRequest: URLRequest(url: WebUri("https://tamilchat.online")),
           initialSettings: settings,
           onWebViewCreated: (controller) {
             webViewController = controller;

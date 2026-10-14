@@ -40,12 +40,12 @@ export class PeerEngine {
     initialize(onReady: (id: string) => void, onError: (err: any) => void) {
         let id = '';
         if (typeof window !== 'undefined' && window.localStorage) {
-            id = window.localStorage.getItem('malluchat_stable_peer_id') || '';
+            id = window.localStorage.getItem('tamilchat_stable_peer_id') || '';
         }
         if (!id) {
             id = Math.random().toString(36).substring(2, 8).toUpperCase();
             if (typeof window !== 'undefined' && window.localStorage) {
-                window.localStorage.setItem('malluchat_stable_peer_id', id);
+                window.localStorage.setItem('tamilchat_stable_peer_id', id);
             }
         }
         this.id = id;
@@ -87,7 +87,7 @@ export class PeerEngine {
                 console.warn(`Peer ID connection timed out. Generating a fresh one...`);
                 const newId = Math.random().toString(36).substring(2, 8).toUpperCase();
                 if (typeof window !== 'undefined' && window.localStorage) {
-                    window.localStorage.setItem('malluchat_stable_peer_id', newId);
+                    window.localStorage.setItem('tamilchat_stable_peer_id', newId);
                 }
                 this.peer.destroy();
                 this.initialize(onReady, onError);
@@ -123,7 +123,7 @@ export class PeerEngine {
                 console.warn(`Peer ID ${id} is already in use or taken. Generating a new one...`);
                 const newId = Math.random().toString(36).substring(2, 8).toUpperCase();
                 if (typeof window !== 'undefined' && window.localStorage) {
-                    window.localStorage.setItem('malluchat_stable_peer_id', newId);
+                    window.localStorage.setItem('tamilchat_stable_peer_id', newId);
                 }
                 this.peer?.destroy();
                 this.initialize(onReady, onError);

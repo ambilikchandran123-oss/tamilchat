@@ -1,4 +1,4 @@
-package online.malluchat.app;
+package online.tamilchat.app;
 
 import com.getcapacitor.BridgeActivity;
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { MalluLogo } from './MalluLogo';
+import { TamilLogo } from './TamilLogo';
 
 const useMeta = (title: string, description: string, canonicalPath: string) => {
     useEffect(() => {
@@ -21,7 +21,7 @@ const useMeta = (title: string, description: string, canonicalPath: string) => {
 
         const canonical = document.querySelector('link[rel="canonical"]');
         if (canonical) {
-            canonical.setAttribute('href', `https://malayalamchat.online${canonicalPath}`);
+            canonical.setAttribute('href', `https://tamilchat.online${canonicalPath}`);
         }
     }, [title, description, canonicalPath]);
 };
@@ -45,12 +45,12 @@ const Header = ({ title }: { title: string }) => (
         </div>
         <a href="/" style={{
             background: 'var(--primary)',
-            color: '#000',
+            color: '#fff',
             padding: '0.8rem 1.5rem',
             borderRadius: '12px',
             textDecoration: 'none',
             fontWeight: 'bold',
-            boxShadow: '0 4px 15px rgba(74, 222, 128, 0.3)',
+            boxShadow: '0 4px 15px rgba(239, 68, 68, 0.35)',
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
@@ -70,22 +70,22 @@ const Section = ({ title, children }: { title: string, children: React.ReactNode
 
 const CallToAction = () => (
     <div style={{
-        background: 'linear-gradient(135deg, rgba(74, 222, 128, 0.1) 0%, rgba(6, 95, 70, 0.2) 100%)',
+        background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(127, 29, 29, 0.2) 100%)',
         padding: '2.5rem 2rem',
         borderRadius: '24px',
         marginBottom: '3rem',
         textAlign: 'center',
-        border: '1px solid rgba(74, 222, 128, 0.3)',
+        border: '1px solid rgba(239, 68, 68, 0.3)',
         boxShadow: '0 8px 32px rgba(0,0,0,0.2)'
     }}>
-        <div style={{ marginBottom: '1.5rem' }}><MalluLogo size={80} /></div>
-        <h2 style={{ color: 'var(--primary)', marginBottom: '0.8rem', fontSize: '2.2rem', fontWeight: '800' }}>Enter MalayalamChat Online</h2>
+        <div style={{ marginBottom: '1.5rem' }}><TamilLogo size={80} /></div>
+        <h2 style={{ color: 'var(--primary)', marginBottom: '0.8rem', fontSize: '2.2rem', fontWeight: '800' }}>Enter TamilChat Online</h2>
         <p style={{ color: 'var(--text-main)', fontSize: '1.1rem', marginBottom: '2rem', maxWidth: '500px', margin: '0 auto 2rem' }}>
-            No Registration. No Logins. 100% Anonymous &amp; Secure Malayalam Chat &amp; Video Calling.
+            No Registration. No Logins. 100% Anonymous &amp; Secure Tamil Chat &amp; Video Calling.
         </p>
         <a href="/" style={{
             background: 'var(--primary)',
-            color: '#000',
+            color: '#fff',
             padding: '1rem 3rem',
             borderRadius: '16px',
             textDecoration: 'none',
@@ -94,73 +94,70 @@ const CallToAction = () => (
             fontSize: '1.2rem',
             textTransform: 'uppercase',
             letterSpacing: '1px',
-            boxShadow: '0 4px 20px rgba(74, 222, 128, 0.4)'
+            boxShadow: '0 4px 20px rgba(239, 68, 68, 0.4)'
         }}>Start Chatting Now →</a>
     </div>
 );
 
-// 1. Mallu Chatting App Page
-export const MalluChattingAppPage = () => {
+// 1. Tamil Chatting App Page
+export const TamilChattingAppPage = () => {
     useMeta(
-        'Mallu Chat App - Mallu Free Video Calling Website & Mallu Video Calling Website | MalluChat',
-        'Looking for the best Mallu chat app? MalluChat is the top Mallu free video calling website and Mallu chatting website for anonymous Mallu video calling without registration.',
-        '/mallu-chatting-app'
+        'Tamil Chat App - Tamil Free Video Calling Website & Tamil Video Calling Website | TamilChat',
+        'Looking for the best Tamil chat app? TamilChat is the top Tamil free video calling website and Tamil chatting website for anonymous Tamil video calling without registration.',
+        '/tamil-chatting-app'
     );
 
     return (
         <div style={containerStyle} className="glass">
-            <Header title="Mallu Chat App - Mallu Free Video Calling Website" />
+            <Header title="Tamil Chat App - Tamil Free Video Calling Website" />
             <CallToAction />
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Looking for a dedicated <strong>Mallu Chat</strong> app and <strong>Mallu Video Calling Website</strong> to connect with Malayalam-speaking people worldwide? MalluChat is the ultimate <strong>Mallu Chatting Website</strong> designed specifically for Malayalees to converse, video call, and make friends with <strong>Mallu Free Chat</strong> and <strong>Mallu Free Calling</strong>.
+                Looking for a dedicated <strong>Tamil Chat</strong> app and <strong>Tamil Video Calling Website</strong> to connect with Tamil-speaking people worldwide? TamilChat is the ultimate <strong>Tamil Chatting Website</strong> designed specifically for Tamilians to converse, video call, and make friends with <strong>Tamil Free Chat</strong> and <strong>Tamil Free Calling</strong>.
             </p>
 
-            <Section title="Why Choose MalluChat for Mallu Free Video Calling Website & Chat?">
-                <p>Unlike standard chatting applications that require phone number verification or email registrations, MalluChat focuses entirely on your convenience and privacy. Here's what makes it unique:</p>
+            <Section title="Why Choose TamilChat for Tamil Free Video Calling & Chat?">
+                <p>Unlike standard chatting applications that require phone number verification or email registrations, TamilChat focuses entirely on your convenience and privacy. Here's what makes it unique:</p>
                 <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-                    <li><strong>No Registration Required:</strong> Enjoy <strong>Mallu Free Chat</strong> and instant <strong>Mallu Free Calling</strong> without sharing personal details.</li>
-                    <li><strong>Mallu Video Calling Website &amp; Mallu Random Video Calling Website:</strong> Hop into public chat or connect via 1-on-1 <strong>Mallu Video Calling</strong>.</li>
-                    <li><strong>Mallu Free Video Calling Website:</strong> Enjoy free voice and video calls using advanced WebRTC technology directly in your browser.</li>
-                    <li><strong>Mobile Friendly:</strong> Access the top <strong>Mallu Free Calling Website</strong> on any mobile browser or Android device.</li>
+                    <li><strong>No Registration Required:</strong> Enjoy <strong>Tamil Free Chat</strong> and instant <strong>Tamil Free Calling</strong> without sharing personal details.</li>
+                    <li><strong>Tamil Video Calling Website:</strong> Hop into public chat or connect via 1-on-1 <strong>Tamil Video Calling</strong>.</li>
+                    <li><strong>Tamil Free Video Calling Website:</strong> Enjoy free voice and video calls using advanced WebRTC technology directly in your browser.</li>
+                    <li><strong>Mobile Friendly:</strong> Access the top <strong>Tamil Free Calling Website</strong> on any mobile browser or Android device.</li>
                 </ul>
             </Section>
 
-            <Section title="Perfect for Mallu Chat Online & Malayalees Worldwide">
-                <p>Whether you are in Kerala, the Gulf (GCC), Europe, or the Americas, MalluChat bridges the distance. Meet other people who share your language, talk about local movies, and enjoy <strong>Mallu Chat Online</strong> in a clean, modern interface.</p>
+            <Section title="Perfect for Tamil Chat Online & Tamilians Worldwide">
+                <p>Whether you are in Chennai, Coimbatore, Madurai, Trichy, Singapore, Malaysia, Sri Lanka, Europe, or the Americas, TamilChat bridges the distance. Meet other people who share your language, talk about Kollywood movies, and enjoy <strong>Tamil Chat Online</strong> in a clean, modern interface.</p>
             </Section>
+            <SeoNavFooter />
         </div>
     );
 };
 
-// 2. Mallu Telegram Chatting Page
-export const MalluTelegramChattingPage = () => {
+// 2. Tamil Telegram Chatting Page
+export const TamilTelegramChattingPage = () => {
     useMeta(
-        'Mallu Telegram Chatting Alternative - Mallu Stranger Chat Website | MalluChat',
-        'Best Mallu Telegram chatting alternative. Connect on the #1 Mallu stranger chat website for anonymous Mallu stranger chat and free calling without revealing your phone number.',
-        '/mallu-telegram-chatting'
+        'Tamil Telegram Chatting Alternative - Tamil Stranger Chat Website | TamilChat',
+        'Need a Tamil Telegram chatting alternative? Connect via TamilChat for anonymous Tamil free chat, stranger video calling, and open chatrooms.',
+        '/tamil-telegram-chatting'
     );
 
     return (
         <div style={containerStyle} className="glass">
-            <Header title="Mallu Telegram Chatting & Mallu Stranger Chat Website" />
+            <Header title="Tamil Telegram Chatting Alternative - Tamil Stranger Chat" />
             <CallToAction />
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Searching for <strong>Mallu Telegram chatting</strong> groups? While Telegram has many group chats, finding active Malayalam groups without revealing your phone number is hard. MalluChat is the premier <strong>Mallu Stranger Chat Website</strong> and top alternative for <strong>Mallu Stranger Chat</strong>.
+                Fed up with Telegram spam, phone-number leaks, and blocked channels? TamilChat is the modern <strong>Tamil Telegram chatting alternative</strong> and <strong>Tamil Stranger Chat Website</strong> that requires zero app installs, zero contact permissions, and absolutely no registration.
             </p>
 
-            <Section title="Why MalluChat is the Ultimate Mallu Stranger Chat Website">
-                <p>MalluChat offers safe, instant <strong>Mallu Free Calling Website</strong> features and anonymous room access:</p>
+            <Section title="Why TamilChat Beats Telegram for Tamil Chatting">
                 <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-                    <li><strong>No Phone Number Required:</strong> Telegram requires a registered phone number. MalluChat is 100% anonymous for <strong>Mallu Stranger Chat</strong>.</li>
-                    <li><strong>Mallu Free Calling &amp; Mallu Free Video Calling:</strong> Enjoy encrypted P2P audio/video calls without sharing personal details.</li>
-                    <li><strong>Zero Logs &amp; Spam Protection:</strong> Private rooms are direct P2P connections to keep your <strong>Mallu Chat Online</strong> safe.</li>
-                    <li><strong>Instant Mallu Video Calling:</strong> No waiting for channel approvals—jump straight into live video calling.</li>
+                    <li><strong>No Phone Numbers Required:</strong> Telegram exposes contacts; TamilChat protects your identity completely.</li>
+                    <li><strong>Instant Tamil Stranger Chat:</strong> No channel invites needed. Connect with active Tamilians directly in one click.</li>
+                    <li><strong>1-on-1 Tamil Free Video Calling:</strong> Integrated WebRTC video calls right from the browser.</li>
+                    <li><strong>100% Browser-Based:</strong> Open on mobile or desktop without downloading bulky APKs or background trackers.</li>
                 </ul>
             </Section>
-
-            <Section title="Safe Space for Kerala Stranger Chat Online">
-                <p>Enjoy a respectful, clean environment for <strong>Mallu Chat</strong>, voice calls, and video chat with Malayalam speakers everywhere.</p>
-            </Section>
+            <SeoNavFooter />
         </div>
     );
 };
@@ -168,139 +165,136 @@ export const MalluTelegramChattingPage = () => {
 // 3. Telegram Alternative Group Chat Page
 export const TelegramAlternativeGroupChatPage = () => {
     useMeta(
-        'Telegram Alternative Group Chat - Mallu Free Chat & Mallu Free Calling | MalluChat',
-        'Lightweight web-based Telegram alternative group chat. Enjoy Mallu free chat, Mallu free calling website features, and Mallu video calling online.',
+        'Telegram Alternative Group Chat - Anonymous Tamil Chat Rooms | TamilChat',
+        'Top Telegram alternative group chat for anonymous messaging, free Tamil chat online, and private peer-to-peer video calls.',
         '/telegram-alternative-group-chat'
     );
 
     return (
         <div style={containerStyle} className="glass">
-            <Header title="Telegram Alternative Group Chat & Mallu Free Calling" />
+            <Header title="Telegram Alternative Group Chat & Free Live Rooms" />
             <CallToAction />
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                If you are looking for a reliable <strong>Telegram alternative group chat</strong> with <strong>Mallu Free Chat</strong>, <strong>Mallu Free Calling</strong>, and <strong>Mallu Video Calling Website</strong> features, MalluChat is the perfect solution.
+                Join the cleanest, most private <strong>Telegram alternative group chat</strong> tailored for Tamil communities. Enjoy <strong>Tamil Free Chat</strong> and live room messaging with complete end-to-end anonymity.
             </p>
 
-            <Section title="A Modern Alternative for Mallu Free Video Calling & Chat">
-                <p>MalluChat serves as the perfect lightweight web alternative to messaging apps:</p>
+            <Section title="Key Advantages">
                 <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-                    <li><strong>Zero Installation:</strong> Works directly in any mobile or desktop browser for <strong>Mallu Chat Online</strong>.</li>
-                    <li><strong>Mallu Free Video Calling Website:</strong> High performance video calling without installing native software.</li>
-                    <li><strong>Direct Peer-to-Peer Calls:</strong> Initiate 1-on-1 <strong>Mallu Video Calling</strong> or voice calls directly through a simple link.</li>
-                    <li><strong>Privacy First:</strong> Built with state-of-the-art security for complete <strong>Mallu Stranger Chat</strong> anonymity.</li>
+                    <li><strong>True Anonymity:</strong> Zero phone number storage.</li>
+                    <li><strong>Peer-to-Peer Calls:</strong> Direct <strong>Tamil Video Calling Website</strong> capabilities built-in.</li>
+                    <li><strong>No App Stores:</strong> Direct web access with zero tracking.</li>
                 </ul>
             </Section>
+            <SeoNavFooter />
         </div>
     );
 };
 
-// 4. Malayalam Chat Online Page
-export const MalayalamChatOnlinePage = () => {
+// 4. Tamil Chat Online Page
+export const TamilChatOnlinePage = () => {
     useMeta(
-        'Malayalam Chat Online - Mallu Chat Online & Mallu Chatting Website | MalluChat',
-        'Connect with Kerala communities via Malayalam chat online & Mallu Chat online. Top Mallu chatting website for free video calling and anonymous chat.',
-        '/malayalam-chat-online'
+        'Tamil Chat Online - Tamil Chatting Website & Live Rooms | TamilChat',
+        'Connect with Tamil communities via Tamil chat online. Top Tamil chatting website for free video calling and anonymous chat.',
+        '/tamil-chat-online'
     );
 
     return (
         <div style={containerStyle} className="glass">
-            <Header title="Malayalam Chat Online & Mallu Chatting Website" />
+            <Header title="Tamil Chat Online & Tamil Chatting Website" />
             <CallToAction />
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Connect with your roots through <strong>Malayalam chat online</strong> and <strong>Mallu Chat Online</strong>. Meet new friends on Kerala&apos;s leading <strong>Mallu Chatting Website</strong> for <strong>Mallu Free Chat</strong>, <strong>Mallu Free Calling</strong>, and <strong>Mallu Video Calling</strong>.
+                Connect with your roots through <strong>Tamil chat online</strong>. Meet new friends on Tamil Nadu&apos;s leading <strong>Tamil Chatting Website</strong> for <strong>Tamil Free Chat</strong>, <strong>Tamil Free Calling</strong>, and <strong>Tamil Video Calling</strong>.
             </p>
 
-            <Section title="Features of Our Mallu Chatting Website">
-                <p>Our online <strong>Mallu Chat Online</strong> platform brings together Malayalees from Kerala and around the globe:</p>
+            <Section title="Features of Our Tamil Chatting Website">
+                <p>Our online <strong>Tamil Chat Online</strong> platform brings together Tamilians from Tamil Nadu and around the globe:</p>
                 <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-                    <li><strong>Interactive Mallu Chat Online:</strong> Public lobbies for live Malayalam/Manglish discussions.</li>
-                    <li><strong>Mallu Free Video Calling Website:</strong> P2P video chat with zero coin charges or subscriptions.</li>
-                    <li><strong>Mallu Stranger Chat Website:</strong> Meet strangers safely with clean moderation and instant room links.</li>
+                    <li><strong>Interactive Tamil Chat Online:</strong> Public lobbies for live Tamil discussions.</li>
+                    <li><strong>Tamil Free Video Calling Website:</strong> P2P video chat with zero coin charges or subscriptions.</li>
+                    <li><strong>Tamil Stranger Chat Website:</strong> Meet strangers safely with clean moderation and instant room links.</li>
                 </ul>
             </Section>
+            <SeoNavFooter />
         </div>
     );
 };
 
-// 5. Mallu Free Video Call Page
-export const MalluFreeVideoCallPage = () => {
+// 5. Tamil Free Video Call Page
+export const TamilFreeVideoCallPage = () => {
     useMeta(
-        'Mallu Free Video Calling Website - Mallu Free Calling & Video Calling | MalluChat',
-        'Enjoy 100% Mallu free video calling website features & Mallu free calling online. Connect instantly for Mallu free video calling & Mallu video calling.',
-        '/mallu-free-video-call'
+        'Tamil Free Video Calling Website - Tamil Free Calling & Video Calling | TamilChat',
+        'Enjoy 100% Tamil free video calling website features & Tamil free calling online. Connect instantly for Tamil free video calling & Tamil video calling.',
+        '/tamil-free-video-call'
     );
 
     return (
         <div style={containerStyle} className="glass">
-            <Header title="Mallu Free Video Calling Website & Mallu Free Calling" />
+            <Header title="Tamil Free Video Calling Website & Tamil Free Calling" />
             <CallToAction />
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Looking for a 100% <strong>Mallu Free Video Calling Website</strong> to talk face-to-face with fellow Malayalees? MalluChat offers high-speed <strong>Mallu Free Video Calling</strong>, <strong>Mallu Free Calling</strong>, and <strong>Mallu Video Calling</strong> with HD video and clear audio—no credit card or login needed.
+                Looking for a 100% <strong>Tamil Free Video Calling Website</strong> to talk face-to-face with fellow Tamilians? TamilChat offers high-speed <strong>Tamil Free Video Calling</strong>, <strong>Tamil Free Calling</strong>, and <strong>Tamil Video Calling</strong> with HD video and clear audio—no credit card or login needed.
             </p>
 
-            <Section title="Why Choose MalluChat for Mallu Free Calling Website & Video Chat?">
-                <p>Unlike traditional dating platforms that charge coins, MalluChat provides completely free, unlimited <strong>Mallu Video Calling Website</strong> services:</p>
+            <Section title="Why Choose TamilChat for Tamil Free Calling & Video Chat?">
+                <p>Unlike traditional dating platforms that charge coins, TamilChat provides completely free, unlimited <strong>Tamil Video Calling Website</strong> services:</p>
                 <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-                    <li><strong>100% Mallu Free Video Calling:</strong> Enjoy unlimited HD <strong>Mallu Free Video Calling</strong> with zero paywalls.</li>
-                    <li><strong>Mallu Free Calling Website:</strong> Connect via voice or video calls in seconds without registration.</li>
+                    <li><strong>100% Tamil Free Video Calling:</strong> Enjoy unlimited HD <strong>Tamil Free Video Calling</strong> with zero paywalls.</li>
+                    <li><strong>Tamil Free Calling Website:</strong> Connect via voice or video calls in seconds without registration.</li>
                     <li><strong>Direct P2P Encrypted Stream:</strong> Peer-to-peer WebRTC connections ensure your calls stay private.</li>
-                    <li><strong>Mallu Stranger Chat Website Integration:</strong> Seamlessly switch between text chat and instant <strong>Mallu Video Calling</strong>.</li>
+                    <li><strong>Tamil Stranger Chat Website Integration:</strong> Seamlessly switch between text chat and instant <strong>Tamil Video Calling</strong>.</li>
                 </ul>
             </Section>
 
-            <Section title="How to Start Mallu Free Video Calling Online">
+            <Section title="How to Start Tamil Free Video Calling Online">
                 <ol style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
                     <li>Click <strong>Start Chatting Now</strong> to enter the live chat room.</li>
                     <li>Enter any custom anonymous nickname to enter.</li>
-                    <li>Initiate instant <strong>Mallu Free Video Calling</strong> or 1-on-1 random video calls directly.</li>
+                    <li>Initiate instant <strong>Tamil Free Video Calling</strong> or 1-on-1 random video calls directly.</li>
                 </ol>
             </Section>
+            <SeoNavFooter />
         </div>
     );
 };
 
-// 6. Strangers Mallu Chat Page (Targeting: "mallu stranger chat website", "mallu strangers chatting website", "mallu stranger chat")
-export const StrangersMalluChatPage = () => {
-    let currentPath = '/mallu-stranger-chat-website';
+// 6. Strangers Tamil Chat Page
+export const TamilStrangerChatPage = () => {
+    let currentPath = '/tamil-stranger-chat-website';
     if (typeof window !== 'undefined') {
         const p = window.location.pathname;
-        if (p.includes('/mallu-stranger-chat-website')) currentPath = '/mallu-stranger-chat-website';
-        else if (p.includes('/mallu-strangers-chatting-website')) currentPath = '/mallu-strangers-chatting-website';
-        else if (p.includes('/mallu-strangers-chat')) currentPath = '/mallu-strangers-chat';
-        else if (p.includes('/mallu-stranger-chat')) currentPath = '/mallu-stranger-chat';
-        else if (p.includes('/strangers-mallu-chat')) currentPath = '/strangers-mallu-chat';
-        else if (p.includes('/chat-with-strangers-in-mallu')) currentPath = '/chat-with-strangers-in-mallu';
+        if (p.includes('/tamil-stranger-chat-website')) currentPath = '/tamil-stranger-chat-website';
+        else if (p.includes('/tamil-strangers-chat')) currentPath = '/tamil-strangers-chat';
+        else if (p.includes('/tamil-stranger-chat')) currentPath = '/tamil-stranger-chat';
     }
 
     useMeta(
-        'Mallu Stranger Chat Website - #1 Free Malayalam Strangers Chat & Video | MalayalamChat',
-        'Join the #1 Mallu stranger chat website on MalayalamChat.online. Instant anonymous Malayalam strangers chatting, live Kerala chat rooms, & 1-on-1 random video calls with zero registration.',
+        'Tamil Stranger Chat Website - #1 Free Tamil Strangers Chat & Video | TamilChat',
+        'Join the #1 Tamil stranger chat website on TamilChat.online. Instant anonymous Tamil strangers chatting, live Tamil Nadu chat rooms, & 1-on-1 random video calls with zero registration.',
         currentPath
     );
 
     return (
         <div style={containerStyle} className="glass">
-            <Header title="Mallu Stranger Chat Website & Free Malayalam Chat Online" />
+            <Header title="Tamil Stranger Chat Website & Free Tamil Chat Online" />
             <CallToAction />
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Welcome to <strong>MalayalamChat.online</strong> — Kerala&apos;s #1 <strong>Mallu stranger chat website</strong> and top destination for anonymous <strong>Malayalam strangers chatting</strong>, live Kerala chat rooms, and 1-on-1 random stranger video calls. Connect with Malayalam speakers across Kochi, Trivandrum, Kozhikode, Thrissur, and Gulf NRIs in seconds with zero registration or logins.
+                Welcome to <strong>TamilChat.online</strong> — Tamil Nadu&apos;s #1 <strong>Tamil stranger chat website</strong> and top destination for anonymous <strong>Tamil strangers chatting</strong>, live Tamil chat rooms, and 1-on-1 random stranger video calls. Connect with Tamil speakers across Chennai, Coimbatore, Madurai, Trichy, Salem, and global Tamils in seconds with zero registration or logins.
             </p>
 
-            <Section title="Why MalluChat is the #1 Mallu Stranger Chat Website">
+            <Section title="Why TamilChat is the #1 Tamil Stranger Chat Website">
                 <p>Chatting with strangers safely, privately, and for free is our top priority:</p>
                 <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-                    <li><strong>100% Anonymous Mallu Stranger Chat:</strong> No phone numbers, emails, or personal identities required. Pick any nickname and start talking instantly.</li>
-                    <li><strong>Best Mallu Strangers Chatting Website:</strong> Connect instantly with friendly Malayalis worldwide for meaningful chats, jokes, and friendship.</li>
+                    <li><strong>100% Anonymous Tamil Stranger Chat:</strong> No phone numbers, emails, or personal identities required. Pick any nickname and start talking instantly.</li>
+                    <li><strong>Best Tamil Strangers Chatting Website:</strong> Connect instantly with friendly Tamilians worldwide for meaningful chats, cinema talk, and friendship.</li>
                     <li><strong>Free 1-on-1 Stranger Video Calling:</strong> High-definition WebRTC peer-to-peer random video calls directly in your browser or Android app.</li>
-                    <li><strong>Top Alternative to Sallapam &amp; Y99:</strong> Fast modern glassmorphism interface, active moderation, zero spam, and no coin paywalls.</li>
                     <li><strong>Group Chat Rooms &amp; Nearby Users:</strong> Join active public community lobbies or discover users active in your city.</li>
                 </ul>
             </Section>
 
-            <Section title="How to Start Chatting with Strangers on MalluChat">
+            <Section title="How to Start Chatting with Strangers on TamilChat">
                 <ol style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
                     <li>Tap <strong>Start Chatting Now</strong> to enter the main lobby.</li>
-                    <li>Type any anonymous display name (e.g. <em>MalluStranger</em>).</li>
+                    <li>Type any anonymous display name (e.g. <em>Chennai_Macha</em>).</li>
                     <li>Select <strong>World Chat</strong> or browse active users to send instant private chat requests or start a 1-on-1 random video call!</li>
                 </ol>
             </Section>
@@ -309,33 +303,30 @@ export const StrangersMalluChatPage = () => {
     );
 };
 
-// 7. Mallu Chatting Website Page (Targeting: "mallu chat website", "mallu chatting website", "mallu chating website", "malayalam chatting website")
-export const MalluChattingWebsitePage = () => {
-    let currentPath = '/mallu-chatting-website';
-    if (typeof window !== 'undefined' && window.location.pathname.includes('/mallu-chat-website')) {
-        currentPath = '/mallu-chat-website';
-    }
+// 7. Tamil Chatting Website Page
+export const TamilChattingWebsitePage = () => {
+    let currentPath = '/tamil-chatting-website';
 
     useMeta(
-        'Mallu Chat Website - #1 Mallu Chatting Website & Kerala Live Chat | MalluChat',
-        'Looking for the top Mallu chat website? MalluChat is Kerala\'s #1 Malayalam chatting website for anonymous live rooms, Mallu video calls, and stranger chat.',
+        'Tamil Chat Website - #1 Tamil Chatting Website & Tamil Nadu Live Chat | TamilChat',
+        'Looking for the top Tamil chat website? TamilChat is Tamil Nadu\'s #1 Tamil chatting website for anonymous live rooms, Tamil video calls, and stranger chat.',
         currentPath
     );
 
     return (
         <div style={containerStyle} className="glass">
-            <Header title="Mallu Chat Website - Top Malayalam Chatting Website" />
+            <Header title="Tamil Chat Website - Top Tamil Chatting Website" />
             <CallToAction />
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Searching for the best <strong>Mallu Chat Website</strong> and <strong>Malayalam Chatting Website</strong>? MalayalamChat.online is Kerala&apos;s leading online chat portal offering real-time public rooms, <strong>Mallu Free Chat</strong>, <strong>Mallu Stranger Chat</strong>, and 1-on-1 <strong>Mallu Video Calling</strong> with zero registration.
+                Searching for the best <strong>Tamil Chat Website</strong> and <strong>Tamil Chatting Website</strong>? TamilChat.online is Tamil Nadu&apos;s leading online chat portal offering real-time public rooms, <strong>Tamil Free Chat</strong>, <strong>Tamil Stranger Chat</strong>, and 1-on-1 <strong>Tamil Video Calling</strong> with zero registration.
             </p>
 
-            <Section title="Features of Our Mallu Chat Website">
+            <Section title="Features of Our Tamil Chat Website">
                 <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-                    <li><strong>#1 Malayalam Chatting Website:</strong> Connect with thousands of active Malayalees across Kerala and Gulf countries (UAE, Qatar, Saudi Arabia).</li>
-                    <li><strong>Mallu Stranger Chat Integration:</strong> Seamlessly switch between group discussions and private 1-on-1 stranger messaging.</li>
-                    <li><strong>Mallu Video Calling Website:</strong> High quality P2P video streaming with zero coins or subscription fees.</li>
-                    <li><strong>Mallu Free Calling Website:</strong> Crystal-clear audio calling directly inside mobile and desktop web browsers.</li>
+                    <li><strong>#1 Tamil Chatting Website:</strong> Connect with thousands of active Tamilians across Chennai, Coimbatore, Madurai, Salem, Singapore, and Malaysia.</li>
+                    <li><strong>Tamil Stranger Chat Integration:</strong> Seamlessly switch between group discussions and private 1-on-1 stranger messaging.</li>
+                    <li><strong>Tamil Video Calling Website:</strong> High quality P2P video streaming with zero coins or subscription fees.</li>
+                    <li><strong>Tamil Free Calling Website:</strong> Crystal-clear audio calling directly inside mobile and desktop web browsers.</li>
                 </ul>
             </Section>
             <SeoNavFooter />
@@ -343,42 +334,37 @@ export const MalluChattingWebsitePage = () => {
     );
 };
 
-// 7b. Mallu Random Chatting Website Page (Targeting: "mallu random chatting website", "mallu roundam chatting website", "mallu random chat")
-export const MalluRandomChattingWebsitePage = () => {
-    let currentPath = '/mallu-random-chatting-website';
-    if (typeof window !== 'undefined' && window.location.pathname.includes('/mallu-random-chat')) {
-        currentPath = window.location.pathname.includes('/mallu-random-chatting-website') 
-            ? '/mallu-random-chatting-website' 
-            : '/mallu-random-chat';
-    }
+// 8. Tamil Random Chatting Website Page
+export const TamilRandomChattingWebsitePage = () => {
+    let currentPath = '/tamil-random-chatting-website';
 
     useMeta(
-        'Mallu Random Chatting Website - Anonymous Kerala Stranger Chat | MalluChat',
-        'Top-ranked Mallu random chatting website for instant Malayalam stranger chat, live Kerala random matching, and 1-on-1 WebRTC video calls without signup.',
+        'Tamil Random Chatting Website - Anonymous Tamil Stranger Chat | TamilChat',
+        'Top-ranked Tamil random chatting website for instant Tamil stranger chat, live Tamil Nadu random matching, and 1-on-1 WebRTC video calls without signup.',
         currentPath
     );
 
     return (
         <div style={containerStyle} className="glass">
-            <Header title="Mallu Random Chatting Website - Kerala Stranger Match" />
+            <Header title="Tamil Random Chatting Website - Tamil Stranger Match" />
             <CallToAction />
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Welcome to the leading <strong>Mallu Random Chatting Website</strong> (<a href="https://malayalamchat.online/" style={{ color: 'var(--primary)' }}>MalayalamChat.online</a>)! If you are searching for a fast, anonymous <strong>Malayalam roundam chating</strong> or <strong>Mallu random chat</strong> to meet Malayali strangers online, MalayalamChat connects you in a single tap with live users across Kerala and worldwide.
+                Welcome to the leading <strong>Tamil Random Chatting Website</strong> (<a href="https://tamilchat.online/" style={{ color: 'var(--primary)' }}>TamilChat.online</a>)! If you are searching for a fast, anonymous <strong>Tamil random chat</strong> to meet Tamil strangers online, TamilChat connects you in a single tap with live users across Tamil Nadu and worldwide.
             </p>
 
-            <Section title="Why MalluChat is the Best Mallu Random Chatting Website">
-                <p>Enjoy effortless random pairing and authentic Malayalam conversations:</p>
+            <Section title="Why TamilChat is the Best Tamil Random Chatting Website">
+                <p>Enjoy effortless random pairing and authentic Tamil conversations:</p>
                 <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-                    <li><strong>Instant 1-Click Random Pairing:</strong> Connect with a random Malayalam speaker immediately without login credentials or email confirmation.</li>
+                    <li><strong>Instant 1-Click Random Pairing:</strong> Connect with a random Tamil speaker immediately without login credentials or email confirmation.</li>
                     <li><strong>Random Text &amp; Video Calling:</strong> Switch seamlessly between anonymous text chat and crystal-clear 1-on-1 random WebRTC video calls.</li>
                     <li><strong>100% Free Forever:</strong> Unlimited stranger matching with zero coins, credits, or hidden subscription costs.</li>
                     <li><strong>Privacy &amp; Anonymity:</strong> Your identity is never stored. Pick any anonymous handle and start chatting instantly.</li>
                 </ul>
             </Section>
 
-            <Section title="How to Use Mallu Random Chat">
+            <Section title="How to Use Tamil Random Chat">
                 <ol style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-                    <li>Click <strong>Start Chatting Now</strong> to launch MalluChat.</li>
+                    <li>Click <strong>Start Chatting Now</strong> to launch TamilChat.</li>
                     <li>Choose your nickname or enter as a guest.</li>
                     <li>Start chatting in World Chat or pick any online user to start an instant private random chat or video call!</li>
                 </ol>
@@ -388,27 +374,27 @@ export const MalluRandomChattingWebsitePage = () => {
     );
 };
 
-// 8. Mallu Random Video Call Page
-export const MalluRandomVideoCallPage = () => {
+// 9. Tamil Random Video Call Page
+export const TamilRandomVideoCallPage = () => {
     useMeta(
-        'Mallu Random Video Calling Website - Mallu Video Calling & Free Chat | MalluChat',
-        'Experience the top Mallu random video calling website! Connect for instant Mallu video calling, Mallu free video calling, and random Malayalam chat.',
-        '/mallu-random-video-call'
+        'Tamil Random Video Calling Website - Tamil Video Calling & Free Chat | TamilChat',
+        'Experience the top Tamil random video calling website! Connect for instant Tamil video calling, Tamil free video calling, and random Tamil chat.',
+        '/tamil-random-video-call'
     );
 
     return (
         <div style={containerStyle} className="glass">
-            <Header title="Mallu Random Video Calling Website & Mallu Video Calling" />
+            <Header title="Tamil Random Video Calling Website & Tamil Video Calling" />
             <CallToAction />
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Welcome to the #1 <strong>Mallu Random Video Calling Website</strong> for live <strong>Mallu Video Calling</strong> and <strong>Mallu Free Video Calling Website</strong> features! Connect face-to-face with random Malayalam-speaking friends instantly.
+                Welcome to the #1 <strong>Tamil Random Video Calling Website</strong> for live <strong>Tamil Video Calling</strong> and <strong>Tamil Free Video Calling Website</strong> features! Connect face-to-face with random Tamil-speaking friends instantly.
             </p>
 
-            <Section title="Best Mallu Random Video Calling Website Features">
+            <Section title="Best Tamil Random Video Calling Website Features">
                 <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-                    <li><strong>One-Click Random Match:</strong> Instant pairing on our <strong>Mallu Random Video Calling Website</strong>.</li>
-                    <li><strong>Mallu Free Video Calling:</strong> Unlimited WebRTC video calls with zero fees or coin paywalls.</li>
-                    <li><strong>Mallu Stranger Chat &amp; Mallu Free Calling:</strong> High quality voice, video, and text matching for Kerala users.</li>
+                    <li><strong>One-Click Random Match:</strong> Instant pairing on our <strong>Tamil Random Video Calling Website</strong>.</li>
+                    <li><strong>Tamil Free Video Calling:</strong> Unlimited WebRTC video calls with zero fees or coin paywalls.</li>
+                    <li><strong>Tamil Stranger Chat &amp; Tamil Free Calling:</strong> High quality voice, video, and text matching for Tamil Nadu users.</li>
                 </ul>
             </Section>
             <SeoNavFooter />
@@ -416,187 +402,111 @@ export const MalluRandomVideoCallPage = () => {
     );
 };
 
-// 9. Mallu Chat Live Page (Targeting exact keyword: "mallu chat live")
-export const MalluChatLivePage = () => {
-    let currentPath = '/mallu-chat-live';
-    if (typeof window !== 'undefined' && window.location.pathname.includes('/live-mallu-chat')) {
-        currentPath = '/live-mallu-chat';
-    }
+// 10. Tamil Chat Live Page
+export const TamilChatLivePage = () => {
+    let currentPath = '/tamil-chat-live';
 
     useMeta(
-        'Mallu Chat Live - Live Mallu Chat & Instant Kerala Chat Rooms | MalayalamChat',
-        'Join Live Mallu Chat on MalayalamChat.online! Enjoy real-time live Malayalam chat rooms, instant 1-on-1 stranger video calls, and zero registration.',
+        'Tamil Chat Live - Live Tamil Chat & Instant Tamil Nadu Chat Rooms | TamilChat',
+        'Join Live Tamil Chat on TamilChat.online! Enjoy real-time live Tamil chat rooms, instant 1-on-1 stranger video calls, and zero registration.',
         currentPath
     );
 
     return (
         <div style={containerStyle} className="glass">
-            <Header title="Mallu Chat Live - Real-Time Live Mallu Chat & Video Call" />
+            <Header title="Tamil Chat Live - Real-Time Live Tamil Chat & Video Call" />
             <CallToAction />
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Welcome to <strong>Mallu Chat Live</strong> and <strong>Live Mallu Chat</strong>, Kerala&apos;s fastest real-time <strong>Mallu Chat Online</strong> platform. Connect instantly with Malayalam speakers in Kochi, Trivandrum, Kozhikode, Thrissur, Dubai, Abu Dhabi, Qatar, and across the globe with zero sign-up required.
+                Welcome to <strong>Tamil Chat Live</strong>, Tamil Nadu&apos;s fastest real-time <strong>Tamil Chat Online</strong> platform. Connect instantly with Tamil speakers in Chennai, Coimbatore, Madurai, Trichy, Salem, Singapore, Malaysia, and across the globe with zero sign-up required.
             </p>
 
-            <Section title="Why Mallu Chat Live is Kerala's #1 Live Chatting Platform">
-                <p>Mallu Chat Live offers real-time instant messaging and high-definition 1-on-1 video calls with complete privacy:</p>
+            <Section title="Why Tamil Chat Live is Tamil Nadu's #1 Live Chatting Platform">
+                <p>Tamil Chat Live offers real-time instant messaging and high-definition 1-on-1 video calls with complete privacy:</p>
                 <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-                    <li><strong>Real-Time Live Lobbies:</strong> Chat instantly with active Malayalees worldwide on <strong>Live Mallu Chat</strong>.</li>
+                    <li><strong>Real-Time Live Lobbies:</strong> Chat instantly with active Tamilians worldwide on <strong>Live Tamil Chat</strong>.</li>
                     <li><strong>100% Free Video Calls:</strong> Direct peer-to-peer WebRTC random video matching without credit cards or coin fees.</li>
-                    <li><strong>Zero Registration Anonymity:</strong> Choose any display nickname and jump into live Malayalam conversations safely.</li>
+                    <li><strong>Zero Registration Anonymity:</strong> Choose any display nickname and jump into live Tamil conversations safely.</li>
                     <li><strong>Mobile &amp; Web Compatible:</strong> Works seamlessly on iOS, Android, and desktop browsers.</li>
                 </ul>
             </Section>
-
-            <Section title="Frequently Asked Questions about Mallu Chat Live">
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
-                    <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--panel-border)' }}>
-                        <h4 style={{ color: '#fff', marginBottom: '0.3rem' }}>How do I start using Live Mallu Chat?</h4>
-                        <p style={{ margin: 0 }}>Simply click &quot;Start Chatting Now&quot;, enter any display name, and join World Chat or random video calling immediately.</p>
-                    </div>
-                    <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--panel-border)' }}>
-                        <h4 style={{ color: '#fff', marginBottom: '0.3rem' }}>Is Mallu Chat Live safe and anonymous?</h4>
-                        <p style={{ margin: 0 }}>Yes! We never collect phone numbers, emails, or personal credentials. Calls are encrypted P2P WebRTC streams.</p>
-                    </div>
-                </div>
-            </Section>
             <SeoNavFooter />
         </div>
     );
 };
 
-// 10. Malayalam Chatting Website Page (Targeting exact keywords: "malayalam chatting website", "malayalam chating website")
-export const MalayalamChattingWebsitePage = () => {
-    useMeta(
-        'Malayalam Chatting Website - Free Kerala Online Chat & Video Call | MalayalamChat',
-        'Kerala\'s #1 Malayalam chatting website (മലയാളം ചാറ്റ്) for free online Kerala chat rooms, roundam chating, stranger video calling, & 1-on-1 Malayalam chat without registration.',
-        '/malayalam-chatting-website'
-    );
-
-    return (
-        <div style={containerStyle} className="glass">
-            <Header title="Malayalam Chatting Website - Free Kerala Chat & Video Calling" />
-            <CallToAction />
-            <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Welcome to <strong>MalayalamChat.online</strong>, Kerala&apos;s leading <strong>Malayalam chatting website</strong> (also widely searched as <strong>malayalam chating website</strong>). Designed specifically for Malayalees worldwide, MalayalamChat brings together Malayalam speakers for instant free text chat, voice notes, and stranger video calls without registration or phone numbers.
-            </p>
-
-            <Section title="Features of Our Malayalam Chatting Website">
-                <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-                    <li><strong>Active Kerala Online Lobbies:</strong> Dedicated rooms for Malayalam, Manglish, and regional district conversations.</li>
-                    <li><strong>Free Malayalam Video Call:</strong> Connect 1-on-1 face-to-face with random Malayalam-speaking strangers.</li>
-                    <li><strong>Privacy First:</strong> Built with state-of-the-art WebRTC technology for zero data harvesting.</li>
-                    <li><strong>No App Download Needed:</strong> Access the full <strong>Malayalam chatting website</strong> directly in your mobile browser.</li>
-                </ul>
-            </Section>
-
-            <Section title="Why Choose MalayalamChat over Other Chatting Sites?">
-                <p>
-                    Unlike outdated platforms that require phone verification, charge coins, or fill the screen with aggressive popups (like Sallapam or Y99), MalayalamChat provides a sleek, modern glassmorphism design that loads instantly with zero ads blocking your chat experience.
-                </p>
-            </Section>
-            <SeoNavFooter />
-        </div>
-    );
-};
-
-// 11. Mallu Chat Rooms Page (Targeting exact keywords: "mallu chat room", "mallu chat rooms", "mallu chatroom", "kerala chat rooms")
-export const MalluChatRoomsPage = () => {
-    let currentPath = '/mallu-chat-rooms';
-    if (typeof window !== 'undefined') {
-        const p = window.location.pathname;
-        if (p.includes('/mallu-chat-room')) currentPath = '/mallu-chat-room';
-        else if (p.includes('/mallu-chatroom')) currentPath = '/mallu-chatroom';
-        else currentPath = '/mallu-chat-rooms';
-    }
+// 11. Tamil Chat Rooms Page
+export const TamilChatRoomsPage = () => {
+    let currentPath = '/tamil-chat-rooms';
 
     useMeta(
-        'Mallu Chat Room - #1 Malayalam Chat Rooms & Kerala Live Chat | MalayalamChat',
-        'Join the #1 Mallu Chat Room on MalayalamChat.online. Real-time Malayalam chat rooms, Kerala chatroom discussions, stranger video calls, & zero registration.',
+        'Tamil Chat Room - #1 Tamil Chat Rooms & Tamil Nadu Live Chat | TamilChat',
+        'Join the #1 Tamil Chat Room on TamilChat.online. Real-time Tamil chat rooms, Tamil Nadu chatroom discussions, stranger video calls, & zero registration.',
         currentPath
     );
 
     return (
         <div style={containerStyle} className="glass">
-            <Header title="Mallu Chat Room - Free Malayalam Chat Rooms & Kerala Live Chat" />
+            <Header title="Tamil Chat Room - Free Tamil Chat Rooms & Tamil Nadu Live Chat" />
             <CallToAction />
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Welcome to the leading <strong>Mallu Chat Room</strong> and <strong>Mallu Chat Rooms</strong> network on MalayalamChat.online. Connect with thousands of Malayalees across Kerala (Kochi, Trivandrum, Kozhikode, Thrissur), Bangalore, Chennai, Mumbai, Dubai, Qatar, Saudi Arabia, and across the globe. Jump into public lobbies or start private 1-on-1 conversations with zero registration.
+                Welcome to the leading <strong>Tamil Chat Room</strong> and <strong>Tamil Chat Rooms</strong> network on TamilChat.online. Connect with thousands of Tamilians across Chennai, Coimbatore, Madurai, Trichy, Salem, Tirunelveli, Bangalore, Singapore, Malaysia, Dubai, and across the globe. Jump into public lobbies or start private 1-on-1 conversations with zero registration.
             </p>
 
-            <Section title="Explore Active Malayalam Chat Rooms">
-                <p>Choose from our diverse live chat rooms designed for every Malayali interest:</p>
+            <Section title="Explore Active Tamil Chat Rooms">
+                <p>Choose from our diverse live chat rooms designed for every Tamil interest:</p>
                 <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-                    <li><strong>Kerala Regional Lobbies:</strong> Chat rooms for Kochi, Thiruvananthapuram, Kozhikode, Thrissur, Kannur, and Malappuram.</li>
-                    <li><strong>Gulf Malayali Chat Rooms:</strong> Meet NRIs living in Dubai, Abu Dhabi, Sharjah, Doha, Riyadh, Kuwait, and Muscat.</li>
-                    <li><strong>Friendship &amp; Dating:</strong> Respectful, safe rooms to make new friends and connect with like-minded individuals.</li>
-                    <li><strong>Cinema &amp; Trends:</strong> Discuss the latest Mollywood movies, music, Malayalam memes, and current news.</li>
+                    <li><strong>Tamil Nadu Regional Lobbies:</strong> Chat rooms for Chennai, Coimbatore, Madurai, Tiruchirappalli, Salem, and Tirunelveli.</li>
+                    <li><strong>Global Tamil Chat Rooms:</strong> Meet Tamilians living in Singapore, Malaysia, Sri Lanka, Dubai, Abu Dhabi, London, and the USA.</li>
+                    <li><strong>Friendship &amp; Fun:</strong> Respectful, safe rooms to make new friends and connect with like-minded individuals.</li>
+                    <li><strong>Kollywood Cinema &amp; Trends:</strong> Discuss the latest Tamil movies, music, Thalapathy, Thala, Rajini memes, and current buzz.</li>
                 </ul>
             </Section>
 
-            <Section title="Why MalluChat Offers the Best Mallu Chat Room Experience">
+            <Section title="Why TamilChat Offers the Best Tamil Chat Room Experience">
                 <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-                    <li><strong>No Signups or Logins:</strong> Simply enter a nickname and start chatting in any <strong>Mallu chat room</strong> immediately.</li>
+                    <li><strong>No Signups or Logins:</strong> Simply enter a nickname and start chatting in any <strong>Tamil chat room</strong> immediately.</li>
                     <li><strong>100% Free Forever:</strong> No coins, subscription packages, or paywalled features.</li>
-                    <li><strong>Integrated Mallu Video Call:</strong> Seamlessly switch from group chat rooms to private 1-on-1 HD video calling.</li>
+                    <li><strong>Integrated Tamil Video Call:</strong> Seamlessly switch from group chat rooms to private 1-on-1 HD video calling.</li>
                     <li><strong>Strict Anti-Spam &amp; Moderation:</strong> Enjoy a clean, safe, and respectful environment.</li>
                 </ul>
             </Section>
-
-            <Section title="Frequently Asked Questions about Mallu Chat Rooms">
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
-                    <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--panel-border)' }}>
-                        <h4 style={{ color: '#fff', marginBottom: '0.3rem' }}>How do I join a Mallu chat room?</h4>
-                        <p style={{ margin: 0 }}>Click &quot;Start Chatting Now&quot;, type an anonymous handle, and select World Chat or any active room to start conversing immediately.</p>
-                    </div>
-                    <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--panel-border)' }}>
-                        <h4 style={{ color: '#fff', marginBottom: '0.3rem' }}>Do I need to download an app to enter Mallu chat rooms?</h4>
-                        <p style={{ margin: 0 }}>No! Our Mallu chat rooms work directly inside any modern web browser on Android, iPhone, tablet, or desktop.</p>
-                    </div>
-                </div>
-            </Section>
             <SeoNavFooter />
         </div>
     );
 };
 
-// 12. Mallu Video Call Page (Targeting exact keywords: "mallu video call", "malayalam video call", "mallu random call", "mallu video calls", "mallu videocall")
-export const MalluVideoCallPage = () => {
-    let currentPath = '/mallu-video-call';
-    if (typeof window !== 'undefined') {
-        const p = window.location.pathname;
-        if (p.includes('/malayalam-video-call')) currentPath = '/malayalam-video-call';
-        else if (p.includes('/mallu-random-call')) currentPath = '/mallu-random-call';
-        else currentPath = '/mallu-video-call';
-    }
+// 12. Tamil Video Call Page
+export const TamilVideoCallPage = () => {
+    let currentPath = '/tamil-video-call';
 
     useMeta(
-        'Mallu Video Call - Free 1-on-1 Malayalam Video Call & Random Chat | MalayalamChat',
-        'Connect instantly for Mallu Video Call on MalayalamChat.online. Free 1-on-1 Malayalam video call online, Mallu random call matching, and live stranger chat with zero registration.',
+        'Tamil Video Call - Free 1-on-1 Tamil Video Call & Random Chat | TamilChat',
+        'Connect instantly for Tamil Video Call on TamilChat.online. Free 1-on-1 Tamil video call online, Tamil random call matching, and live stranger chat with zero registration.',
         currentPath
     );
 
     return (
         <div style={containerStyle} className="glass">
-            <Header title="Mallu Video Call - Free 1-on-1 Malayalam Video Chat & Random Call" />
+            <Header title="Tamil Video Call - Free 1-on-1 Tamil Video Chat & Random Call" />
             <CallToAction />
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Looking for an instant <strong>Mallu Video Call</strong> or <strong>Malayalam Video Call</strong>? MalluChat connects you face-to-face with friendly Malayalam speakers across Kerala and worldwide. Enjoy peer-to-peer 1-on-1 <strong>Mallu random call</strong> matching, voice calling, and encrypted text messaging with zero download or login requirements.
+                Looking for an instant <strong>Tamil Video Call</strong>? TamilChat connects you face-to-face with friendly Tamil speakers across Tamil Nadu and worldwide. Enjoy peer-to-peer 1-on-1 <strong>Tamil random call</strong> matching, voice calling, and encrypted text messaging with zero download or login requirements.
             </p>
 
-            <Section title="Why MalluChat is the Top Mallu Video Call Platform">
+            <Section title="Why TamilChat is the Top Tamil Video Call Platform">
                 <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-                    <li><strong>Instant Video Pairing:</strong> One-tap connect for 1-on-1 <strong>Mallu video call</strong> and stranger matching.</li>
+                    <li><strong>Instant Video Pairing:</strong> One-tap connect for 1-on-1 <strong>Tamil video call</strong> and stranger matching.</li>
                     <li><strong>Direct WebRTC P2P Technology:</strong> Video streams are encrypted directly between devices for ultra-low latency and maximum privacy.</li>
                     <li><strong>100% Free with Zero Coins:</strong> No paywalls, daily call limits, or credit card requirements.</li>
                     <li><strong>Cross-Platform Compatibility:</strong> Works seamlessly on Chrome, Safari, Firefox, iOS, and Android.</li>
                 </ul>
             </Section>
 
-            <Section title="How to Start a Mallu Video Call">
+            <Section title="How to Start a Tamil Video Call">
                 <ol style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
                     <li>Click <strong>Start Chatting Now</strong> to enter the live platform.</li>
                     <li>Enter any custom anonymous handle.</li>
-                    <li>Allow camera/microphone permissions and tap &quot;Start Video Call&quot; to match with fellow Malayalees!</li>
+                    <li>Allow camera/microphone permissions and tap &quot;Start Video Call&quot; to match with fellow Tamilians!</li>
                 </ol>
             </Section>
             <SeoNavFooter />
@@ -604,26 +514,26 @@ export const MalluVideoCallPage = () => {
     );
 };
 
-// 13. Mallu Open Chat Page (Targeting exact keywords: "mallu open chat", "open chat mallu", "mallu openchat")
-export const MalluOpenChatPage = () => {
+// 13. Tamil Open Chat Page
+export const TamilOpenChatPage = () => {
     useMeta(
-        'Mallu Open Chat - Free Malayalam Live Chat Online | MalayalamChat',
-        'Experience Mallu Open Chat on MalayalamChat.online. Fast, open Malayalam chat rooms, stranger connections, and instant video calling with zero signups.',
-        '/mallu-open-chat'
+        'Tamil Open Chat - Free Tamil Live Chat Online | TamilChat',
+        'Experience Tamil Open Chat on TamilChat.online. Fast, open Tamil chat rooms, stranger connections, and instant video calling with zero signups.',
+        '/tamil-open-chat'
     );
 
     return (
         <div style={containerStyle} className="glass">
-            <Header title="Mallu Open Chat - Free Malayalam Live Chat Online" />
+            <Header title="Tamil Open Chat - Free Tamil Live Chat Online" />
             <CallToAction />
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Welcome to <strong>Mallu Open Chat</strong> (<a href="https://malayalamchat.online/" style={{ color: 'var(--primary)' }}>MalayalamChat.online</a>), the completely open, free-access Malayalam live chat platform. Jump into ongoing open discussions, meet new Malayali friends, and share voice notes or video calls without registration hurdles.
+                Welcome to <strong>Tamil Open Chat</strong> (<a href="https://tamilchat.online/" style={{ color: 'var(--primary)' }}>TamilChat.online</a>), the completely open, free-access Tamil live chat platform. Jump into ongoing open discussions, meet new Tamil friends, and share voice notes or video calls without registration hurdles.
             </p>
 
-            <Section title="Highlights of Mallu Open Chat">
+            <Section title="Highlights of Tamil Open Chat">
                 <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
                     <li><strong>Open Access:</strong> No passwords, emails, or phone numbers required. Instant entry for everyone.</li>
-                    <li><strong>Live Open Conversations:</strong> Meet Malayalees discussing daily topics, cinema, jobs, music, and friendship.</li>
+                    <li><strong>Live Open Conversations:</strong> Meet Tamilians discussing daily topics, cinema, jobs, music, and friendship.</li>
                     <li><strong>Switch to Private Video:</strong> Request 1-on-1 video calls with any user in the open room.</li>
                 </ul>
             </Section>
@@ -635,26 +545,22 @@ export const MalluOpenChatPage = () => {
 // Internal Linking Navigation Footer for SEO Pages
 const SeoNavFooter = () => (
     <div style={{ marginTop: '3rem', paddingTop: '1.5rem', borderTop: '1px solid var(--panel-border)', textAlign: 'center' }}>
-        <h4 style={{ color: 'var(--primary)', marginBottom: '1rem', fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Explore Popular Mallu Chat Lobbies</h4>
+        <h4 style={{ color: 'var(--primary)', marginBottom: '1rem', fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Explore Popular Tamil Chat Lobbies</h4>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem', justifyContent: 'center', fontSize: '0.88rem' }}>
-            <a href="/" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Mallu Chat Live</a>
-            <a href="/mallu-chat-rooms" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Mallu Chat Room</a>
-            <a href="/mallu-video-call" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Mallu Video Call</a>
-            <a href="/mallu-chatting-website" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Mallu Chat Website</a>
-            <a href="/mallu-stranger-chat-website" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Mallu Stranger Chat Website</a>
-            <a href="/mallu-random-chatting-website" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Mallu Random Chatting Website</a>
-            <a href="/mallu-open-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Mallu Open Chat</a>
-            <a href="/mallu-chat-live" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Live Mallu Chat</a>
-            <a href="/malayalam-chatting-website" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Malayalam Chatting Website</a>
-            <a href="/mallu-strangers-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Mallu Strangers Chat</a>
-            <a href="/mallu-free-video-call" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Mallu Free Video Call</a>
-            <a href="/mallu-random-video-call" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Mallu Random Video Call</a>
-            <a href="/malayalam-chat-online" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Malayalam Chat Online</a>
-            <a href="/mallu-chatting-app" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Mallu Chat App</a>
+            <a href="/" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Chat Live</a>
+            <a href="/tamil-chat-rooms" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Chat Room</a>
+            <a href="/tamil-video-call" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Video Call</a>
+            <a href="/tamil-chatting-website" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Chat Website</a>
+            <a href="/tamil-stranger-chat-website" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Stranger Chat Website</a>
+            <a href="/tamil-random-chatting-website" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Random Chatting Website</a>
+            <a href="/tamil-open-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Open Chat</a>
+            <a href="/tamil-chat-live" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Live Tamil Chat</a>
+            <a href="/tamil-chatting-website" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Chatting Website</a>
+            <a href="/tamil-strangers-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Strangers Chat</a>
+            <a href="/tamil-free-video-call" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Free Video Call</a>
+            <a href="/tamil-random-video-call" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Random Video Call</a>
+            <a href="/tamil-chat-online" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Chat Online</a>
+            <a href="/tamil-chatting-app" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Chat App</a>
         </div>
     </div>
 );
-
-
-
-

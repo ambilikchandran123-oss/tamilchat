@@ -4,23 +4,23 @@ import './index.css'
 import App from './App.tsx'
 import { PrivacyPage, TermsPage, AUPPage, DisclaimerPage, PaymentHelpPage } from './LegalPages.tsx'
 import { 
-  MalluChattingAppPage, 
-  MalluTelegramChattingPage, 
+  TamilChattingAppPage, 
+  TamilTelegramChattingPage, 
   TelegramAlternativeGroupChatPage, 
-  MalayalamChatOnlinePage, 
-  MalluFreeVideoCallPage, 
-  StrangersMalluChatPage, 
-  MalluChattingWebsitePage, 
-  MalluRandomChattingWebsitePage,
-  MalluRandomVideoCallPage, 
-  MalluChatLivePage, 
-  MalayalamChattingWebsitePage,
-  MalluChatRoomsPage,
-  MalluVideoCallPage,
-  MalluOpenChatPage
+  TamilChatOnlinePage, 
+  TamilFreeVideoCallPage, 
+  TamilStrangerChatPage, 
+  TamilChattingWebsitePage, 
+  TamilRandomChattingWebsitePage,
+  TamilRandomVideoCallPage, 
+  TamilChatLivePage, 
+  TamilChatRoomsPage,
+  TamilVideoCallPage,
+  TamilOpenChatPage
 } from './SeoPages.tsx'
+
 const path = window.location.pathname;
-const isBaseRoute = path === '/' || path.endsWith('/malayalamchat/') || path.endsWith('/malayalamchat') || path.endsWith('/malluchat/') || path.endsWith('/malluchat');
+const isBaseRoute = path === '/' || path.endsWith('/tamilchat/') || path.endsWith('/tamilchat');
 let ComponentToRender = App;
 
 if (path.includes('/privacy')) ComponentToRender = PrivacyPage;
@@ -28,20 +28,19 @@ if (path.includes('/terms')) ComponentToRender = TermsPage;
 if (path.includes('/aup')) ComponentToRender = AUPPage;
 if (path.includes('/disclaimer')) ComponentToRender = DisclaimerPage;
 if (path.includes('/payment-help')) ComponentToRender = PaymentHelpPage;
-if (path.includes('/mallu-chat-rooms') || path.includes('/mallu-chat-room') || path.includes('/mallu-chatroom')) ComponentToRender = MalluChatRoomsPage;
-if ((path.includes('/mallu-video-call') || path.includes('/malayalam-video-call') || path.includes('/malayalam-video-chat')) && !path.includes('/mallu-free-video-call') && !path.includes('/mallu-random-video-call')) ComponentToRender = MalluVideoCallPage;
-if (path.includes('/mallu-open-chat') || path.includes('/open-chat-mallu') || path.includes('/mallu-openchat')) ComponentToRender = MalluOpenChatPage;
-if (path.includes('/mallu-chatting-app')) ComponentToRender = MalluChattingAppPage;
-if (path.includes('/mallu-telegram-chatting')) ComponentToRender = MalluTelegramChattingPage;
+if (path.includes('/tamil-chat-rooms') || path.includes('/tamil-chat-room') || path.includes('/tamil-chatroom')) ComponentToRender = TamilChatRoomsPage;
+if ((path.includes('/tamil-video-call') || path.includes('/tamil-video-chat')) && !path.includes('/tamil-free-video-call') && !path.includes('/tamil-random-video-call')) ComponentToRender = TamilVideoCallPage;
+if (path.includes('/tamil-open-chat') || path.includes('/open-chat-tamil') || path.includes('/tamil-openchat')) ComponentToRender = TamilOpenChatPage;
+if (path.includes('/tamil-chatting-app')) ComponentToRender = TamilChattingAppPage;
+if (path.includes('/tamil-telegram-chatting')) ComponentToRender = TamilTelegramChattingPage;
 if (path.includes('/telegram-alternative-group-chat')) ComponentToRender = TelegramAlternativeGroupChatPage;
-if (path.includes('/malayalam-chat-online')) ComponentToRender = MalayalamChatOnlinePage;
-if (path.includes('/mallu-free-video-call')) ComponentToRender = MalluFreeVideoCallPage;
-if (path.includes('/mallu-stranger-chat-website') || path.includes('/mallu-strangers-chatting-website') || path.includes('/mallu-strangers-chat') || path.includes('/strangers-mallu-chat') || path.includes('/mallu-stranger-chat') || path.includes('/chat-with-strangers-in-mallu')) ComponentToRender = StrangersMalluChatPage;
-if (path.includes('/mallu-random-chatting-website') || path.includes('/mallu-random-chat')) ComponentToRender = MalluRandomChattingWebsitePage;
-if (path.includes('/mallu-chatting-website') || path.includes('/mallu-chat-website')) ComponentToRender = MalluChattingWebsitePage;
-if (path.includes('/mallu-random-video-call') || path.includes('/mallu-random-call')) ComponentToRender = MalluRandomVideoCallPage;
-if (path.includes('/mallu-chat-live') || path.includes('/live-mallu-chat')) ComponentToRender = MalluChatLivePage;
-if (path.includes('/malayalam-chatting-website')) ComponentToRender = MalayalamChattingWebsitePage;
+if (path.includes('/tamil-chat-online')) ComponentToRender = TamilChatOnlinePage;
+if (path.includes('/tamil-free-video-call')) ComponentToRender = TamilFreeVideoCallPage;
+if (path.includes('/tamil-stranger-chat-website') || path.includes('/tamil-strangers-chatting-website') || path.includes('/tamil-strangers-chat') || path.includes('/strangers-tamil-chat') || path.includes('/tamil-stranger-chat')) ComponentToRender = TamilStrangerChatPage;
+if (path.includes('/tamil-random-chatting-website') || path.includes('/tamil-random-chat')) ComponentToRender = TamilRandomChattingWebsitePage;
+if (path.includes('/tamil-chatting-website') || path.includes('/tamil-chat-website')) ComponentToRender = TamilChattingWebsitePage;
+if (path.includes('/tamil-random-video-call') || path.includes('/tamil-random-call')) ComponentToRender = TamilRandomVideoCallPage;
+if (path.includes('/tamil-chat-live') || path.includes('/live-tamil-chat')) ComponentToRender = TamilChatLivePage;
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

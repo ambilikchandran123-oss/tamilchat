@@ -1,11 +1,11 @@
 {
-    "name": "MalayalamChat Online - മലയാളം ചാറ്റ്",
-    "short_name": "MalayalamChat",
-    "description": "Free Malayalam Chatting & Video Calling for Malayalees worldwide. Anonymous random chat, Kerala chatrooms, P2P video calls with zero-log privacy.",
+    "name": "TamilChat Online - தமிழ் சாட்",
+    "short_name": "TamilChat",
+    "description": "Free Tamil Chatting & Video Calling for Tamilians worldwide. Anonymous random chat, Tamil Nadu chatrooms, P2P video calls with zero-log privacy.",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#0f1115",
-    "theme_color": "#0f1115",
+    "background_color": "#08090b",
+    "theme_color": "#08090b",
     "orientation": "portrait",
     "icons": [
         {

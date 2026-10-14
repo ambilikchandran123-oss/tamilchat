@@ -1,13 +1,12 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { MalluLogo } from './MalluLogo';
+import { TamilLogo } from './TamilLogo';
 import { PeerEngine } from './utils/peer-engine';
 import { isSpam, RateLimiter } from './utils/spam-filter';
 import { ringtone } from './utils/ringtone';
-import { Send, Phone, PhoneCall, Link as LinkIcon, Copy, Mic, Check, CheckCheck, MicOff, PhoneOff, X, Reply, Trash2, Video, VideoOff, Users, Lock, Download, Shuffle, Crown, Upload, AlertTriangle, MapPin, Image as ImageIcon, Camera, Loader2, ChevronDown, SwitchCamera, Volume2, VolumeX, UserPlus, Clock, Inbox, HelpCircle } from 'lucide-react';
+import { Send, Phone, PhoneCall, Link as LinkIcon, Copy, Mic, Check, CheckCheck, MicOff, PhoneOff, X, Reply, Trash2, Video, VideoOff, Users, Lock, Download, Shuffle, Crown, Upload, AlertTriangle, MapPin, Image as ImageIcon, ChevronDown, SwitchCamera, Volume2, VolumeX, UserPlus, Clock, Inbox, HelpCircle } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import { motion } from 'framer-motion';
 import { GifPickerModal } from './components/GifPickerModal';
-import { processImageAttachment } from './utils/image-uploader';
 import './index.css';
 
 // Mock UI sounds
@@ -17,8 +16,8 @@ const receivedSound = new Audio('/received.mp3');
 const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 const localOrigin = typeof window !== 'undefined' && window.location.origin ? window.location.origin : 'http://localhost:3000';
 const localWs = typeof window !== 'undefined' ? `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/ws` : 'ws://localhost:3000/ws';
-const BACKEND_URL = isDev ? localOrigin : 'https://ntfy.sh/malluchat_global_room_v4';
-const WS_URL = isDev ? localWs : 'wss://ntfy.sh/malluchat_global_room_v4/ws';
+const BACKEND_URL = isDev ? localOrigin : 'https://ntfy.sh/tamilchat_global_room_v4';
+const WS_URL = isDev ? localWs : 'wss://ntfy.sh/tamilchat_global_room_v4/ws';
 const POST_URL = isDev ? `${BACKEND_URL}/api/messages` : BACKEND_URL;
 
 const GoogleAdMessage = () => {
@@ -66,14 +65,14 @@ const clearOldMessages = () => {
   const limit = 86400000; // 24 hours in milliseconds
 
   // 1. Clean public messages
-  const publicStored = localStorage.getItem('malluchat_public_messages');
+  const publicStored = localStorage.getItem('tamilchat_public_messages');
   if (publicStored) {
     try {
       const parsed = JSON.parse(publicStored);
       const filtered = parsed.filter((m: any) => isPublicChatMessage(m) && now - m.timestamp < limit);
-      localStorage.setItem('malluchat_public_messages', JSON.stringify(filtered));
+      localStorage.setItem('tamilchat_public_messages', JSON.stringify(filtered));
     } catch (e) {
-      localStorage.removeItem('malluchat_public_messages');
+      localStorage.removeItem('tamilchat_public_messages');
     }
   }
 
@@ -81,7 +80,7 @@ const clearOldMessages = () => {
   const keysToProcess: string[] = [];
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
-    if (key && key.startsWith('malluchat_private_messages_')) {
+    if (key && key.startsWith('tamilchat_private_messages_')) {
       keysToProcess.push(key);
     }
   }
@@ -104,55 +103,55 @@ const clearOldMessages = () => {
   });
 };
 
-const KOCHI_SUB_LOCS = ['Kakkanad', 'Edappally', 'Kaloor', 'Fort Kochi', 'Kalamassery', 'Palarivattom', 'Vytilla', 'Aluva', 'Cheranallur', 'Tripunithura', 'Panampilly Nagar', 'Kadavanthra', 'Vennala', 'Elamakkara', 'Maradu', 'Thevara'];
-const CALICUT_SUB_LOCS = ['Elathur', 'Beypore', 'Nallalam', 'Chevayur', 'Kovoor', 'Pantheerankavu', 'Thondayad', 'Mankave', 'Kallayi', 'Vellimadukunnu', 'Nadakkavu', 'Pottammal', 'Karaparamba', 'Kottooli', 'Chevarambalam'];
-const TRIVANDRUM_SUB_LOCS = ['Kazhakoottam', 'Kowdiar', 'Pattom', 'Vellayambalam', 'Varkala', 'Nemom', 'Peroorkada', 'Vizhinjam', 'Sreekaryam', 'Vattiyoorkavu', 'Ambalamukku', 'Sasthamangalam', 'Thirumala', 'Mannanthala', 'Nalanchira', 'Poojappura'];
-const THRISSUR_SUB_LOCS = ['Kanattukara', 'Punkunnam', 'Ramavarmapuram', 'Ollur', 'Kuriachira', 'Ayyanthole', 'Kolazhy', 'Mannuthy', 'Koorkanchery', 'Guruvayur', 'Patturaikkal', 'Nadathara', 'Peringavu', 'Cheroor', 'Vilvattom'];
-const MALAPPURAM_SUB_LOCS = ['Kottakkal', 'Manjeri', 'Perinthalmanna', 'Tirur', 'Ponnani', 'Nilambur', 'Kondotty', 'Valanchery', 'Edappal', 'Tanur', 'Wandoor', 'Melattur', 'Anakkayam', 'Mongam', 'Down Hill'];
-
-const KOLLAM_SUB_LOCS = ['Chathannoor', 'Kottarakkara', 'Karunagappally', 'Chinnakada', 'Kadavoor', 'Kureepuzha', 'Polayathode', 'Eravipuram', 'Kollam Beach', 'Punalur', 'Pathanapuram', 'Kundara'];
-const ALAPPUZHA_SUB_LOCS = ['Cherthala', 'Kayamkulam', 'Haripad', 'Ambalappuzha', 'Mavelikkara', 'Mannar', 'Punnamada', 'Kalavoor', 'Mararikulam', 'Kuttanad', 'Aroor'];
-const KOTTAYAM_SUB_LOCS = ['Changanassery', 'Pala', 'Kanjirappally', 'Ettumanoor', 'Vaikom', 'Kumarakom', 'Pampady', 'Ponkunnam', 'Manarcad', 'Chingavanam'];
-const PALAKKAD_SUB_LOCS = ['Ottapalam', 'Shoranur', 'Mannarkkad', 'Pattambi', 'Cherpulassery', 'Kallekkad', 'Olappamanna', 'Malampuzha', 'Chittur', 'Alathur'];
-const KANNUR_SUB_LOCS = ['Thalassery', 'Payyanur', 'Taliparamba', 'Iritty', 'Mattannur', 'Payyambalam', 'Thottada', 'Chala', 'Valapattanam', 'Edakkad'];
-const KASARAGOD_SUB_LOCS = ['Kanhangad', 'Nileshwar', 'Kumbla', 'Uppala', 'Manjeshwar', 'Cheruvathur', 'Bekal', 'Trikaripur'];
-const PATHANAMTHITTA_SUB_LOCS = ['Adoor', 'Thiruvalla', 'Pandalam', 'Ranni', 'Konni', 'Mallappally', 'Kozhenchery', 'Pathanamthitta Town'];
-const IDUKKI_SUB_LOCS = ['Thodupuzha', 'Munnar', 'Kattappana', 'Adimali', 'Nedumkandam', 'Kumily', 'Vagamon', 'Peermade'];
-const WAYANAD_SUB_LOCS = ['Kalpetta', 'Sulthan Bathery', 'Mananthavady', 'Meppadi', 'Vythiri', 'Lakkidi', 'Ambalavayal'];
+const CHENNAI_SUB_LOCS = ['T. Nagar', 'Anna Nagar', 'Adyar', 'Velachery', 'Mylapore', 'Besant Nagar', 'Tambaram', 'Guindy', 'Kodambakkam', 'Nungambakkam', 'Porur', 'Vadapalani', 'Kilpauk', 'Sholinganallur', 'Thiruvanmiyur', 'Perambur'];
+const COIMBATORE_SUB_LOCS = ['Gandhipuram', 'RS Puram', 'Peelamedu', 'Saibaba Colony', 'Saravanampatti', 'Singanallur', 'Ganapathy', 'Ramanathapuram', 'Race Course', 'Kovaipudur', 'Sundarapuram', 'Vadavalli'];
+const MADURAI_SUB_LOCS = ['KK Nagar', 'Goripalayam', 'Simmakkal', 'Anna Nagar', 'Teppakulam', 'Mattuthavani', 'Sellur', 'Villapuram', 'Thirunagar', 'Othakadai', 'Arapalayam', 'Tallakulam'];
+const TRICHY_SUB_LOCS = ['Thillai Nagar', 'Srirangam', 'Cantonment', 'KK Nagar', 'Ponmalai', 'Woraiyur', 'Kattur', 'Melachinthamani', 'Palakkarai', 'Golden Rock'];
+const SALEM_SUB_LOCS = ['Fairlands', 'Hasthampatti', 'Shevapet', 'Suramangalam', 'Alagapuram', 'Ammapet', 'Gugai', 'Meyyanur', 'Kannankurichi', 'Kandhampatty'];
+const TIRUNELVELI_SUB_LOCS = ['Palayamkottai', 'Vannarpettai', 'Town', 'Melapalayam', 'Shanthi Nagar', 'Samathanapuram', 'Thatchanallur', 'Perumalpuram'];
+const VELLORE_SUB_LOCS = ['Katpadi', 'Gandhi Nagar', 'Sathuvachari', 'Bagayam', 'Thorapadi', 'Rangapuram', 'Konavattam', 'Shenbakkam'];
+const ERODE_SUB_LOCS = ['Perundurai Road', 'Brough Road', 'Veerappanchatram', 'Surampatti', 'Rangampalayam', 'Solar', 'Thindal', 'Chithode'];
+const TIRUPPUR_SUB_LOCS = ['Avinashi Road', 'Dharapuram Road', 'Angeripalayam', 'College Road', 'Rayapuram', 'Veerapandi', 'Palladam Road', 'Uthukuli'];
+const THANJAVUR_SUB_LOCS = ['Medical College Road', 'Vallam', 'Karanthai', 'Srinivasapuram', 'Yagappa Nagar', 'New Bus Stand', 'Palliagraharam'];
+const DINDIGUL_SUB_LOCS = ['Palani Road', 'Round Road', 'Nagal Nagar', 'Begambur', 'Mendonsa Colony', 'Batlagundu', 'Kodaikanal Road'];
+const KANCHIPURAM_SUB_LOCS = ['Gandhi Road', 'Ennaikaran', 'Chinna Kanchipuram', 'Pillaiyarpalayam', 'Collectorate', 'Orikkai', 'Walajabad'];
+const NAGERCOIL_SUB_LOCS = ['Vadasery', 'Kottar', 'Asaripallam', 'Ramavarmapuram', 'Chettikulam', 'Parvathipuram', 'Suchindram', 'Kanyakumari'];
+const CUDDALORE_SUB_LOCS = ['Chidambaram', 'Panruti', 'Vadalur', 'Neyveli', 'Manjakuppam', 'Thirupapuliyur'];
 
 const GENERIC_SUB_LOCS = [
-  'Aluva', 'Cherthala', 'Kayamkulam', 'Changanassery', 'Kottarakkara',
-  'Punalur', 'Adoor', 'Thiruvalla', 'Thodupuzha', 'Pala',
-  'Ettumanoor', 'Kattappana', 'Chalakudy', 'Irinjalakuda', 'Kodungallur',
-  'Kunnamkulam', 'Shoranur', 'Ottapalam', 'Pattambi', 'Mannarkkad',
-  'Kottakkal', 'Manjeri', 'Perinthalmanna', 'Tirur', 'Koduvally',
-  'Thamarassery', 'Mukkam', 'Mavoor', 'Feroke', 'Thalassery',
-  'Payyanur', 'Taliparamba', 'Kanhangad', 'Nileshwar', 'Kalpetta'
+  'T. Nagar', 'Anna Nagar', 'Gandhipuram', 'RS Puram', 'KK Nagar', 'Goripalayam',
+  'Thillai Nagar', 'Srirangam', 'Fairlands', 'Palayamkottai', 'Katpadi', 'Perundurai Road',
+  'Avinashi Road', 'Medical College', 'Palani Road', 'Gandhi Road', 'Vadasery', 'Tambaram',
+  'Adyar', 'Velachery', 'Mylapore', 'Peelamedu', 'Mattuthavani', 'Cantonment', 'Suramangalam',
+  'Melapalayam', 'Sathuvachari', 'Brough Road', 'Dharapuram Road', 'Vallam', 'Marina Beach'
 ];
 
-const KERALA_CITIES = [
-  { name: 'Kochi, Kerala', lat: 9.9312, lon: 76.2673 },
-  { name: 'Kozhikode, Kerala', lat: 11.2588, lon: 75.7804 },
-  { name: 'Trivandrum, Kerala', lat: 8.5241, lon: 76.9366 },
-  { name: 'Thrissur, Kerala', lat: 10.5276, lon: 76.2144 },
-  { name: 'Malappuram, Kerala', lat: 11.0720, lon: 76.0740 },
-  { name: 'Kollam, Kerala', lat: 8.8932, lon: 76.6141 },
-  { name: 'Alappuzha, Kerala', lat: 9.4981, lon: 76.3388 },
-  { name: 'Kottayam, Kerala', lat: 9.5916, lon: 76.5222 },
-  { name: 'Palakkad, Kerala', lat: 10.7867, lon: 76.6548 },
-  { name: 'Kannur, Kerala', lat: 11.8745, lon: 75.3704 },
-  { name: 'Kasaragod, Kerala', lat: 12.5102, lon: 74.9852 },
-  { name: 'Pathanamthitta, Kerala', lat: 9.2648, lon: 76.7870 },
-  { name: 'Idukki, Kerala', lat: 9.8496, lon: 76.9904 },
-  { name: 'Wayanad, Kerala', lat: 11.6050, lon: 76.0825 }
+const TAMILNADU_CITIES = [
+  { name: 'Chennai, Tamil Nadu', lat: 13.0827, lon: 80.2707 },
+  { name: 'Coimbatore, Tamil Nadu', lat: 11.0168, lon: 76.9558 },
+  { name: 'Madurai, Tamil Nadu', lat: 9.9252, lon: 78.1198 },
+  { name: 'Tiruchirappalli, Tamil Nadu', lat: 10.7905, lon: 78.7047 },
+  { name: 'Salem, Tamil Nadu', lat: 11.6643, lon: 78.1460 },
+  { name: 'Tirunelveli, Tamil Nadu', lat: 8.7139, lon: 77.7567 },
+  { name: 'Vellore, Tamil Nadu', lat: 12.9165, lon: 79.1325 },
+  { name: 'Erode, Tamil Nadu', lat: 11.3410, lon: 77.7172 },
+  { name: 'Tiruppur, Tamil Nadu', lat: 11.1085, lon: 77.3411 },
+  { name: 'Thanjavur, Tamil Nadu', lat: 10.7870, lon: 79.1378 },
+  { name: 'Dindigul, Tamil Nadu', lat: 10.3673, lon: 77.9803 },
+  { name: 'Kanchipuram, Tamil Nadu', lat: 12.8342, lon: 79.7036 },
+  { name: 'Nagercoil, Tamil Nadu', lat: 8.1833, lon: 77.4119 },
+  { name: 'Cuddalore, Tamil Nadu', lat: 11.7480, lon: 79.7714 },
+  { name: 'Karur, Tamil Nadu', lat: 10.9601, lon: 78.0766 },
+  { name: 'Thoothukudi, Tamil Nadu', lat: 8.7642, lon: 78.1348 },
+  { name: 'Hosur, Tamil Nadu', lat: 12.7409, lon: 77.8253 }
 ];
 
 const getProfileLocationAndDistance = (profile: any, userCoords: { lat: number; lon: number } | null, index: number) => {
-  const userLat = userCoords?.lat ?? 9.9312;
-  const userLon = userCoords?.lon ?? 76.2673;
+  const userLat = userCoords?.lat ?? 13.0827;
+  const userLon = userCoords?.lon ?? 80.2707;
 
-  // Sort KERALA_CITIES by distance from active user coordinates
-  const sortedCities = [...KERALA_CITIES].sort((a, b) => {
+  // Sort TAMILNADU_CITIES by distance from active user coordinates
+  const sortedCities = [...TAMILNADU_CITIES].sort((a, b) => {
     const distA = parseFloat(calculateDistance(userLat, userLon, a.lat, a.lon));
     const distB = parseFloat(calculateDistance(userLat, userLon, b.lat, b.lon));
     return distA - distB;
@@ -172,34 +171,34 @@ const getProfileLocationAndDistance = (profile: any, userCoords: { lat: number; 
   const lowerCity = cleanCity.toLowerCase();
 
   let subLocList = GENERIC_SUB_LOCS;
-  if (lowerCity.includes('kochi') || lowerCity.includes('cochin') || lowerCity.includes('ernakulam')) {
-    subLocList = KOCHI_SUB_LOCS;
-  } else if (lowerCity.includes('kozhikode') || lowerCity.includes('calicut')) {
-    subLocList = CALICUT_SUB_LOCS;
-  } else if (lowerCity.includes('trivandrum') || lowerCity.includes('thiruvananthapuram')) {
-    subLocList = TRIVANDRUM_SUB_LOCS;
-  } else if (lowerCity.includes('thrissur') || lowerCity.includes('trichur')) {
-    subLocList = THRISSUR_SUB_LOCS;
-  } else if (lowerCity.includes('malappuram')) {
-    subLocList = MALAPPURAM_SUB_LOCS;
-  } else if (lowerCity.includes('kollam') || lowerCity.includes('quilon')) {
-    subLocList = KOLLAM_SUB_LOCS;
-  } else if (lowerCity.includes('alappuzha') || lowerCity.includes('alleppey')) {
-    subLocList = ALAPPUZHA_SUB_LOCS;
-  } else if (lowerCity.includes('kottayam')) {
-    subLocList = KOTTAYAM_SUB_LOCS;
-  } else if (lowerCity.includes('palakkad') || lowerCity.includes('palghat')) {
-    subLocList = PALAKKAD_SUB_LOCS;
-  } else if (lowerCity.includes('kannur') || lowerCity.includes('cannanore')) {
-    subLocList = KANNUR_SUB_LOCS;
-  } else if (lowerCity.includes('kasaragod') || lowerCity.includes('cassergode')) {
-    subLocList = KASARAGOD_SUB_LOCS;
-  } else if (lowerCity.includes('pathanamthitta')) {
-    subLocList = PATHANAMTHITTA_SUB_LOCS;
-  } else if (lowerCity.includes('idukki')) {
-    subLocList = IDUKKI_SUB_LOCS;
-  } else if (lowerCity.includes('wayanad')) {
-    subLocList = WAYANAD_SUB_LOCS;
+  if (lowerCity.includes('chennai') || lowerCity.includes('madras')) {
+    subLocList = CHENNAI_SUB_LOCS;
+  } else if (lowerCity.includes('coimbatore') || lowerCity.includes('kovai')) {
+    subLocList = COIMBATORE_SUB_LOCS;
+  } else if (lowerCity.includes('madurai')) {
+    subLocList = MADURAI_SUB_LOCS;
+  } else if (lowerCity.includes('trichy') || lowerCity.includes('tiruchirappalli')) {
+    subLocList = TRICHY_SUB_LOCS;
+  } else if (lowerCity.includes('salem')) {
+    subLocList = SALEM_SUB_LOCS;
+  } else if (lowerCity.includes('tirunelveli') || lowerCity.includes('nellai')) {
+    subLocList = TIRUNELVELI_SUB_LOCS;
+  } else if (lowerCity.includes('vellore')) {
+    subLocList = VELLORE_SUB_LOCS;
+  } else if (lowerCity.includes('erode')) {
+    subLocList = ERODE_SUB_LOCS;
+  } else if (lowerCity.includes('tiruppur')) {
+    subLocList = TIRUPPUR_SUB_LOCS;
+  } else if (lowerCity.includes('thanjavur') || lowerCity.includes('tanjore')) {
+    subLocList = THANJAVUR_SUB_LOCS;
+  } else if (lowerCity.includes('dindigul')) {
+    subLocList = DINDIGUL_SUB_LOCS;
+  } else if (lowerCity.includes('kanchipuram') || lowerCity.includes('kanchi')) {
+    subLocList = KANCHIPURAM_SUB_LOCS;
+  } else if (lowerCity.includes('nagercoil') || lowerCity.includes('kanyakumari')) {
+    subLocList = NAGERCOIL_SUB_LOCS;
+  } else if (lowerCity.includes('cuddalore')) {
+    subLocList = CUDDALORE_SUB_LOCS;
   }
 
   const subLoc = subLocList[index % subLocList.length];
@@ -228,34 +227,34 @@ const getUserSubLocation = (username: string, cityName: string) => {
   const lowerCity = cleanCity.toLowerCase();
 
   let subLocList = GENERIC_SUB_LOCS;
-  if (lowerCity.includes('kochi') || lowerCity.includes('cochin') || lowerCity.includes('ernakulam')) {
-    subLocList = KOCHI_SUB_LOCS;
-  } else if (lowerCity.includes('kozhikode') || lowerCity.includes('calicut')) {
-    subLocList = CALICUT_SUB_LOCS;
-  } else if (lowerCity.includes('trivandrum') || lowerCity.includes('thiruvananthapuram')) {
-    subLocList = TRIVANDRUM_SUB_LOCS;
-  } else if (lowerCity.includes('thrissur') || lowerCity.includes('trichur')) {
-    subLocList = THRISSUR_SUB_LOCS;
-  } else if (lowerCity.includes('malappuram')) {
-    subLocList = MALAPPURAM_SUB_LOCS;
-  } else if (lowerCity.includes('kollam') || lowerCity.includes('quilon')) {
-    subLocList = KOLLAM_SUB_LOCS;
-  } else if (lowerCity.includes('alappuzha') || lowerCity.includes('alleppey')) {
-    subLocList = ALAPPUZHA_SUB_LOCS;
-  } else if (lowerCity.includes('kottayam')) {
-    subLocList = KOTTAYAM_SUB_LOCS;
-  } else if (lowerCity.includes('palakkad') || lowerCity.includes('palghat')) {
-    subLocList = PALAKKAD_SUB_LOCS;
-  } else if (lowerCity.includes('kannur') || lowerCity.includes('cannanore')) {
-    subLocList = KANNUR_SUB_LOCS;
-  } else if (lowerCity.includes('kasaragod') || lowerCity.includes('cassergode')) {
-    subLocList = KASARAGOD_SUB_LOCS;
-  } else if (lowerCity.includes('pathanamthitta')) {
-    subLocList = PATHANAMTHITTA_SUB_LOCS;
-  } else if (lowerCity.includes('idukki')) {
-    subLocList = IDUKKI_SUB_LOCS;
-  } else if (lowerCity.includes('wayanad')) {
-    subLocList = WAYANAD_SUB_LOCS;
+  if (lowerCity.includes('chennai') || lowerCity.includes('madras')) {
+    subLocList = CHENNAI_SUB_LOCS;
+  } else if (lowerCity.includes('coimbatore') || lowerCity.includes('kovai')) {
+    subLocList = COIMBATORE_SUB_LOCS;
+  } else if (lowerCity.includes('madurai')) {
+    subLocList = MADURAI_SUB_LOCS;
+  } else if (lowerCity.includes('trichy') || lowerCity.includes('tiruchirappalli')) {
+    subLocList = TRICHY_SUB_LOCS;
+  } else if (lowerCity.includes('salem')) {
+    subLocList = SALEM_SUB_LOCS;
+  } else if (lowerCity.includes('tirunelveli') || lowerCity.includes('nellai')) {
+    subLocList = TIRUNELVELI_SUB_LOCS;
+  } else if (lowerCity.includes('vellore')) {
+    subLocList = VELLORE_SUB_LOCS;
+  } else if (lowerCity.includes('erode')) {
+    subLocList = ERODE_SUB_LOCS;
+  } else if (lowerCity.includes('tiruppur')) {
+    subLocList = TIRUPPUR_SUB_LOCS;
+  } else if (lowerCity.includes('thanjavur') || lowerCity.includes('tanjore')) {
+    subLocList = THANJAVUR_SUB_LOCS;
+  } else if (lowerCity.includes('dindigul')) {
+    subLocList = DINDIGUL_SUB_LOCS;
+  } else if (lowerCity.includes('kanchipuram') || lowerCity.includes('kanchi')) {
+    subLocList = KANCHIPURAM_SUB_LOCS;
+  } else if (lowerCity.includes('nagercoil') || lowerCity.includes('kanyakumari')) {
+    subLocList = NAGERCOIL_SUB_LOCS;
+  } else if (lowerCity.includes('cuddalore')) {
+    subLocList = CUDDALORE_SUB_LOCS;
   }
 
   let hash = 0;
@@ -268,89 +267,89 @@ const getUserSubLocation = (username: string, cityName: string) => {
 };
 
 const DEMO_PROFILES = [
-  { id: 'demo-1', name: 'Aisha', gender: 'female', status: 'online', latOffset: 0.012, lonOffset: -0.008, defaultDist: 1.5, avatar: 'Ai', hasVideo: true },
-  { id: 'demo-2', name: 'Ananya', gender: 'female', status: 'online', latOffset: -0.005, lonOffset: 0.015, defaultDist: 1.8, avatar: 'An' },
-  { id: 'demo-3', name: 'Fathima', gender: 'female', status: 'online', latOffset: 0.022, lonOffset: 0.018, defaultDist: 3.2, avatar: 'Fa', hasVideo: true },
-  { id: 'demo-4', name: 'Devika', gender: 'female', status: 'offline', latOffset: -0.018, lonOffset: -0.025, defaultDist: 3.8, avatar: 'De' },
-  { id: 'demo-5', name: 'Riza', gender: 'female', status: 'online', latOffset: 0.052, lonOffset: -0.012, defaultDist: 5.7, avatar: 'Ri', hasVideo: true },
-  { id: 'demo-6', name: 'Gopika', gender: 'female', status: 'online', latOffset: 0.008, lonOffset: 0.042, defaultDist: 4.8, avatar: 'Go' },
-  { id: 'demo-7', name: 'Jasna', gender: 'female', status: 'offline', latOffset: -0.045, lonOffset: -0.012, defaultDist: 5.1, avatar: 'Ja' },
-  { id: 'demo-8', name: 'Malavika', gender: 'female', status: 'online', latOffset: 0.052, lonOffset: 0.028, defaultDist: 6.5, avatar: 'Ma', hasVideo: true },
-  { id: 'demo-9', name: 'Naadiya', gender: 'female', status: 'online', latOffset: -0.022, lonOffset: 0.058, defaultDist: 6.8, avatar: 'Na' },
-  { id: 'demo-10', name: 'Kavya', gender: 'female', status: 'offline', latOffset: 0.062, lonOffset: -0.048, defaultDist: 8.7, avatar: 'Ka' },
-  { id: 'demo-11', name: 'Sneha', gender: 'female', status: 'online', latOffset: -0.032, lonOffset: 0.022, defaultDist: 4.1, avatar: 'Sn', hasVideo: true },
-  { id: 'demo-12', name: 'Maria', gender: 'female', status: 'offline', latOffset: 0.045, lonOffset: -0.035, defaultDist: 6.2, avatar: 'Mr' },
-  { id: 'demo-13', name: 'Riya', gender: 'female', status: 'online', latOffset: -0.012, lonOffset: 0.065, defaultDist: 7.1, avatar: 'Ry', hasVideo: true },
-  { id: 'demo-14', name: 'Sherin', gender: 'female', status: 'offline', latOffset: 0.075, lonOffset: 0.012, defaultDist: 9.3, avatar: 'Sh' },
-  { id: 'demo-15', name: 'Sandra', gender: 'female', status: 'online', latOffset: -0.055, lonOffset: 0.045, defaultDist: 8.0, avatar: 'Sa' },
-  { id: 'demo-16', name: 'Farhana', gender: 'female', status: 'offline', latOffset: 0.015, lonOffset: -0.062, defaultDist: 6.9, avatar: 'Fa', hasVideo: true },
-  { id: 'demo-17', name: 'Shilpa', gender: 'female', status: 'online', latOffset: -0.025, lonOffset: -0.055, defaultDist: 7.4, avatar: 'Sp' },
-  { id: 'demo-18', name: 'Anjali', gender: 'female', status: 'offline', latOffset: 0.038, lonOffset: 0.052, defaultDist: 5.5, avatar: 'Aj' },
-  { id: 'demo-19', name: 'Akhil', gender: 'male', status: 'online', latOffset: -0.015, lonOffset: -0.008, defaultDist: 1.8, avatar: 'Ak', hasVideo: true },
-  { id: 'demo-20', name: 'Faisal', gender: 'male', status: 'online', latOffset: 0.028, lonOffset: 0.002, defaultDist: 3.1, avatar: 'Fi' },
-  { id: 'demo-21', name: 'Rahul', gender: 'male', status: 'offline', latOffset: -0.042, lonOffset: 0.025, defaultDist: 5.3, avatar: 'Ra' },
-  { id: 'demo-22', name: 'Shamil', gender: 'male', status: 'online', latOffset: 0.062, lonOffset: -0.022, defaultDist: 7.6, avatar: 'Sm', hasVideo: true },
-  { id: 'demo-23', name: 'Vishnu', gender: 'male', status: 'offline', latOffset: -0.038, lonOffset: -0.048, defaultDist: 6.4, avatar: 'Vi' },
-  { id: 'demo-24', name: 'Anas', gender: 'male', status: 'online', latOffset: 0.018, lonOffset: 0.055, defaultDist: 5.0, avatar: 'An' },
-  { id: 'demo-25', name: 'Meera', gender: 'female', status: 'online', latOffset: 0.182, lonOffset: -0.052, defaultDist: 21.0, avatar: 'Me', hasVideo: true },
-  { id: 'demo-26', name: 'Nafiah', gender: 'female', status: 'online', latOffset: -0.155, lonOffset: 0.122, defaultDist: 21.8, avatar: 'Na' },
-  { id: 'demo-27', name: 'Sruthi', gender: 'female', status: 'offline', latOffset: 0.168, lonOffset: -0.095, defaultDist: 21.4, avatar: 'Sr' },
-  { id: 'demo-28', name: 'Hadiya', gender: 'female', status: 'online', latOffset: -0.215, lonOffset: 0.142, defaultDist: 28.5, avatar: 'Ha', hasVideo: true },
-  { id: 'demo-29', name: 'Aswathy', gender: 'female', status: 'online', latOffset: 0.278, lonOffset: -0.082, defaultDist: 32.0, avatar: 'As' },
-  { id: 'demo-30', name: 'Shabna', gender: 'female', status: 'offline', latOffset: -0.175, lonOffset: -0.065, defaultDist: 20.8, avatar: 'Sh' },
-  { id: 'demo-31', name: 'Karthika', gender: 'female', status: 'online', latOffset: 0.192, lonOffset: 0.045, defaultDist: 21.8, avatar: 'Ka', hasVideo: true },
-  { id: 'demo-32', name: 'Fida', gender: 'female', status: 'online', latOffset: -0.252, lonOffset: -0.115, defaultDist: 30.7, avatar: 'Fi' },
-  { id: 'demo-33', name: 'Parvathy', gender: 'female', status: 'offline', latOffset: 0.312, lonOffset: 0.055, defaultDist: 35.1, avatar: 'Pa' },
-  { id: 'demo-34', name: 'Dilsha', gender: 'female', status: 'online', latOffset: -0.162, lonOffset: 0.085, defaultDist: 20.3, avatar: 'Di', hasVideo: true },
-  { id: 'demo-35', name: 'Jithin', gender: 'male', status: 'online', latOffset: 0.185, lonOffset: -0.045, defaultDist: 21.1, avatar: 'Ji' },
-  { id: 'demo-36', name: 'Nabeel', gender: 'male', status: 'online', latOffset: -0.178, lonOffset: 0.082, defaultDist: 21.7, avatar: 'Na' },
-  { id: 'demo-37', name: 'Pranav', gender: 'male', status: 'offline', latOffset: 0.222, lonOffset: 0.115, defaultDist: 27.8, avatar: 'Pr' },
-  { id: 'demo-38', name: 'Ashique', gender: 'male', status: 'online', latOffset: -0.192, lonOffset: -0.035, defaultDist: 21.6, avatar: 'As', hasVideo: true },
-  { id: 'demo-39', name: 'Siddharth', gender: 'male', status: 'offline', latOffset: 0.265, lonOffset: -0.092, defaultDist: 31.2, avatar: 'Si' },
-  { id: 'demo-40', name: 'Arshad', gender: 'male', status: 'online', latOffset: -0.181, lonOffset: 0.048, defaultDist: 20.8, avatar: 'Ar' },
-  // Additional Muslim & Hindu girls demo profiles for Call Section
-  { id: 'demo-41', name: 'Shahana', gender: 'female', status: 'online', latOffset: 0.009, lonOffset: -0.014, defaultDist: 1.4, avatar: 'Sh', hasVideo: true },
-  { id: 'demo-42', name: 'Haritha', gender: 'female', status: 'online', latOffset: -0.34, lonOffset: 0.28, defaultDist: 34.5, isLongDistance: true, avatar: 'Ha' },
-  { id: 'demo-43', name: 'Ameena', gender: 'female', status: 'online', latOffset: 0.019, lonOffset: 0.007, defaultDist: 2.1, avatar: 'Am', hasVideo: true },
-  { id: 'demo-44', name: 'Athira', gender: 'female', status: 'online', latOffset: 0.38, lonOffset: -0.32, defaultDist: 38.2, isLongDistance: true, avatar: 'At' },
-  { id: 'demo-45', name: 'Thasni', gender: 'female', status: 'online', latOffset: 0.025, lonOffset: -0.015, defaultDist: 2.9, avatar: 'Th' },
-  { id: 'demo-46', name: 'Arya', gender: 'female', status: 'online', latOffset: -0.42, lonOffset: 0.35, defaultDist: 42.0, isLongDistance: true, avatar: 'Ar', hasVideo: true },
-  { id: 'demo-47', name: 'Sumayya', gender: 'female', status: 'offline', latOffset: 0.46, lonOffset: 0.39, defaultDist: 45.8, isLongDistance: true, avatar: 'Su' },
-  { id: 'demo-48', name: 'Revathy', gender: 'female', status: 'online', latOffset: -0.49, lonOffset: -0.42, defaultDist: 49.3, isLongDistance: true, avatar: 'Re' },
-  { id: 'demo-49', name: 'Rameeza', gender: 'female', status: 'online', latOffset: 0.52, lonOffset: -0.45, defaultDist: 52.6, isLongDistance: true, avatar: 'Ra', hasVideo: true },
-  { id: 'demo-50', name: 'Nandana', gender: 'female', status: 'online', latOffset: -0.55, lonOffset: 0.48, defaultDist: 55.4, isLongDistance: true, avatar: 'Na' },
-  { id: 'demo-51', name: 'Safa', gender: 'female', status: 'online', latOffset: 0.58, lonOffset: 0.51, defaultDist: 58.7, isLongDistance: true, avatar: 'Sa', hasVideo: true },
-  { id: 'demo-52', name: 'Pooja', gender: 'female', status: 'online', latOffset: -0.61, lonOffset: -0.54, defaultDist: 61.2, isLongDistance: true, avatar: 'Po' },
-  { id: 'demo-53', name: 'Mubashira', gender: 'female', status: 'offline', latOffset: 0.64, lonOffset: -0.57, defaultDist: 64.5, isLongDistance: true, avatar: 'Mu' },
-  { id: 'demo-54', name: 'Keerthana', gender: 'female', status: 'online', latOffset: -0.67, lonOffset: 0.60, defaultDist: 67.8, isLongDistance: true, avatar: 'Ke', hasVideo: true },
-  { id: 'demo-55', name: 'Fasna', gender: 'female', status: 'online', latOffset: 0.70, lonOffset: 0.63, defaultDist: 70.4, isLongDistance: true, avatar: 'Fa' },
-  { id: 'demo-56', name: 'Reshma', gender: 'female', status: 'online', latOffset: -0.73, lonOffset: -0.66, defaultDist: 73.1, isLongDistance: true, avatar: 'Re', hasVideo: true },
-  { id: 'demo-57', name: 'Hasna', gender: 'female', status: 'online', latOffset: 0.76, lonOffset: -0.69, defaultDist: 76.2, isLongDistance: true, avatar: 'Ha' },
-  { id: 'demo-58', name: 'Gayathri', gender: 'female', status: 'online', latOffset: -0.79, lonOffset: 0.72, defaultDist: 79.5, isLongDistance: true, avatar: 'Ga', hasVideo: true },
-  { id: 'demo-59', name: 'Rinsha', gender: 'female', status: 'online', latOffset: 0.82, lonOffset: 0.75, defaultDist: 82.0, isLongDistance: true, avatar: 'Ri' },
-  { id: 'demo-60', name: 'Saranya', gender: 'female', status: 'offline', latOffset: -0.85, lonOffset: -0.78, defaultDist: 85.3, isLongDistance: true, avatar: 'Sa' },
-  { id: 'demo-61', name: 'Lubna', gender: 'female', status: 'online', latOffset: 0.88, lonOffset: -0.81, defaultDist: 88.0, isLongDistance: true, avatar: 'Lu', hasVideo: true },
-  { id: 'demo-62', name: 'Abhirami', gender: 'female', status: 'online', latOffset: -0.91, lonOffset: 0.84, defaultDist: 91.2, isLongDistance: true, avatar: 'Ab' },
-  { id: 'demo-63', name: 'Shifana', gender: 'female', status: 'online', latOffset: 0.94, lonOffset: 0.87, defaultDist: 94.6, isLongDistance: true, avatar: 'Sh', hasVideo: true },
-  { id: 'demo-64', name: 'Aparna', gender: 'female', status: 'online', latOffset: -0.97, lonOffset: -0.90, defaultDist: 97.4, isLongDistance: true, avatar: 'Ap' },
-  { id: 'demo-65', name: 'Afnitha', gender: 'female', status: 'online', latOffset: 1.00, lonOffset: -0.93, defaultDist: 100.8, isLongDistance: true, avatar: 'Af', hasVideo: true },
-  { id: 'demo-66', name: 'Meenakshi', gender: 'female', status: 'online', latOffset: -1.03, lonOffset: 0.96, defaultDist: 103.5, isLongDistance: true, avatar: 'Me' },
-  { id: 'demo-67', name: 'Nihala', gender: 'female', status: 'online', latOffset: 1.06, lonOffset: 0.99, defaultDist: 106.2, isLongDistance: true, avatar: 'Ni', hasVideo: true },
-  { id: 'demo-68', name: 'Sreelekshmi', gender: 'female', status: 'offline', latOffset: -1.09, lonOffset: -1.02, defaultDist: 109.4, isLongDistance: true, avatar: 'Sr' },
-  { id: 'demo-69', name: 'Najma', gender: 'female', status: 'online', latOffset: 1.12, lonOffset: -1.05, defaultDist: 112.0, isLongDistance: true, avatar: 'Na', hasVideo: true },
-  { id: 'demo-70', name: 'Archana', gender: 'female', status: 'online', latOffset: -1.15, lonOffset: 1.08, defaultDist: 115.3, isLongDistance: true, avatar: 'Ar' },
-  { id: 'demo-71', name: 'Ashida', gender: 'female', status: 'online', latOffset: 1.18, lonOffset: 1.11, defaultDist: 118.6, isLongDistance: true, avatar: 'As', hasVideo: true },
-  { id: 'demo-72', name: 'Aswini', gender: 'female', status: 'online', latOffset: -1.21, lonOffset: -1.14, defaultDist: 121.2, isLongDistance: true, avatar: 'As' },
-  { id: 'demo-73', name: 'Jaseela', gender: 'female', status: 'online', latOffset: 1.24, lonOffset: -1.17, defaultDist: 124.5, isLongDistance: true, avatar: 'Ja', hasVideo: true },
-  { id: 'demo-74', name: 'Akhila', gender: 'female', status: 'online', latOffset: -0.122, lonOffset: 0.118, defaultDist: 19.6, avatar: 'Ak' },
-  { id: 'demo-75', name: 'Shamna', gender: 'female', status: 'offline', latOffset: 1.28, lonOffset: 1.21, defaultDist: 128.0, isLongDistance: true, avatar: 'Sh' },
-  { id: 'demo-76', name: 'Dhanya', gender: 'female', status: 'online', latOffset: -0.129, lonOffset: -0.128, defaultDist: 21.2, avatar: 'Dh', hasVideo: true },
-  { id: 'demo-77', name: 'Rizwana', gender: 'female', status: 'online', latOffset: 0.139, lonOffset: -0.133, defaultDist: 22.0, avatar: 'Ri' },
-  { id: 'demo-78', name: 'Nayana', gender: 'female', status: 'online', latOffset: -0.138, lonOffset: 0.137, defaultDist: 22.8, avatar: 'Na', hasVideo: true },
-  { id: 'demo-79', name: 'Farzana', gender: 'female', status: 'online', latOffset: 0.147, lonOffset: 0.142, defaultDist: 23.6, avatar: 'Fa' },
-  { id: 'demo-80', name: 'Surya', gender: 'female', status: 'online', latOffset: -0.146, lonOffset: -0.145, defaultDist: 24.3, avatar: 'Su', hasVideo: true },
-  { id: 'demo-81', name: 'Bushra', gender: 'female', status: 'online', latOffset: 0.155, lonOffset: -0.151, defaultDist: 25.1, avatar: 'Bu', hasVideo: true },
-  { id: 'demo-82', name: 'Divya', gender: 'female', status: 'offline', latOffset: -0.153, lonOffset: 0.155, defaultDist: 25.9, avatar: 'Di' }
+  { id: 'demo-1', name: 'Priya', gender: 'female', status: 'online', latOffset: 0.012, lonOffset: -0.008, defaultDist: 1.5, avatar: 'Pr', hasVideo: true },
+  { id: 'demo-2', name: 'Keerthana', gender: 'female', status: 'online', latOffset: -0.005, lonOffset: 0.015, defaultDist: 1.8, avatar: 'Ke' },
+  { id: 'demo-3', name: 'Soundarya', gender: 'female', status: 'online', latOffset: 0.022, lonOffset: 0.018, defaultDist: 3.2, avatar: 'So', hasVideo: true },
+  { id: 'demo-4', name: 'Nivetha', gender: 'female', status: 'offline', latOffset: -0.018, lonOffset: -0.025, defaultDist: 3.8, avatar: 'Ni' },
+  { id: 'demo-5', name: 'Divya', gender: 'female', status: 'online', latOffset: 0.052, lonOffset: -0.012, defaultDist: 5.7, avatar: 'Di', hasVideo: true },
+  { id: 'demo-6', name: 'Shalini', gender: 'female', status: 'online', latOffset: 0.008, lonOffset: 0.042, defaultDist: 4.8, avatar: 'Sh' },
+  { id: 'demo-7', name: 'Meena', gender: 'female', status: 'offline', latOffset: -0.045, lonOffset: -0.012, defaultDist: 5.1, avatar: 'Me' },
+  { id: 'demo-8', name: 'Kaviya', gender: 'female', status: 'online', latOffset: 0.052, lonOffset: 0.028, defaultDist: 6.5, avatar: 'Ka', hasVideo: true },
+  { id: 'demo-9', name: 'Swetha', gender: 'female', status: 'online', latOffset: -0.022, lonOffset: 0.058, defaultDist: 6.8, avatar: 'Sw' },
+  { id: 'demo-10', name: 'Ramya', gender: 'female', status: 'offline', latOffset: 0.062, lonOffset: -0.048, defaultDist: 8.7, avatar: 'Ra' },
+  { id: 'demo-11', name: 'Janani', gender: 'female', status: 'online', latOffset: -0.032, lonOffset: 0.022, defaultDist: 4.1, avatar: 'Ja', hasVideo: true },
+  { id: 'demo-12', name: 'Subhashree', gender: 'female', status: 'offline', latOffset: 0.045, lonOffset: -0.035, defaultDist: 6.2, avatar: 'Su' },
+  { id: 'demo-13', name: 'Aishwarya', gender: 'female', status: 'online', latOffset: -0.012, lonOffset: 0.065, defaultDist: 7.1, avatar: 'Ai', hasVideo: true },
+  { id: 'demo-14', name: 'Harini', gender: 'female', status: 'offline', latOffset: 0.075, lonOffset: 0.012, defaultDist: 9.3, avatar: 'Ha' },
+  { id: 'demo-15', name: 'Deepika', gender: 'female', status: 'online', latOffset: -0.055, lonOffset: 0.045, defaultDist: 8.0, avatar: 'De' },
+  { id: 'demo-16', name: 'Tharani', gender: 'female', status: 'offline', latOffset: 0.015, lonOffset: -0.062, defaultDist: 6.9, avatar: 'Th', hasVideo: true },
+  { id: 'demo-17', name: 'Pavithra', gender: 'female', status: 'online', latOffset: -0.025, lonOffset: -0.055, defaultDist: 7.4, avatar: 'Pa' },
+  { id: 'demo-18', name: 'Gayathri', gender: 'female', status: 'offline', latOffset: 0.038, lonOffset: 0.052, defaultDist: 5.5, avatar: 'Ga' },
+  { id: 'demo-19', name: 'Karthik', gender: 'male', status: 'online', latOffset: -0.015, lonOffset: -0.008, defaultDist: 1.8, avatar: 'Ka', hasVideo: true },
+  { id: 'demo-20', name: 'Vijay', gender: 'male', status: 'online', latOffset: 0.028, lonOffset: 0.002, defaultDist: 3.1, avatar: 'Vi' },
+  { id: 'demo-21', name: 'Surya', gender: 'male', status: 'offline', latOffset: -0.042, lonOffset: 0.025, defaultDist: 5.3, avatar: 'Su' },
+  { id: 'demo-22', name: 'Ajith', gender: 'male', status: 'online', latOffset: 0.062, lonOffset: -0.022, defaultDist: 7.6, avatar: 'Aj', hasVideo: true },
+  { id: 'demo-23', name: 'Vignesh', gender: 'male', status: 'offline', latOffset: -0.038, lonOffset: -0.048, defaultDist: 6.4, avatar: 'Vi' },
+  { id: 'demo-24', name: 'Saravanan', gender: 'male', status: 'online', latOffset: 0.018, lonOffset: 0.055, defaultDist: 5.0, avatar: 'Sa' },
+  { id: 'demo-25', name: 'Archana', gender: 'female', status: 'online', latOffset: 0.182, lonOffset: -0.052, defaultDist: 21.0, avatar: 'Ar', hasVideo: true },
+  { id: 'demo-26', name: 'Nithya', gender: 'female', status: 'online', latOffset: -0.155, lonOffset: 0.122, defaultDist: 21.8, avatar: 'Ni' },
+  { id: 'demo-27', name: 'Lavanya', gender: 'female', status: 'offline', latOffset: 0.168, lonOffset: -0.095, defaultDist: 21.4, avatar: 'La' },
+  { id: 'demo-28', name: 'Sneha', gender: 'female', status: 'online', latOffset: -0.215, lonOffset: 0.142, defaultDist: 28.5, avatar: 'Sn', hasVideo: true },
+  { id: 'demo-29', name: 'Malathi', gender: 'female', status: 'online', latOffset: 0.278, lonOffset: -0.082, defaultDist: 32.0, avatar: 'Ma' },
+  { id: 'demo-30', name: 'Sharmila', gender: 'female', status: 'offline', latOffset: -0.175, lonOffset: -0.065, defaultDist: 20.8, avatar: 'Sh' },
+  { id: 'demo-31', name: 'Revathi', gender: 'female', status: 'online', latOffset: 0.192, lonOffset: 0.045, defaultDist: 21.8, avatar: 'Re', hasVideo: true },
+  { id: 'demo-32', name: 'Abinaya', gender: 'female', status: 'online', latOffset: -0.252, lonOffset: -0.115, defaultDist: 30.7, avatar: 'Ab' },
+  { id: 'demo-33', name: 'Poornima', gender: 'female', status: 'offline', latOffset: 0.312, lonOffset: 0.055, defaultDist: 35.1, avatar: 'Po' },
+  { id: 'demo-34', name: 'Shanthi', gender: 'female', status: 'online', latOffset: -0.162, lonOffset: 0.085, defaultDist: 20.3, avatar: 'Sh', hasVideo: true },
+  { id: 'demo-35', name: 'Aravind', gender: 'male', status: 'online', latOffset: 0.185, lonOffset: -0.045, defaultDist: 21.1, avatar: 'Ar' },
+  { id: 'demo-36', name: 'Praveen', gender: 'male', status: 'online', latOffset: -0.178, lonOffset: 0.082, defaultDist: 21.7, avatar: 'Pr' },
+  { id: 'demo-37', name: 'Sathish', gender: 'male', status: 'offline', latOffset: 0.222, lonOffset: 0.115, defaultDist: 27.8, avatar: 'Sa' },
+  { id: 'demo-38', name: 'Dinesh', gender: 'male', status: 'online', latOffset: -0.192, lonOffset: -0.035, defaultDist: 21.6, avatar: 'Di', hasVideo: true },
+  { id: 'demo-39', name: 'Manikandan', gender: 'male', status: 'offline', latOffset: 0.265, lonOffset: -0.092, defaultDist: 31.2, avatar: 'Ma' },
+  { id: 'demo-40', name: 'Senthil', gender: 'male', status: 'online', latOffset: -0.181, lonOffset: 0.048, defaultDist: 20.8, avatar: 'Se' },
+  // Additional Tamil girls demo profiles for Call Section
+  { id: 'demo-41', name: 'Yamuna', gender: 'female', status: 'online', latOffset: 0.009, lonOffset: -0.014, defaultDist: 1.4, avatar: 'Ya', hasVideo: true },
+  { id: 'demo-42', name: 'Sangeetha', gender: 'female', status: 'online', latOffset: -0.34, lonOffset: 0.28, defaultDist: 34.5, isLongDistance: true, avatar: 'Sa' },
+  { id: 'demo-43', name: 'Ayesha', gender: 'female', status: 'online', latOffset: 0.019, lonOffset: 0.007, defaultDist: 2.1, avatar: 'Ay', hasVideo: true },
+  { id: 'demo-44', name: 'Vidhya', gender: 'female', status: 'online', latOffset: 0.38, lonOffset: -0.32, defaultDist: 38.2, isLongDistance: true, avatar: 'Vi' },
+  { id: 'demo-45', name: 'Monisha', gender: 'female', status: 'online', latOffset: 0.025, lonOffset: -0.015, defaultDist: 2.9, avatar: 'Mo' },
+  { id: 'demo-46', name: 'Vigneshwari', gender: 'female', status: 'online', latOffset: -0.42, lonOffset: 0.35, defaultDist: 42.0, isLongDistance: true, avatar: 'Vi', hasVideo: true },
+  { id: 'demo-47', name: 'Yasmin', gender: 'female', status: 'offline', latOffset: 0.46, lonOffset: 0.39, defaultDist: 45.8, isLongDistance: true, avatar: 'Ya' },
+  { id: 'demo-48', name: 'Nasreen', gender: 'female', status: 'online', latOffset: -0.49, lonOffset: -0.42, defaultDist: 49.3, isLongDistance: true, avatar: 'Na' },
+  { id: 'demo-49', name: 'Fathima', gender: 'female', status: 'online', latOffset: 0.52, lonOffset: -0.45, defaultDist: 52.6, isLongDistance: true, avatar: 'Fa', hasVideo: true },
+  { id: 'demo-50', name: 'Thahira', gender: 'female', status: 'online', latOffset: -0.55, lonOffset: 0.48, defaultDist: 55.4, isLongDistance: true, avatar: 'Th' },
+  { id: 'demo-51', name: 'Shabana', gender: 'female', status: 'online', latOffset: 0.58, lonOffset: 0.51, defaultDist: 58.7, isLongDistance: true, avatar: 'Sh', hasVideo: true },
+  { id: 'demo-52', name: 'Rizwana', gender: 'female', status: 'online', latOffset: -0.61, lonOffset: -0.54, defaultDist: 61.2, isLongDistance: true, avatar: 'Ri' },
+  { id: 'demo-53', name: 'Mary Stella', gender: 'female', status: 'offline', latOffset: 0.64, lonOffset: -0.57, defaultDist: 64.5, isLongDistance: true, avatar: 'Ma' },
+  { id: 'demo-54', name: 'Angel Jenifer', gender: 'female', status: 'online', latOffset: -0.67, lonOffset: 0.60, defaultDist: 67.8, isLongDistance: true, avatar: 'An', hasVideo: true },
+  { id: 'demo-55', name: 'Shiny', gender: 'female', status: 'online', latOffset: 0.70, lonOffset: 0.63, defaultDist: 70.4, isLongDistance: true, avatar: 'Sh' },
+  { id: 'demo-56', name: 'Roshini', gender: 'female', status: 'online', latOffset: -0.73, lonOffset: -0.66, defaultDist: 73.1, isLongDistance: true, avatar: 'Ro', hasVideo: true },
+  { id: 'demo-57', name: 'Kirthiga', gender: 'female', status: 'online', latOffset: 0.76, lonOffset: -0.69, defaultDist: 76.2, isLongDistance: true, avatar: 'Ki' },
+  { id: 'demo-58', name: 'Dharani', gender: 'female', status: 'online', latOffset: -0.79, lonOffset: 0.72, defaultDist: 79.5, isLongDistance: true, avatar: 'Dh', hasVideo: true },
+  { id: 'demo-59', name: 'Yazhini', gender: 'female', status: 'online', latOffset: 0.82, lonOffset: 0.75, defaultDist: 82.0, isLongDistance: true, avatar: 'Ya' },
+  { id: 'demo-60', name: 'Tamilarasi', gender: 'female', status: 'offline', latOffset: -0.85, lonOffset: -0.78, defaultDist: 85.3, isLongDistance: true, avatar: 'Ta' },
+  { id: 'demo-61', name: 'Senthamizh', gender: 'female', status: 'online', latOffset: 0.88, lonOffset: -0.81, defaultDist: 88.0, isLongDistance: true, avatar: 'Se', hasVideo: true },
+  { id: 'demo-62', name: 'Ilakkiya', gender: 'female', status: 'online', latOffset: -0.91, lonOffset: 0.84, defaultDist: 91.2, isLongDistance: true, avatar: 'Il' },
+  { id: 'demo-63', name: 'Kayalvizhi', gender: 'female', status: 'online', latOffset: 0.94, lonOffset: 0.87, defaultDist: 94.6, isLongDistance: true, avatar: 'Ka', hasVideo: true },
+  { id: 'demo-64', name: 'Kanimozhi', gender: 'female', status: 'online', latOffset: -0.97, lonOffset: -0.90, defaultDist: 97.4, isLongDistance: true, avatar: 'Ka' },
+  { id: 'demo-65', name: 'Madhavi', gender: 'female', status: 'online', latOffset: 1.00, lonOffset: -0.93, defaultDist: 100.8, isLongDistance: true, avatar: 'Ma', hasVideo: true },
+  { id: 'demo-66', name: 'Thenmozhi', gender: 'female', status: 'online', latOffset: -1.03, lonOffset: 0.96, defaultDist: 103.5, isLongDistance: true, avatar: 'Th' },
+  { id: 'demo-67', name: 'Ponni', gender: 'female', status: 'online', latOffset: 1.06, lonOffset: 0.99, defaultDist: 106.2, isLongDistance: true, avatar: 'Po', hasVideo: true },
+  { id: 'demo-68', name: 'Anbarasi', gender: 'female', status: 'offline', latOffset: -1.09, lonOffset: -1.02, defaultDist: 109.4, isLongDistance: true, avatar: 'An' },
+  { id: 'demo-69', name: 'Vetriselvi', gender: 'female', status: 'online', latOffset: 1.12, lonOffset: -1.05, defaultDist: 112.0, isLongDistance: true, avatar: 'Ve', hasVideo: true },
+  { id: 'demo-70', name: 'Muthumari', gender: 'female', status: 'online', latOffset: -1.15, lonOffset: 1.08, defaultDist: 115.3, isLongDistance: true, avatar: 'Mu' },
+  { id: 'demo-71', name: 'Karpagam', gender: 'female', status: 'online', latOffset: 1.18, lonOffset: 1.11, defaultDist: 118.6, isLongDistance: true, avatar: 'Ka', hasVideo: true },
+  { id: 'demo-72', name: 'Bhuvaneshwari', gender: 'female', status: 'online', latOffset: -1.21, lonOffset: -1.14, defaultDist: 121.2, isLongDistance: true, avatar: 'Bh' },
+  { id: 'demo-73', name: 'Meenakshi', gender: 'female', status: 'online', latOffset: 1.24, lonOffset: -1.17, defaultDist: 124.5, isLongDistance: true, avatar: 'Me', hasVideo: true },
+  { id: 'demo-74', name: 'Kamali', gender: 'female', status: 'online', latOffset: -0.122, lonOffset: 0.118, defaultDist: 19.6, avatar: 'Ka' },
+  { id: 'demo-75', name: 'Nandhini', gender: 'female', status: 'offline', latOffset: 1.28, lonOffset: 1.21, defaultDist: 128.0, isLongDistance: true, avatar: 'Na' },
+  { id: 'demo-76', name: 'Akshaya', gender: 'female', status: 'online', latOffset: -0.129, lonOffset: -0.128, defaultDist: 21.2, avatar: 'Ak', hasVideo: true },
+  { id: 'demo-77', name: 'Dharshini', gender: 'female', status: 'online', latOffset: 0.139, lonOffset: -0.133, defaultDist: 22.0, avatar: 'Dh' },
+  { id: 'demo-78', name: 'Varsha', gender: 'female', status: 'online', latOffset: -0.138, lonOffset: 0.137, defaultDist: 22.8, avatar: 'Va', hasVideo: true },
+  { id: 'demo-79', name: 'Pavithran', gender: 'male', status: 'online', latOffset: 0.147, lonOffset: 0.142, defaultDist: 23.6, avatar: 'Pa' },
+  { id: 'demo-80', name: 'Muthuvel', gender: 'male', status: 'online', latOffset: -0.146, lonOffset: -0.145, defaultDist: 24.3, avatar: 'Mu', hasVideo: true },
+  { id: 'demo-81', name: 'Selvarani', gender: 'female', status: 'online', latOffset: 0.155, lonOffset: -0.151, defaultDist: 25.1, avatar: 'Se', hasVideo: true },
+  { id: 'demo-82', name: 'Kokila', gender: 'female', status: 'offline', latOffset: -0.153, lonOffset: 0.155, defaultDist: 25.9, avatar: 'Ko' }
 ];
 
 const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
@@ -385,11 +384,27 @@ export default function App() {
   const [viewMode, setViewMode] = useState<'private' | 'public' | 'random'>('public');
   const [username, setUsername] = useState<string>(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('malluchat_username') || '';
+      return localStorage.getItem('tamilchat_username') || '';
     }
     return '';
   });
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const chatInputRef = useRef<HTMLInputElement>(null);
+
+  const dismissKeyboard = () => {
+    try {
+      if (chatInputRef.current) {
+        chatInputRef.current.blur();
+      }
+      if (typeof document !== 'undefined') {
+        const active = document.activeElement;
+        if (active instanceof HTMLElement) {
+          active.blur();
+        }
+        document.querySelectorAll('input, textarea').forEach(el => (el as HTMLElement).blur());
+      }
+    } catch (e) { }
+  };
 
   const handleSaveUsername = (nameOverride?: string) => {
     const raw = nameOverride !== undefined ? nameOverride : username;
@@ -397,14 +412,17 @@ export default function App() {
     if (finalName.length >= 2) {
       setUsername(finalName);
       if (typeof window !== 'undefined') {
-        localStorage.setItem('malluchat_username', finalName);
+        localStorage.setItem('tamilchat_username', finalName);
       }
+      dismissKeyboard();
       setShowLoginModal(false);
     }
   };
 
   // Premium paywall states
-  const [isPremium, setIsPremium] = useState<boolean>(() => localStorage.getItem('malluchat_premium') === 'true');
+  const [isPremium, setIsPremium] = useState<boolean>(() => (
+    localStorage.getItem('tamilchat_premium') === 'true'
+  ));
   const [paywallTriggerReason, setPaywallTriggerReason] = useState<'calling' | 'filter'>('calling');
   const [isVerifyingPayment, setIsVerifyingPayment] = useState<boolean>(false);
   const [remoteCameraStatus, setRemoteCameraStatus] = useState<boolean>(false);
@@ -413,7 +431,7 @@ export default function App() {
   // Random Calling states
   const [genderFilter, setGenderFilter] = useState<'female' | 'male' | 'all'>('all');
   const [userCoords, setUserCoords] = useState<{ lat: number; lon: number } | null>(null);
-  const [detectedCity, setDetectedCity] = useState<string>('Kochi, Kerala');
+  const [detectedCity, setDetectedCity] = useState<string>('Chennai, Tamil Nadu');
   const [, setLocationSource] = useState<'GPS' | 'Network' | 'Default'>('Default');
   const [activeCallingUser, setActiveCallingUser] = useState<any | null>(null);
   const [showPaywall, setShowPaywall] = useState<boolean>(false);
@@ -424,7 +442,6 @@ export default function App() {
   const [copiedUpi, setCopiedUpi] = useState<boolean>(false);
   const [targetUpiId, setTargetUpiId] = useState<string>('BHARATPE2J0A0P6U4O28675@unitype');
   const [showPaymentSettings, setShowPaymentSettings] = useState<boolean>(false);
-  const [showQrCode, setShowQrCode] = useState<boolean>(false);
   const [currentTxnId, setCurrentTxnId] = useState<string>('');
   const [ringingTimeout, setRingingTimeout] = useState<any | null>(null);
   const ringingTimeoutRef = useRef<any>(null);
@@ -458,7 +475,7 @@ export default function App() {
 
   // Public Chat States
   const [publicMessages, setPublicMessages] = useState<any[]>(() => {
-    const stored = localStorage.getItem('malluchat_public_messages');
+    const stored = localStorage.getItem('tamilchat_public_messages');
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
@@ -472,10 +489,9 @@ export default function App() {
   });
   const [publicInput, setPublicInput] = useState<string>('');
 
-  // GIF & Image states
+  // GIF states
   const [showGifPicker, setShowGifPicker] = useState<boolean>(false);
   const [enlargedGifUrl, setEnlargedGifUrl] = useState<string | null>(null);
-  const [isUploadingImage, setIsUploadingImage] = useState<boolean>(false);
 
   // Reply State
   const [replyingTo, setReplyingTo] = useState<any | null>(null);
@@ -491,9 +507,6 @@ export default function App() {
   const [adText, setAdText] = useState('');
   const [adSponsor, setAdSponsor] = useState('Sponsor');
   const [adType, setAdType] = useState<'custom' | 'google'>('custom');
-
-  // Detect if running inside Native App
-  const isApp = typeof navigator !== 'undefined' && navigator.userAgent.includes('MalluChatApp');
 
   // Incoming personal chat requests queue & management
   const [incomingRequests, setIncomingRequests] = useState<IncomingChatRequest[]>([]);
@@ -868,7 +881,7 @@ export default function App() {
         const updated = prev.map(m => m.id === msg.targetId && m.status !== 'read' ? { ...m, status: 'delivered' } : m);
         const peerId = activePrivatePeerIdRef.current;
         if (peerId) {
-          localStorage.setItem(`malluchat_private_messages_${peerId}`, JSON.stringify(updated));
+          localStorage.setItem(`tamilchat_private_messages_${peerId}`, JSON.stringify(updated));
         }
         return updated;
       });
@@ -879,7 +892,7 @@ export default function App() {
         const updated = prev.map(m => m.id === msg.targetId ? { ...m, status: 'read' } : m);
         const peerId = activePrivatePeerIdRef.current;
         if (peerId) {
-          localStorage.setItem(`malluchat_private_messages_${peerId}`, JSON.stringify(updated));
+          localStorage.setItem(`tamilchat_private_messages_${peerId}`, JSON.stringify(updated));
         }
         return updated;
       });
@@ -890,7 +903,7 @@ export default function App() {
         const updated = prev.map(m => m.id === msg.targetId ? { ...m, reaction: msg.reaction } : m);
         const peerId = activePrivatePeerIdRef.current;
         if (peerId) {
-          localStorage.setItem(`malluchat_private_messages_${peerId}`, JSON.stringify(updated));
+          localStorage.setItem(`tamilchat_private_messages_${peerId}`, JSON.stringify(updated));
         }
         return updated;
       });
@@ -904,7 +917,7 @@ export default function App() {
         const updated = [...prev, msg];
         const peerId = msg.senderId || activePrivatePeerIdRef.current;
         if (peerId) {
-          localStorage.setItem(`malluchat_private_messages_${peerId}`, JSON.stringify(updated));
+          localStorage.setItem(`tamilchat_private_messages_${peerId}`, JSON.stringify(updated));
         }
         return updated;
       });
@@ -1026,10 +1039,10 @@ export default function App() {
           setUserCoords({ lat: latitude, lon: longitude });
           setLocationSource('GPS');
 
-          // Find nearest major Kerala city/district
-          let nearestCity = KERALA_CITIES[0];
+          // Find nearest major Tamil Nadu city/district
+          let nearestCity = TAMILNADU_CITIES[0];
           let minDistance = Infinity;
-          KERALA_CITIES.forEach((city) => {
+          TAMILNADU_CITIES.forEach((city) => {
             const dist = parseFloat(calculateDistance(latitude, longitude, city.lat, city.lon));
             if (dist < minDistance) {
               minDistance = dist;
@@ -1054,10 +1067,10 @@ export default function App() {
             setUserCoords({ lat, lon });
             setLocationSource('Network');
 
-            // Find nearest major Kerala city/district
-            let nearestCity = KERALA_CITIES[0];
+            // Find nearest major Tamil Nadu city/district
+            let nearestCity = TAMILNADU_CITIES[0];
             let minDistance = Infinity;
-            KERALA_CITIES.forEach((city) => {
+            TAMILNADU_CITIES.forEach((city) => {
               const dist = parseFloat(calculateDistance(lat, lon, city.lat, city.lon));
               if (dist < minDistance) {
                 minDistance = dist;
@@ -1073,8 +1086,8 @@ export default function App() {
       }
 
       // 3. Complete Fallback to default
-      setUserCoords({ lat: 9.9312, lon: 76.2673 });
-      setDetectedCity('Kochi, Kerala');
+      setUserCoords({ lat: 13.0827, lon: 80.2707 });
+      setDetectedCity('Chennai, Tamil Nadu');
       setLocationSource('Default');
     };
 
@@ -1426,7 +1439,6 @@ export default function App() {
     setCopiedUpi(false);
     setShowPaymentSettings(false);
     setCurrentTxnId('');
-    setShowQrCode(false);
     isMatchInitiatorRef.current = false;
   };
 
@@ -1513,7 +1525,7 @@ export default function App() {
     setTimeout(() => {
       setIsVerifyingPayment(false);
       setIsPremium(true);
-      localStorage.setItem('malluchat_premium', 'true');
+      localStorage.setItem('tamilchat_premium', 'true');
       setShowPaywall(false);
 
       // Clean up dial / call triggers
@@ -1543,7 +1555,7 @@ export default function App() {
   };
 
   const downloadUpiQrCode = async (amount: number, planLabel: string, txnId: string) => {
-    const upiUrl = `upi://pay?pa=${encodeURIComponent(targetUpiId)}&pn=MalluChat&mc=5734&tr=${txnId}&am=${amount}&cu=INR&tn=MalluChat%20Plan%20${encodeURIComponent(planLabel)}`;
+    const upiUrl = `upi://pay?pa=${encodeURIComponent(targetUpiId)}&pn=TamilChat&mc=5734&tr=${txnId}&am=${amount}&cu=INR&tn=TamilChat%20Plan%20${encodeURIComponent(planLabel)}`;
     const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(upiUrl)}`;
     try {
       const response = await fetch(qrUrl);
@@ -1551,7 +1563,7 @@ export default function App() {
       const blobUrl = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = blobUrl;
-      a.download = `malluchat_payment_qr_${amount}_rupees.png`;
+      a.download = `tamilchat_payment_qr_${amount}_rupees.png`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -1567,10 +1579,8 @@ export default function App() {
     setScreenshotFileName('');
     setVerificationSubmitted(false);
 
-    const newTxnId = 'MC' + Date.now() + Math.floor(Math.random() * 1000);
+    const newTxnId = 'TC' + Date.now() + Math.floor(Math.random() * 1000);
     setCurrentTxnId(newTxnId);
-
-    downloadUpiQrCode(plan.amount, plan.label, newTxnId);
   };
 
   const handleCopyUpi = () => {
@@ -1606,7 +1616,7 @@ export default function App() {
     // Fetch cached messages from our hosted backend to load history
     const fetchHistoryUrl = isDev
       ? `${BACKEND_URL}/api/messages`
-      : 'https://ntfy.sh/malluchat_global_room_v4/json?poll=1';
+      : 'https://ntfy.sh/tamilchat_global_room_v4/json?poll=1';
 
     fetch(fetchHistoryUrl)
       .then(res => isDev ? res.json() : res.text())
@@ -1637,7 +1647,7 @@ export default function App() {
               const newMsgs = chatOnlyMessages.filter(fm => !prev.some(pm => pm.id === fm.id));
               if (newMsgs.length === 0) return prev;
               const updated = [...prev, ...newMsgs].filter(isPublicChatMessage).sort((a, b) => a.timestamp - b.timestamp);
-              localStorage.setItem('malluchat_public_messages', JSON.stringify(updated));
+              localStorage.setItem('tamilchat_public_messages', JSON.stringify(updated));
               return updated;
             });
           }
@@ -1681,7 +1691,7 @@ export default function App() {
                 setPublicMessages(prev => {
                   if (prev.find(m => m.id === payload.id)) return prev;
                   const updated = [...prev, payload].filter(isPublicChatMessage);
-                  localStorage.setItem('malluchat_public_messages', JSON.stringify(updated));
+                  localStorage.setItem('tamilchat_public_messages', JSON.stringify(updated));
                   return updated;
                 });
               }
@@ -1786,14 +1796,14 @@ export default function App() {
       }
 
       if (remotePeerId) {
-        const stored = localStorage.getItem(`malluchat_private_messages_${remotePeerId}`);
+        const stored = localStorage.getItem(`tamilchat_private_messages_${remotePeerId}`);
         if (stored) {
           try {
             const parsed = JSON.parse(stored);
             const now = Date.now();
             const filtered = parsed.filter((m: any) => now - m.timestamp < 86400000);
             setMessages(filtered);
-            localStorage.setItem(`malluchat_private_messages_${remotePeerId}`, JSON.stringify(filtered));
+            localStorage.setItem(`tamilchat_private_messages_${remotePeerId}`, JSON.stringify(filtered));
           } catch (e) {
             setMessages([]);
           }
@@ -1944,7 +1954,7 @@ export default function App() {
       setPublicMessages(prev => {
         const filtered = prev.filter(m => now - m.timestamp < limit);
         if (filtered.length !== prev.length) {
-          localStorage.setItem('malluchat_public_messages', JSON.stringify(filtered));
+          localStorage.setItem('tamilchat_public_messages', JSON.stringify(filtered));
         }
         return filtered;
       });
@@ -1954,7 +1964,7 @@ export default function App() {
         const filtered = prev.filter(m => now - m.timestamp < limit);
         const remotePeerId = peerEngine.connection?.peer;
         if (remotePeerId && filtered.length !== prev.length) {
-          localStorage.setItem(`malluchat_private_messages_${remotePeerId}`, JSON.stringify(filtered));
+          localStorage.setItem(`tamilchat_private_messages_${remotePeerId}`, JSON.stringify(filtered));
         }
         return filtered;
       });
@@ -2170,7 +2180,7 @@ export default function App() {
               const publicMsg = { ...msg, voiceBlob: directUrl };
               setPublicMessages(prev => {
                 const updated = [...prev, publicMsg];
-                localStorage.setItem('malluchat_public_messages', JSON.stringify(updated));
+                localStorage.setItem('tamilchat_public_messages', JSON.stringify(updated));
                 return updated;
               });
 
@@ -2243,7 +2253,7 @@ export default function App() {
             setMessages(prev => {
               const updated = [...prev, privateVoiceMsg];
               if (remotePeerId) {
-                localStorage.setItem(`malluchat_private_messages_${remotePeerId}`, JSON.stringify(updated));
+                localStorage.setItem(`tamilchat_private_messages_${remotePeerId}`, JSON.stringify(updated));
               }
               return updated;
             });
@@ -2371,11 +2381,11 @@ export default function App() {
     return (
       <div className="audio-player-wrapper" style={{ background: isMine ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.08)', padding: '8px 12px', borderRadius: '20px', display: 'flex', alignItems: 'center', gap: '8px', minWidth: '180px' }}>
         <audio ref={audioRef} src={src} className="hidden-audio" preload="auto" />
-        <button className="play-btn" onClick={togglePlay} style={{ background: isMine ? 'var(--primary)' : 'var(--text-main)', color: '#000', width: '36px', height: '36px', minWidth: '36px', border: 'none', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+        <button className="play-btn" onClick={togglePlay} style={{ background: isMine ? 'var(--primary)' : 'var(--text-main)', color: isMine ? '#fff' : '#000', width: '36px', height: '36px', minWidth: '36px', border: 'none', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
           {isPlaying ? (
-            <div style={{ width: '10px', height: '10px', background: '#000', borderRadius: '1px' }}></div>
+            <div style={{ width: '10px', height: '10px', background: isMine ? '#fff' : '#000', borderRadius: '1px' }}></div>
           ) : (
-            <div style={{ width: '0', height: '0', borderStyle: 'solid', borderWidth: '6px 0 6px 10px', borderColor: 'transparent transparent transparent #000', marginLeft: '2px' }}></div>
+            <div style={{ width: '0', height: '0', borderStyle: 'solid', borderWidth: '6px 0 6px 10px', borderColor: isMine ? 'transparent transparent transparent #fff' : 'transparent transparent transparent #000', marginLeft: '2px' }}></div>
           )}
         </button>
         <div className="audio-progress" onClick={handleSeek} style={{ flex: 1, height: '6px', background: 'rgba(255,255,255,0.15)', borderRadius: '3px', position: 'relative', overflow: 'hidden', cursor: 'pointer' }}>
@@ -2457,13 +2467,14 @@ export default function App() {
       const updated = [...prev, { ...msg, senderId: myId, senderName: username }];
       const peerId = activePrivatePeerIdRef.current;
       if (peerId) {
-        localStorage.setItem(`malluchat_private_messages_${peerId}`, JSON.stringify(updated));
+        localStorage.setItem(`tamilchat_private_messages_${peerId}`, JSON.stringify(updated));
       }
       return updated;
     });
     setInputText('');
     setReplyingTo(null);
     sendPrivateMessage({ id: uuidv4(), type: 'typing_stop' });
+    dismissKeyboard();
     sentSound.play().catch(() => { });
     scrollToBottom(true);
   };
@@ -2475,7 +2486,7 @@ export default function App() {
 
     const msg = {
       id: uuidv4(),
-      senderId: myId || myIdRef.current || peerEngine.id || (typeof window !== 'undefined' ? localStorage.getItem('malluchat_stable_peer_id') : '') || '',
+      senderId: myId || myIdRef.current || peerEngine.id || (typeof window !== 'undefined' ? localStorage.getItem('tamilchat_stable_peer_id') : '') || '',
       senderName: username,
       type: 'text',
       text: publicInput,
@@ -2486,7 +2497,7 @@ export default function App() {
 
     setPublicMessages(prev => {
       const updated = [...prev, msg];
-      localStorage.setItem('malluchat_public_messages', JSON.stringify(updated));
+      localStorage.setItem('tamilchat_public_messages', JSON.stringify(updated));
       return updated;
     });
     fetch(POST_URL, {
@@ -2496,10 +2507,12 @@ export default function App() {
 
     setPublicInput('');
     setReplyingTo(null);
+    dismissKeyboard();
     scrollToBottom(true);
   };
 
   const handleSendGif = (gifUrl: string, title?: string) => {
+    dismissKeyboard();
     if (!username && viewMode === 'public') {
       setShowLoginModal(true);
       return;
@@ -2521,7 +2534,7 @@ export default function App() {
       const publicMsg = { ...msg, senderId: myId, senderName: username };
       setPublicMessages(prev => {
         const updated = [...prev, publicMsg];
-        localStorage.setItem('malluchat_public_messages', JSON.stringify(updated));
+        localStorage.setItem('tamilchat_public_messages', JSON.stringify(updated));
         return updated;
       });
       fetch(POST_URL, {
@@ -2535,7 +2548,7 @@ export default function App() {
         const updated = [...prev, { ...msg, senderId: myId, senderName: username }];
         const peerId = activePrivatePeerIdRef.current;
         if (peerId) {
-          localStorage.setItem(`malluchat_private_messages_${peerId}`, JSON.stringify(updated));
+          localStorage.setItem(`tamilchat_private_messages_${peerId}`, JSON.stringify(updated));
         }
         return updated;
       });
@@ -2545,76 +2558,6 @@ export default function App() {
 
     setReplyingTo(null);
     scrollToBottom(true);
-  };
-
-  const handleSendImage = (imageUrl: string, title?: string, thumbUrl?: string) => {
-    if (!username && viewMode === 'public') {
-      setShowLoginModal(true);
-      return;
-    }
-    if (!rateLimiter.current.checkLimit()) return alert("Slow down.");
-
-    const msg = {
-      id: uuidv4(),
-      type: 'image',
-      imageUrl: imageUrl || thumbUrl,
-      thumbUrl: thumbUrl || imageUrl,
-      text: title || 'Image',
-      timestamp: Date.now(),
-      status: 'sent',
-      replyToId: replyingTo?.id,
-      replyText: replyingTo?.text || "Photo"
-    };
-
-    if (viewMode === 'public') {
-      const publicMsg = { ...msg, senderId: myId, senderName: username };
-      setPublicMessages(prev => {
-        const updated = [...prev, publicMsg];
-        localStorage.setItem('malluchat_public_messages', JSON.stringify(updated));
-        return updated;
-      });
-      fetch(POST_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(publicMsg)
-      }).catch(() => { });
-    } else {
-      sendPrivateMessage(msg);
-      setMessages(prev => {
-        const updated = [...prev, { ...msg, senderId: myId, senderName: username }];
-        const peerId = activePrivatePeerIdRef.current;
-        if (peerId) {
-          localStorage.setItem(`malluchat_private_messages_${peerId}`, JSON.stringify(updated));
-        }
-        return updated;
-      });
-      sendPrivateMessage({ id: uuidv4(), type: 'typing_stop' });
-      sentSound.play().catch(() => { });
-    }
-
-    setReplyingTo(null);
-    scrollToBottom(true);
-  };
-
-  const handleImageFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    if (!username && viewMode === 'public') {
-      setShowLoginModal(true);
-      return;
-    }
-
-    setIsUploadingImage(true);
-    try {
-      const res = await processImageAttachment(file);
-      handleSendImage(res.imageUrl, file.name, res.thumbUrl);
-    } catch (err) {
-      alert("Failed to process image attachment. Please try again.");
-    } finally {
-      setIsUploadingImage(false);
-      e.target.value = '';
-    }
   };
 
   const handleSendAd = () => {
@@ -2632,7 +2575,7 @@ export default function App() {
 
     setPublicMessages(prev => {
       const updated = [...prev, adMsg];
-      localStorage.setItem('malluchat_public_messages', JSON.stringify(updated));
+      localStorage.setItem('tamilchat_public_messages', JSON.stringify(updated));
       return updated;
     });
     fetch(POST_URL, {
@@ -2650,7 +2593,7 @@ export default function App() {
 
   const handleAdminLogin = () => {
     // Basic verification logic
-    if ((adminEmail === 'admin@malayalamchat.online' || adminEmail === 'admin@malluchat.live') && adminPassword === 'Admin@123') {
+    if (adminEmail === 'admin@tamilchat.online' && adminPassword === 'Admin@123') {
       setIsAdminAuth(true);
       setShowAdminLogin(false);
       setShowAdminPanel(true);
@@ -2666,7 +2609,7 @@ export default function App() {
       const updated = prev.map(m => m.id === msgId ? { ...m, reaction: '❤️' } : m);
       const remotePeerId = peerEngine.connection?.peer;
       if (remotePeerId) {
-        localStorage.setItem(`malluchat_private_messages_${remotePeerId}`, JSON.stringify(updated));
+        localStorage.setItem(`tamilchat_private_messages_${remotePeerId}`, JSON.stringify(updated));
       }
       return updated;
     });
@@ -2774,19 +2717,19 @@ export default function App() {
             <div className="paywall-crown">
               <Crown size={36} />
             </div>
-            <h3>{paywallTriggerReason === 'filter' ? 'Unlock Gender Filtering' : 'Unlock Match Calling'}</h3>
+            <h3>{paywallTriggerReason === 'filter' ? 'Unlock Gender Filtering • பாலினம் வடிகட்டி' : 'TamilChat VIP Pass • தமிழ்நாடு விஐபி'}</h3>
             <p>
               {paywallTriggerReason === 'filter'
-                ? 'Unlock Female & Male gender filters to call exactly who you want.'
-                : <>Connect with <span className="paywall-badge-title">{activeCallingUser.name}</span> and other nearby users instantly.</>}
+                ? 'Unlock Female & Male gender filters to call exactly who you want across Tamil Nadu.'
+                : <>Connect with <span className="paywall-badge-title">{activeCallingUser.name}</span> and other nearby Tamil users with unlimited 1-on-1 video calls.</>}
             </p>
 
             {/* Plans Selection Grid */}
             <div className="plans-grid">
               {[
-                { amount: 60, duration: '1 Day', label: '1 Day Pass', type: 'standard', badge: '' },
-                { amount: 100, duration: '1 Month', label: 'Monthly Pack', type: 'popular', badge: 'Popular' },
-                { amount: 150, duration: '3 Months', label: 'VIP Gold', type: 'vip', badge: '👑 Best Value' }
+                { amount: 60, duration: '1 Day Pass', label: '1 Day • 1 நாள்', type: 'standard', badge: 'Trial' },
+                { amount: 100, duration: '1 Month Pack', label: '1 Month • 1 மாதம்', type: 'popular', badge: '🔥 Most Popular' },
+                { amount: 150, duration: '3 Months VIP', label: '3 Months • 3 மாதம்', type: 'vip', badge: '👑 Best Value' }
               ].map((plan) => (
                 <div
                   key={plan.amount}
@@ -2832,7 +2775,7 @@ export default function App() {
                   animation: 'fadeIn 0.2s ease-out'
                 }}>
                   <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'block', marginBottom: '4px' }}>
-                    Receiver UPI ID (VPA) for testing:
+                    Receiver UPI ID (VPA):
                   </label>
                   <input
                     type="text"
@@ -2851,7 +2794,7 @@ export default function App() {
                     }}
                   />
                   <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginTop: '4px' }}>
-                    Change this to your own personal UPI VPA (e.g. `yourname@paytm`) to verify the links and QR codes work.
+                    UPI payments and QR codes will automatically target this VPA.
                   </div>
                 </div>
               )}
@@ -2859,48 +2802,55 @@ export default function App() {
 
             {selectedPlan && (
               <div className="payment-details-panel">
-                <div style={{ fontSize: '0.9rem', color: 'var(--text-main)', marginBottom: '4px', fontWeight: 700 }}>
-                  Step 1: Scan the QR Code to Pay
+                <div style={{ fontSize: '0.95rem', color: 'var(--text-main)', marginBottom: '4px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span>Step 1: Scan QR Code to Pay</span>
+                  <span style={{ fontSize: '0.78rem', color: 'var(--primary)' }}>• படி 1: QR ஸ்கேன் செய்க</span>
                 </div>
-                <div style={{ fontSize: '0.8rem', color: '#fbbf24', marginBottom: '14px', fontWeight: 600 }}>
-                  ⚠️ Pay exactly ₹{selectedPlan.amount} (Transaction will show ₹{selectedPlan.amount})
+                <div style={{ fontSize: '0.82rem', color: '#fbbf24', marginBottom: '14px', fontWeight: 600 }}>
+                  ⚠️ Pay exactly ₹{selectedPlan.amount} via Google Pay, PhonePe, Paytm, or BHIM
                 </div>
 
-                {/* Collapsible QR Code Section */}
-                <div className="qr-collapse-container">
-                  <button
-                    className="qr-collapse-header"
-                    onClick={() => setShowQrCode(!showQrCode)}
-                    style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}
-                  >
-                    <span>{showQrCode ? 'Hide QR Code' : 'Scan QR (Pay from another device)'}</span>
-                    <span>{showQrCode ? '▲' : '▼'}</span>
-                  </button>
-                  {showQrCode && (
-                    <div className="qr-collapse-body">
-                      <div className="qr-code-box">
-                        <img
-                          src={`https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(
-                            `upi://pay?pa=${targetUpiId}&pn=MalluChat&mc=5734&tr=${currentTxnId}&am=${selectedPlan.amount}&cu=INR&tn=MalluChat%20Plan%20${selectedPlan.label}`
-                          )}`}
-                          alt="UPI QR Code"
-                          className="qr-code-img"
-                        />
-                      </div>
-                      <button
-                        className="qr-download-btn"
-                        onClick={() => downloadUpiQrCode(selectedPlan.amount, selectedPlan.label, currentTxnId)}
-                      >
-                        <Download size={14} /> Download QR Code
-                      </button>
+                {/* Prominent QR Code Section */}
+                <div className="qr-collapse-container" style={{ background: 'rgba(18, 14, 16, 0.85)', border: '1px solid rgba(239, 68, 68, 0.25)' }}>
+                  <div className="qr-collapse-header" style={{ justifyContent: 'center', background: 'rgba(239, 68, 68, 0.08)', color: 'var(--primary)', padding: '10px 14px' }}>
+                    <span style={{ fontWeight: 700, fontSize: '0.86rem' }}>TamilChat Official QR Code • தமிழ்நாடு சாட் UPI</span>
+                  </div>
+                  <div className="qr-collapse-body" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1.25rem 1rem' }}>
+                    <div className="qr-code-box" style={{ border: '3px solid #ef4444', borderRadius: '16px', padding: '10px', background: '#fff', boxShadow: '0 10px 25px rgba(0,0,0,0.5)' }}>
+                      <img
+                        src={`https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(
+                          `upi://pay?pa=${targetUpiId}&pn=TamilChat&mc=5734&tr=${currentTxnId}&am=${selectedPlan.amount}&cu=INR&tn=TamilChat%20Plan%20${selectedPlan.label}`
+                        )}`}
+                        alt="TamilChat UPI QR Code"
+                        className="qr-code-img"
+                        style={{ width: '180px', height: '180px', display: 'block' }}
+                      />
                     </div>
-                  )}
+
+                    <div style={{ marginTop: '10px', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                      <span style={{ fontSize: '0.74rem', background: 'rgba(255,255,255,0.08)', padding: '3px 8px', borderRadius: '6px', color: '#e2e8f0' }}>Google Pay</span>
+                      <span style={{ fontSize: '0.74rem', background: 'rgba(255,255,255,0.08)', padding: '3px 8px', borderRadius: '6px', color: '#e2e8f0' }}>PhonePe</span>
+                      <span style={{ fontSize: '0.74rem', background: 'rgba(255,255,255,0.08)', padding: '3px 8px', borderRadius: '6px', color: '#e2e8f0' }}>Paytm</span>
+                      <span style={{ fontSize: '0.74rem', background: 'rgba(255,255,255,0.08)', padding: '3px 8px', borderRadius: '6px', color: '#e2e8f0' }}>BHIM</span>
+                    </div>
+
+                    <p style={{ margin: '8px 0 12px 0', fontSize: '0.76rem', color: 'var(--text-muted)', textAlign: 'center' }}>
+                      Scan with any UPI app to pay ₹{selectedPlan.amount} instantly.
+                    </p>
+
+                    <button
+                      className="qr-download-btn"
+                      onClick={() => downloadUpiQrCode(selectedPlan.amount, selectedPlan.label, currentTxnId)}
+                    >
+                      <Download size={14} /> Download TamilChat QR Code (படத்தை சேமிக்க)
+                    </button>
+                  </div>
                 </div>
 
                 {/* Copy UPI VPA Option */}
                 <div style={{ width: '100%', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '12px' }}>
                   <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginBottom: '6px', textAlign: 'left', fontWeight: 600 }}>
-                    Or manually transfer to UPI ID:
+                    Or manually transfer to UPI ID (நேரடி UPI முகவரி):
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '100%' }}>
                     <div style={{
@@ -2924,7 +2874,7 @@ export default function App() {
                         background: copiedUpi ? 'var(--primary)' : 'rgba(255, 255, 255, 0.1)',
                         border: '1px solid rgba(255, 255, 255, 0.2)',
                         borderRadius: '8px',
-                        color: copiedUpi ? 'black' : 'var(--text-main)',
+                        color: copiedUpi ? '#fff' : 'var(--text-main)',
                         padding: '8px 16px',
                         fontSize: '0.8rem',
                         fontWeight: 600,
@@ -2936,7 +2886,7 @@ export default function App() {
                         whiteSpace: 'nowrap'
                       }}
                     >
-                      <Copy size={14} /> {copiedUpi ? 'Copied!' : 'Copy ID'}
+                      <Copy size={14} /> {copiedUpi ? 'Copied! • நகலெடுக்கப்பட்டது' : 'Copy UPI ID • நகலெடு'}
                     </button>
                   </div>
                 </div>
@@ -2945,7 +2895,10 @@ export default function App() {
 
             {selectedPlan && (
               <div className="verification-section">
-                <h4>Upload Payment Screenshot</h4>
+                <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span>Step 2: Upload Payment Screenshot</span>
+                  <span style={{ fontSize: '0.78rem', color: 'var(--primary)' }}>• படி 2: ஸ்கிரீன்ஷாட்</span>
+                </div>
                 {!paymentScreenshot ? (
                   <label className="upload-zone">
                     <input
@@ -2965,7 +2918,10 @@ export default function App() {
                       }}
                     />
                     <Upload className="upload-icon" size={24} />
-                    <div className="upload-zone-text">Click to upload or drag screenshot here</div>
+                    <div className="upload-zone-text">
+                      <strong>Click to upload payment screenshot</strong><br />
+                      GPay / PhonePe / Paytm வெற்றி ரசீது ஸ்கிரீன்ஷாட்டை இங்கே பதிவேற்றவும்
+                    </div>
                   </label>
                 ) : (
                   <div className="screenshot-preview-container">
@@ -2981,7 +2937,7 @@ export default function App() {
                         setVerificationSubmitted(false);
                       }}
                     >
-                      Remove
+                      Remove • நீக்குக
                     </button>
                   </div>
                 )}
@@ -2992,10 +2948,10 @@ export default function App() {
                   onClick={handleVerifyPayment}
                   style={{
                     background: paymentScreenshot ? 'var(--primary)' : 'rgba(255,255,255,0.05)',
-                    color: paymentScreenshot ? 'black' : 'var(--text-muted)'
+                    color: paymentScreenshot ? '#fff' : 'var(--text-muted)'
                   }}
                 >
-                  {isVerifyingPayment ? 'Verifying transaction...' : 'Submit Payment Verification'}
+                  {isVerifyingPayment ? 'Verifying transaction... • சரிபார்க்கிறது...' : 'Submit Payment Verification • சரிபார்ப்பை சமர்ப்பிக்கவும்'}
                 </button>
 
                 {verificationSubmitted && (
@@ -3004,7 +2960,7 @@ export default function App() {
                     <span>
                       {isVerifyingPayment
                         ? 'Verifying transaction with UPI gateway, please wait...'
-                        : 'Your payment will be confirmed within 24 hours. Please send the screenshot properly or send the original payment screenshot.'}
+                        : 'உங்கள் கட்டணம் விரைவில் சரிபார்க்கப்பட்டு VIP வசதி செயல்படுத்தப்படும். Your payment screenshot has been submitted.'}
                     </span>
                   </div>
                 )}
@@ -3013,14 +2969,14 @@ export default function App() {
 
             {/* Payment Help & Issue Support Button */}
             <a
-              href="https://malluchat.live/payment-help/"
+              href="https://tamilchat.online/payment-help/"
               target="_blank"
               rel="noopener noreferrer"
               className="payment-issue-btn"
               title="Payment Issue Support & Policy"
             >
               <HelpCircle size={15} style={{ color: 'var(--primary)', flexShrink: 0 }} />
-              <span>Payment Issues or Need Help? Click Here</span>
+              <span>Payment Issues or Need Help? Click Here • கட்டண உதவி & ஆதரவு</span>
             </a>
           </div>
         </div>
@@ -3028,10 +2984,10 @@ export default function App() {
       {/* Left Sidebar (Desktop/Tablet) */}
       <div className="sidebar-left glass">
         <div className="sidebar-header">
-          <MalluLogo size={38} />
+          <TamilLogo size={38} />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <h2 style={{ fontSize: '1.35rem', lineHeight: '1.2' }}>MalayalamChat</h2>
-            <span style={{ fontSize: '0.72rem', color: 'var(--primary)', fontWeight: '600', letterSpacing: '0.5px' }}>മലയാളം ലൈവ് ചാറ്റ്</span>
+            <h2 style={{ fontSize: '1.35rem', lineHeight: '1.2' }}>TamilChat</h2>
+            <span style={{ fontSize: '0.72rem', color: 'var(--primary)', fontWeight: '600', letterSpacing: '0.5px' }}>தமிழ் லைவ் சாட்</span>
           </div>
         </div>
 
@@ -3073,12 +3029,6 @@ export default function App() {
               <span className="requests-badge-pill">{incomingRequests.length}</span>
             )}
           </div>
-          {!isApp && (
-            <a className="nav-item-desktop" href="/malluchat.apk" download="malluchat.apk" style={{ color: 'var(--primary)', fontWeight: 'bold', textDecoration: 'none', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '10px', paddingTop: '15px' }}>
-              <Download size={20} />
-              Get Android App
-            </a>
-          )}
         </nav>
 
         <div className="sidebar-footer">
@@ -3096,7 +3046,7 @@ export default function App() {
         {/* Name-Only Join Modal */}
         {showLoginModal && (
           <div className="call-overlay" style={{ zIndex: 2000 }}>
-            <div className="glass" style={{ padding: '2rem 1.8rem', borderRadius: '18px', maxWidth: '360px', width: '90%', textAlign: 'center', position: 'relative', border: '1px solid rgba(74, 222, 128, 0.25)', boxShadow: '0 20px 40px rgba(0,0,0,0.6)' }}>
+            <div className="glass" style={{ padding: '2rem 1.8rem', borderRadius: '18px', maxWidth: '360px', width: '90%', textAlign: 'center', position: 'relative', border: '1px solid rgba(239, 68, 68, 0.25)', boxShadow: '0 20px 40px rgba(0,0,0,0.6)' }}>
               <button
                 className="icon-btn"
                 style={{ position: 'absolute', top: '15px', right: '15px' }}
@@ -3105,7 +3055,7 @@ export default function App() {
               >
                 <X size={20} />
               </button>
-              <div style={{ display: 'inline-flex', padding: '10px', borderRadius: '50%', background: 'rgba(74, 222, 128, 0.1)', color: 'var(--primary)', marginBottom: '0.8rem' }}>
+              <div style={{ display: 'inline-flex', padding: '10px', borderRadius: '50%', background: 'rgba(239, 68, 68, 0.12)', color: 'var(--primary)', marginBottom: '0.8rem' }}>
                 <Users size={28} />
               </div>
               <h2 style={{ marginBottom: '0.35rem', fontSize: '1.4rem', fontWeight: 700 }}>Choose a Display Name</h2>
@@ -3123,6 +3073,8 @@ export default function App() {
                   style={{ flex: 1, margin: 0, padding: '0.75rem 1rem', fontSize: '0.95rem' }}
                   onKeyDown={e => {
                     if (e.key === 'Enter' && username.trim().length >= 2) {
+                      e.preventDefault();
+                      dismissKeyboard();
                       handleSaveUsername();
                     }
                   }}
@@ -3132,7 +3084,7 @@ export default function App() {
                   className="btn btn-secondary"
                   style={{ padding: '0.6rem 0.85rem', fontSize: '0.82rem', width: 'auto', margin: 0, whiteSpace: 'nowrap' }}
                   onClick={() => {
-                    const randoms = ['Kochi_Mallu', 'Calicut_Guy', 'Thrissur_Gadhi', 'Kerala_Vibe', 'Malabar_Star', 'Trivandrum_Bro', 'Gulf_Malayali', 'Palakkad_Chathan', 'Kannur_Macha', 'Alappuzha_Rider'];
+                    const randoms = ['Chennai_Macha', 'Kovai_Gethu', 'Madurai_Veeran', 'Trichy_King', 'Salem_Vibe', 'Tirunelveli_Bro', 'Dubai_Tamizhan', 'Vellore_Boy', 'Marina_Hero', 'Singara_Chennai'];
                     const chosen = randoms[Math.floor(Math.random() * randoms.length)];
                     setUsername(chosen);
                   }}
@@ -3148,16 +3100,16 @@ export default function App() {
                 </div>
               )}
 
-              {/* Quick Kerala District Tags */}
+              {/* Quick Tamil Nadu District Tags */}
               <div style={{ marginBottom: '1.2rem', textAlign: 'left' }}>
                 <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Quick District Tag (Optional):</span>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', marginTop: '6px' }}>
-                  {['🌴 കൊച്ചി', '🌴 കോഴിക്കോട്', '🌴 തിരുവനന്തപുരം', '🌴 തൃശൂർ', '🌴 മലപ്പുറം', '🌴 കണ്ണൂർ', '✈️ പ്രവാസി'].map((dist, idx) => (
+                  {['🏛️ சென்னை', '🦁 கோவை', '🛕 மதுரை', '🏰 திருச்சி', '🥭 சேலம்', '🌊 நெல்லை', '✈️ வெளிநாடு NRI'].map((dist, idx) => (
                     <button
                       key={idx}
                       type="button"
                       onClick={() => {
-                        const cleanDist = dist.replace(/[🌴✈️]\s*/g, '');
+                        const cleanDist = dist.replace(/[🏛️🦁🛕🏰🥭🌊✈️]\s*/g, '');
                         let nextName = '';
                         if (!username.trim()) {
                           nextName = `${cleanDist}_User`;
@@ -3338,7 +3290,7 @@ export default function App() {
               <>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <div style={{ padding: '6px', background: 'rgba(74, 222, 128, 0.15)', color: 'var(--primary)', borderRadius: '50%', display: 'flex' }}>
+                    <div style={{ padding: '6px', background: 'rgba(239, 68, 68, 0.15)', color: 'var(--primary)', borderRadius: '50%', display: 'flex' }}>
                       <LinkIcon size={18} />
                     </div>
                     <div>
@@ -3421,7 +3373,7 @@ export default function App() {
             <div className="chat-requests-modal" onClick={(e) => e.stopPropagation()}>
               <div className="chat-requests-header">
                 <div className="chat-requests-title-wrap">
-                  <div style={{ padding: '8px', background: 'rgba(74, 222, 128, 0.12)', color: 'var(--primary)', borderRadius: '12px', display: 'flex' }}>
+                  <div style={{ padding: '8px', background: 'rgba(239, 68, 68, 0.12)', color: 'var(--primary)', borderRadius: '12px', display: 'flex' }}>
                     <UserPlus size={20} />
                   </div>
                   <div>
@@ -3583,7 +3535,7 @@ export default function App() {
                   </div>
                 )}
                 {activeCallingUser?.locationText && (
-                  <div style={{ fontSize: '0.78rem', color: '#10b981', display: 'flex', alignItems: 'center', gap: '3px', marginTop: '2px' }}>
+                  <div style={{ fontSize: '0.78rem', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '3px', marginTop: '2px' }}>
                     <MapPin size={12} />
                     <span>{activeCallingUser.locationText} • {activeCallingUser.calculatedDistance} km from {userLocationText}</span>
                   </div>
@@ -3778,7 +3730,7 @@ export default function App() {
                   <span>End-to-end encrypted</span>
                 </div>
                 {activeCallingUser?.locationText && (
-                  <div style={{ fontSize: '0.8rem', color: '#10b981', display: 'flex', alignItems: 'center', gap: '4px', marginTop: '6px' }}>
+                  <div style={{ fontSize: '0.8rem', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '4px', marginTop: '6px' }}>
                     <MapPin size={12} />
                     <span>{activeCallingUser.locationText} • {activeCallingUser.calculatedDistance} km from {userLocationText}</span>
                   </div>
@@ -3835,7 +3787,7 @@ export default function App() {
           <div className="chat-header">
             <div className="header-user-info">
               <div className="avatar">
-                <MalluLogo size={32} />
+                <TamilLogo size={32} />
               </div>
               <div style={{ marginLeft: '6px' }}>
                 {viewMode === 'private' ? (
@@ -3845,14 +3797,14 @@ export default function App() {
                 ) : (
                   <div style={{ fontWeight: 600 }}>
                     {viewMode === 'public'
-                      ? 'Malayalam Public Chat'
+                      ? 'Tamil Public Chat'
                       : 'Nearby Users'}
                   </div>
                 )}
                 <div className="header-status">
                   <span className="status-dot"></span>
                   {viewMode === 'public'
-                    ? `${liveUsers} Online right now • കേരളം ലൈവ്`
+                    ? `${liveUsers} Online right now • தமிழ்நாடு லைவ்`
                     : viewMode === 'random'
                       ? `${demoUsers.filter(p => p.status === 'online').length} nearby active users`
                       : (status === 'connected' ? 'Secure Connect' : 'Waiting for User...')}
@@ -4041,10 +3993,17 @@ export default function App() {
 
           {/* Chat Messages */}
           {(viewMode === 'public' || status === 'connected') && (
-            <div ref={chatContainerRef} className="chat-messages" onScroll={handleChatScroll} style={{ paddingBottom: '10px' }}>
+            <div
+              ref={chatContainerRef}
+              className="chat-messages"
+              onScroll={handleChatScroll}
+              onTouchStart={dismissKeyboard}
+              onClick={dismissKeyboard}
+              style={{ paddingBottom: '10px' }}
+            >
               <div className="system-message">
                 {viewMode === 'public'
-                  ? '🌴 മലയാളത്തിലേക്ക് സ്വാഗതം! Welcome to MalayalamChat.online — Kerala\'s #1 Live Chat & Random Calling Platform.'
+                  ? '🛕 தமிழ் சாட்டிற்கு நல்வரவு! Welcome to TamilChat.online — Tamil Nadu\'s #1 Live Chat & Random Calling Platform.'
                   : '🔒 Secure Connection Established. Direct peer-to-peer encrypted WebRTC link.'}
               </div>
 
@@ -4235,14 +4194,15 @@ export default function App() {
                 </div>
               )}
 
-              {/* Adipoli Malayalam Quick Phrases Bar */}
-              <div className="malayalam-quick-bar" style={{ display: 'flex', gap: '6px', overflowX: 'auto', paddingBottom: '8px', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
-                {['ഹലോ മച്ചാനെ! 🌴', 'എന്തൊക്കെയുണ്ട്? ✨', 'സുഖമാണോ? 💬', 'നാട്ടിൽ എവിടെയാ? 📍', 'ചായ കുടിച്ചോ? ☕', 'സീൻ ആണോ! 🔥', 'വീഡിയോ കോൾ ചെയ്യാം? 📹', 'അടിപൊളി! 👌', 'വേറെ എന്താ വിശേഷം? 🌟', 'പ്രവാസിയാണോ? ✈️'].map((phrase, i) => (
+              {/* Mass Tamil Quick Phrases Bar */}
+              <div className="tamil-quick-bar" style={{ display: 'flex', gap: '6px', overflowX: 'auto', paddingBottom: '8px', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
+                {['வணக்கம் மச்சான்! 🛕', 'எப்படி இருக்கீங்க? ✨', 'சாப்பிட்டாச்சா? ☕', 'எந்த ஊரு தல? 📍', 'வீடியோ கால் பண்ணலாமா? 📹', 'வேற லெவல்! 🔥', 'செம்ம மாஸ்! 👌', 'என்ன விசேஷம்? 🌟', 'என் கூட பேசுங்க! 💬', 'வெளிநாடா NRI? ✈️'].map((phrase, i) => (
                   <button
                     key={i}
                     type="button"
                     className="quick-phrase-chip"
                     onClick={() => {
+                      dismissKeyboard();
                       if (!username && viewMode === 'public') {
                         setShowLoginModal(true);
                         return;
@@ -4256,7 +4216,7 @@ export default function App() {
                     style={{
                       whiteSpace: 'nowrap',
                       background: 'rgba(255, 255, 255, 0.05)',
-                      border: '1px solid rgba(74, 222, 128, 0.25)',
+                      border: '1px solid rgba(239, 68, 68, 0.25)',
                       color: '#e2e8f0',
                       borderRadius: '16px',
                       padding: '4px 10px',
@@ -4289,9 +4249,13 @@ export default function App() {
                 ) : (
                   <>
                     <input
+                      ref={chatInputRef}
                       type="text"
                       className="chat-input"
-                      placeholder={viewMode === 'public' ? "Send to public... (മലയാളത്തിൽ സംസാരിക്കാം)" : "Type a secure message..."}
+                      enterKeyHint="send"
+                      autoComplete="off"
+                      autoCorrect="on"
+                      placeholder={viewMode === 'public' ? "Send to public... (தமிழில் பேசலாம்)" : "Type a secure message..."}
                       value={viewMode === 'public' ? publicInput : inputText}
                       onFocus={() => {
                         if (viewMode === 'public' && !username) {
@@ -4308,6 +4272,8 @@ export default function App() {
                       }}
                       onKeyDown={e => {
                         if (e.key === 'Enter') {
+                          e.preventDefault();
+                          dismissKeyboard();
                           if (!username && viewMode === 'public') {
                             setShowLoginModal(true);
                           } else {
@@ -4320,43 +4286,27 @@ export default function App() {
                 )}
 
                 {!isRecording && (
-                  <>
-                    <button
-                      className="send-btn"
-                      onClick={() => {
-                        if (viewMode === 'public' && !username) {
-                          setShowLoginModal(true);
-                          return;
-                        }
-                        setShowGifPicker(true);
-                      }}
-                      style={{ background: 'rgba(255,255,255,0.08)', color: 'var(--primary)', border: '1px solid var(--panel-border)' }}
-                      title="Send GIF"
-                    >
-                      <ImageIcon size={20} />
-                    </button>
-
-                    <label
-                      className="send-btn"
-                      style={{ background: 'rgba(255,255,255,0.08)', color: 'var(--primary)', border: '1px solid var(--panel-border)', cursor: isUploadingImage ? 'wait' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                      title="Send Image / Photo"
-                    >
-                      {isUploadingImage ? <Loader2 size={20} className="spin" /> : <Camera size={20} />}
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageFileUpload}
-                        disabled={isUploadingImage}
-                        style={{ display: 'none' }}
-                      />
-                    </label>
-                  </>
+                  <button
+                    className="send-btn"
+                    onClick={() => {
+                      if (viewMode === 'public' && !username) {
+                        setShowLoginModal(true);
+                        return;
+                      }
+                      setShowGifPicker(true);
+                    }}
+                    style={{ background: 'rgba(255,255,255,0.08)', color: 'var(--primary)', border: '1px solid var(--panel-border)' }}
+                    title="Send GIF"
+                  >
+                    <ImageIcon size={20} />
+                  </button>
                 )}
 
                 {(viewMode === 'public' ? publicInput : inputText) ? (
                   <button
                     className="send-btn"
                     onClick={() => {
+                      dismissKeyboard();
                       if (!username) { setShowLoginModal(true); return; }
                       if (viewMode === 'public') { handleSendPublic(); } else { handleSend(); }
                     }}
@@ -4367,7 +4317,7 @@ export default function App() {
                   <button
                     className="send-btn"
                     onClick={isRecording ? stopRecordingAndSend : startRecording}
-                    style={isRecording ? { background: 'var(--primary)', color: '#000' } : { background: 'var(--panel-bg)', color: 'var(--text-main)', border: '1px solid var(--panel-border)' }}
+                    style={isRecording ? { background: 'var(--primary)', color: '#fff' } : { background: 'var(--panel-bg)', color: 'var(--text-main)', border: '1px solid var(--panel-border)' }}
                     title={isRecording ? "Send Voice Message" : "Record Voice Message"}
                   >
                     {isRecording ? <Send size={20} /> : <Mic size={20} />}
@@ -4393,12 +4343,6 @@ export default function App() {
               <PhoneCall size={24} className={viewMode === 'random' ? '' : 'calling-icon-anim'} />
               Nearby Users
             </div>
-            {!isApp && (
-              <a className="nav-item" href="/malluchat.apk" download="malluchat.apk" style={{ color: 'var(--primary)', textDecoration: 'none' }}>
-                <Download size={24} />
-                App
-              </a>
-            )}
             <div className={`nav-item ${viewMode === 'private' ? 'active' : ''}`} onClick={() => {
               if (!username && viewMode === 'public') {
                 setShowLoginModal(true);
@@ -4421,35 +4365,18 @@ export default function App() {
         <div style={{ padding: '1.5rem', color: 'var(--text-muted)' }}>
           <p>You are currently in <strong>{viewMode === 'public' ? 'World Chat' : 'Private Space'}</strong>.</p>
 
-          <div style={{ marginTop: '2rem', padding: '1.2rem', background: 'rgba(255, 255, 255, 0.03)', borderRadius: '16px', border: '1px solid var(--panel-border)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>Sponsored</span>
-              <span style={{ fontSize: '0.7rem', background: 'rgba(255,255,255,0.1)', padding: '2px 6px', borderRadius: '4px', color: 'var(--primary)' }}>Promo</span>
-            </div>
-            <div style={{ background: 'linear-gradient(135deg, #10b981, #059669)', padding: '12px 20px', borderRadius: '10px', display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#fff', fontWeight: 800, fontSize: '1.2rem', letterSpacing: '1px', boxShadow: '0 4px 12px rgba(16,185,129,0.3)' }}>
-              💖 Twingle.online
-            </div>
-            <div style={{ fontSize: '0.85rem', lineHeight: '1.5', textAlign: 'center', color: 'var(--text-main)' }}>
-              <strong>FREE MALLU DATING APP</strong>
-              <div style={{ color: 'var(--text-muted)', fontSize: '0.8rem', marginTop: '4px' }}>Find love, marriage, and friendship in Kerala.</div>
-            </div>
-            <a href="https://twingle.online" target="_blank" rel="noopener noreferrer" style={{ display: 'block', textAlign: 'center', background: 'var(--primary)', color: 'black', fontWeight: 'bold', padding: '8px 16px', borderRadius: '20px', textDecoration: 'none', fontSize: '0.85rem' }}>
-              Visit twingle.online
-            </a>
-          </div>
-
           <div style={{ marginTop: '1.5rem', fontSize: '0.8rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', borderTop: '1px solid var(--panel-border)', paddingTop: '1rem' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '0.2rem' }}>Popular Malayalam &amp; Mallu Topics</div>
-            <a href="/malayalam-chatting-website" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Malayalam Chatting Website</a>
-            <a href="/malayalam-video-call" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Malayalam Video Call</a>
-            <a href="/malayalam-chat-online" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Malayalam Chat Online</a>
-            <a href="/mallu-stranger-chat-website" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Mallu Stranger Chat Website</a>
-            <a href="/mallu-random-chatting-website" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Mallu Random Chatting Website</a>
-            <a href="/mallu-chat-rooms" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Mallu Chat Rooms</a>
-            <a href="/mallu-video-call" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Mallu Video Call</a>
-            <a href="/mallu-chat-live" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Mallu Chat Live</a>
-            <a href="/mallu-chatting-app" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Mallu Chat App</a>
-            <a href="/mallu-telegram-chatting" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Mallu Telegram Chatting</a>
+            <div style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '0.2rem' }}>Popular Tamil &amp; Kollywood Topics</div>
+            <a href="/tamil-chatting-website" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Tamil Chatting Website</a>
+            <a href="/tamil-video-call" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Tamil Video Call</a>
+            <a href="/tamil-chat-online" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Tamil Chat Online</a>
+            <a href="/tamil-stranger-chat-website" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Tamil Stranger Chat Website</a>
+            <a href="/tamil-random-chatting-website" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Tamil Random Chatting Website</a>
+            <a href="/tamil-chat-rooms" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Tamil Chat Rooms</a>
+            <a href="/tamil-video-call" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Tamil Video Call</a>
+            <a href="/tamil-chat-live" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Tamil Chat Live</a>
+            <a href="/tamil-chatting-app" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Tamil Chat App</a>
+            <a href="/tamil-telegram-chatting" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Tamil Telegram Chatting</a>
             <a href="/telegram-alternative-group-chat" target="_blank" style={{ color: 'var(--text-muted)', textDecoration: 'none' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>Telegram Alternative Chat</a>
           </div>
 
@@ -4504,7 +4431,7 @@ export default function App() {
                 top: '-15px',
                 right: '-15px',
                 background: 'var(--primary)',
-                color: '#000',
+                color: '#fff',
                 border: 'none',
                 borderRadius: '50%',
                 width: '36px',

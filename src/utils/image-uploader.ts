@@ -1,5 +1,5 @@
 /**
- * Ultra-Reliable Image Processor for MalluChat
+ * Ultra-Reliable Image Processor for TamilChat
  * Generates an ultra-compact permanent embedded JPEG Data URL (thumbUrl ~2KB)
  * and an optional remote HTTPS URL (imageUrl).
  * Guarantees photos display 100% of the time for all receiving users!

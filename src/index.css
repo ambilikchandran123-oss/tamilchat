@@ -1,30 +1,37 @@
 :root {
-  --bg-color: #0f1115;
-  --panel-bg: rgba(25, 28, 36, 0.6);
+  --bg-color: #08090b;
+  --panel-bg: rgba(18, 14, 16, 0.75);
   --panel-border: rgba(255, 255, 255, 0.08);
-  --text-main: #ebf0f5;
-  --text-muted: #9ca3af;
-  --primary: #4ade80;
-  --primary-hover: #22c55e;
-  --message-sent: #213c32;
-  --message-received: rgba(30, 34, 45, 0.8);
-  --danger: #ef4444;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --primary: #ef4444;
+  --primary-hover: #dc2626;
+  --primary-rgb: 239, 68, 68;
+  --message-sent: #3d0c11;
+  --message-received: rgba(24, 20, 24, 0.85);
+  --danger: #b91c1c;
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   --glass-effect: blur(16px);
-  --username-color: #38bdf8;
+  --username-color: #f87171;
+  color-scheme: dark;
+  accent-color: #ef4444;
 }
 
 .light-mode {
-  --bg-color: #f7f9fc;
-  --panel-bg: rgba(255, 255, 255, 0.8);
-  --panel-border: rgba(0, 0, 0, 0.08);
-  --text-main: #111827;
-  --text-muted: #4b5563;
-  --primary: #10b981;
-  --primary-hover: #059669;
-  --message-sent: #d1fae5;
-  --message-received: rgba(243, 244, 246, 0.8);
-  --username-color: #0284c7;
+  --bg-color: #08090b;
+  --panel-bg: rgba(18, 14, 16, 0.75);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --primary: #ef4444;
+  --primary-hover: #dc2626;
+  --primary-rgb: 239, 68, 68;
+  --message-sent: #3d0c11;
+  --message-received: rgba(24, 20, 24, 0.85);
+  --danger: #b91c1c;
+  --username-color: #f87171;
+  color-scheme: dark;
+  accent-color: #ef4444;
 }
 
 * {
@@ -60,7 +67,7 @@ body {
   display: block;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 50% -20%, rgba(74, 222, 128, 0.15), transparent 60%);
+  background: radial-gradient(circle at 50% -20%, rgba(239, 68, 68, 0.15), transparent 60%);
   overflow: hidden;
 }
 
@@ -133,7 +140,7 @@ body {
 }
 
 .nav-item-desktop.active {
-  background: rgba(74, 222, 128, 0.1);
+  background: rgba(239, 68, 68, 0.12);
   color: var(--primary);
 }
 
@@ -185,7 +192,7 @@ body {
 @media (min-width: 1024px) {
   .app-layout {
     justify-content: center;
-    background: radial-gradient(circle at 50% -20%, rgba(74, 222, 128, 0.08), transparent 60%);
+    background: radial-gradient(circle at 50% -20%, rgba(239, 68, 68, 0.08), transparent 60%);
   }
 
   .sidebar-left {
@@ -276,15 +283,15 @@ body {
 
 @keyframes pulseAuth {
   0% {
-    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
   }
 
   70% {
-    box-shadow: 0 0 0 10px rgba(74, 222, 128, 0);
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
   }
 
   100% {
-    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
   }
 }
 
@@ -303,7 +310,7 @@ body {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, var(--primary), #3b82f6);
+  background: linear-gradient(135deg, #ef4444, #f87171);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -369,7 +376,7 @@ body {
 
 .btn-primary {
   background: var(--primary);
-  color: #000;
+  color: #fff;
 }
 
 .btn-primary:hover:not(:disabled) {
@@ -432,13 +439,13 @@ body {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), #3b82f6);
+  background: linear-gradient(135deg, #ef4444, #991b1b);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   font-size: 1.1rem;
-  color: #000;
+  color: #fff;
 }
 
 .header-status {
@@ -560,7 +567,7 @@ body {
 
 .play-btn {
   background: var(--primary);
-  color: #000;
+  color: #fff;
   border: none;
   width: 32px;
   height: 32px;
@@ -637,13 +644,13 @@ body {
 
 .icon-btn.active {
   color: var(--primary);
-  background: rgba(74, 222, 128, 0.15);
+  background: rgba(239, 68, 68, 0.15);
   animation: pulseAuth 1.5s infinite;
 }
 
 .send-btn {
   background: var(--primary);
-  color: #000;
+  color: #fff;
   border: none;
   width: 36px;
   height: 36px;
@@ -692,12 +699,12 @@ body {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), #3b82f6);
+  background: linear-gradient(135deg, #ef4444, #991b1b);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2.5rem;
-  color: #000;
+  color: #fff;
   margin-bottom: 2rem;
   animation: pulseAuth 2s infinite;
 }
@@ -732,8 +739,8 @@ body {
 }
 
 .call-btn.accept {
-  background: var(--primary);
-  color: #000;
+  background: #22c55e;
+  color: #fff;
 }
 
 .call-btn.reject {
@@ -781,7 +788,7 @@ body {
 
 .copy-btn:hover {
   background: var(--primary);
-  color: #000;
+  color: #fff;
 }
 
 /* Error Toast */
@@ -845,12 +852,12 @@ body {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), #3b82f6);
+  background: linear-gradient(135deg, #ef4444, #991b1b);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 3rem;
-  color: #000;
+  color: #fff;
   margin-bottom: 2rem;
   animation: pulseAuth 2s infinite;
 }
@@ -957,11 +964,11 @@ body {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 0.92rem;
   font-weight: 600;
-  color: #25d366;
+  color: #ef4444;
   display: flex;
   align-items: center;
   gap: 6px;
-  background: rgba(37, 211, 102, 0.12);
+  background: rgba(239, 68, 68, 0.15);
   padding: 2px 8px;
   border-radius: 12px;
   width: fit-content;
@@ -972,7 +979,7 @@ body {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #25d366;
+  background: #ef4444;
   animation: waPulseDot 1.6s infinite;
 }
 
@@ -1015,14 +1022,14 @@ body {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #00a884, #128c7e);
+  background: linear-gradient(135deg, #ef4444, #991b1b);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 3.2rem;
   font-weight: 700;
-  box-shadow: 0 12px 32px rgba(0, 168, 132, 0.35);
+  box-shadow: 0 12px 32px rgba(239, 68, 68, 0.35);
 }
 
 /* Picture-in-Picture Self Camera Window */
@@ -1396,8 +1403,8 @@ body {
   width: 100%;
   margin-top: 14px;
   padding: 10px 16px;
-  background: rgba(16, 185, 129, 0.06);
-  border: 1px solid rgba(74, 222, 128, 0.15);
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.2);
   border-radius: 12px;
   color: var(--text-muted);
   font-size: 0.82rem;
@@ -1411,10 +1418,10 @@ body {
 }
 
 .payment-issue-btn:hover {
-  background: rgba(74, 222, 128, 0.12);
-  border-color: rgba(74, 222, 128, 0.35);
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
   color: var(--primary);
-  box-shadow: 0 0 16px rgba(74, 222, 128, 0.15);
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.2);
   transform: translateY(-1px);
 }
 
@@ -1470,7 +1477,7 @@ body {
 /* Highlight animation when clicked from reply context */
 @keyframes highlightFlash {
   0% {
-    background-color: rgba(74, 222, 128, 0.4);
+    background-color: rgba(239, 68, 68, 0.4);
   }
 
   100% {
@@ -1505,7 +1512,7 @@ body {
   min-height: 0;
   width: 100%;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 0%, rgba(74, 222, 128, 0.08), transparent 70%);
+  background: radial-gradient(circle at 50% 0%, rgba(239, 68, 68, 0.08), transparent 70%);
 }
 
 .random-call-header {
@@ -1518,7 +1525,7 @@ body {
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, var(--primary), #60a5fa);
+  background: linear-gradient(135deg, #ef4444, #f87171);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1538,8 +1545,8 @@ body {
   padding: 10px 12px;
   margin: 10px 1.5rem;
   border-radius: 12px;
-  background: rgba(74, 222, 128, 0.05);
-  border: 1px dashed rgba(74, 222, 128, 0.2);
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px dashed rgba(239, 68, 68, 0.25);
   font-size: 0.85rem;
   color: var(--primary);
   animation: fadeIn 0.3s ease-out;
@@ -1598,7 +1605,7 @@ body {
 
 .filter-btn.active {
   background: var(--primary);
-  color: #000;
+  color: #fff;
   font-weight: 600;
 }
 
@@ -1640,7 +1647,7 @@ body {
 
 .match-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(74, 222, 128, 0.2);
+  border-color: rgba(239, 68, 68, 0.25);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -1688,13 +1695,13 @@ body {
 
 @keyframes pulseGreenGlow {
   0% {
-    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
   }
   70% {
-    box-shadow: 0 0 0 6px rgba(74, 222, 128, 0);
+    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
   }
 }
 
@@ -1755,19 +1762,19 @@ body {
   height: 42px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--primary), var(--primary-hover));
-  color: #000;
+  color: #fff;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 4px 12px rgba(74, 222, 128, 0.2);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
 }
 
 .match-call-btn:hover {
   transform: scale(1.08);
-  box-shadow: 0 6px 16px rgba(74, 222, 128, 0.4);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.45);
 }
 
 .match-call-btn.video {
@@ -1967,13 +1974,13 @@ body {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), #3b82f6);
+  background: linear-gradient(135deg, #ef4444, #991b1b);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2.2rem;
   font-weight: bold;
-  color: #000;
+  color: #fff;
   z-index: 10;
   border: 3px solid rgba(255, 255, 255, 0.15);
 }
@@ -2017,17 +2024,17 @@ body {
   max-width: 540px !important;
   width: 100%;
   border-radius: 28px;
-  background: linear-gradient(180deg, rgba(30, 41, 59, 0.92), rgba(15, 23, 42, 0.98));
-  border: 1px solid rgba(251, 191, 36, 0.15); /* Light gold border hint */
+  background: linear-gradient(180deg, rgba(24, 14, 16, 0.96), rgba(10, 8, 10, 0.98));
+  border: 1px solid rgba(239, 68, 68, 0.25);
   padding: 2.2rem 2rem;
   text-align: center;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(251, 191, 36, 0.08); /* Gold aura shadow */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(239, 68, 68, 0.12);
   animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   max-height: 92vh;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(251, 191, 36, 0.2) rgba(0, 0, 0, 0.2);
+  scrollbar-color: rgba(239, 68, 68, 0.3) rgba(0, 0, 0, 0.3);
 }
 
 .paywall-card::-webkit-scrollbar {
@@ -2035,7 +2042,7 @@ body {
 }
 
 .paywall-card::-webkit-scrollbar-thumb {
-  background: rgba(251, 191, 36, 0.2);
+  background: rgba(239, 68, 68, 0.3);
   border-radius: 4px;
 }
 
@@ -2082,13 +2089,13 @@ body {
 }
 
 .plan-card.popular {
-  border-color: rgba(74, 222, 128, 0.3);
+  border-color: rgba(239, 68, 68, 0.35);
 }
 
 .plan-card.popular.active {
-  background: rgba(74, 222, 128, 0.04);
+  background: rgba(239, 68, 68, 0.06);
   border-color: var(--primary);
-  box-shadow: 0 0 16px rgba(74, 222, 128, 0.15);
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.2);
 }
 
 .plan-card.vip {
@@ -2118,8 +2125,8 @@ body {
 }
 
 .card-badge.popular-badge {
-  background: linear-gradient(135deg, var(--primary), #059669);
-  color: black;
+  background: linear-gradient(135deg, var(--primary), #991b1b);
+  color: #fff;
 }
 
 .card-badge.vip-badge {
@@ -2323,7 +2330,7 @@ body {
 
 .upload-zone:hover {
   border-color: var(--primary);
-  background: rgba(74, 222, 128, 0.02);
+  background: rgba(239, 68, 68, 0.03);
   transform: scale(1.01);
 }
 
@@ -2437,12 +2444,12 @@ body {
   align-items: center;
   padding: 0.75rem 1rem;
   border-bottom: 1px solid var(--panel-border);
-  background: rgba(74, 222, 128, 0.02);
+  background: rgba(239, 68, 68, 0.03);
 }
 
 .quick-random-call-btn {
-  background: linear-gradient(135deg, var(--primary) 0%, #059669 100%);
-  color: black;
+  background: linear-gradient(135deg, var(--primary) 0%, #991b1b 100%);
+  color: #ffffff;
   font-weight: 700;
   font-size: 0.9rem;
   padding: 8px 18px;
@@ -2452,7 +2459,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 15px rgba(74, 222, 128, 0.3);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.35);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   letter-spacing: 0.5px;
   animation: pulseBtn 2.5s infinite;
@@ -2460,7 +2467,7 @@ body {
 
 .quick-random-call-btn:hover {
   transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 6px 24px rgba(74, 222, 128, 0.6);
+  box-shadow: 0 6px 24px rgba(239, 68, 68, 0.6);
 }
 
 .quick-random-call-btn:active {
@@ -2479,13 +2486,13 @@ body {
 
 @keyframes pulseBtn {
   0% {
-    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
   }
   70% {
-    box-shadow: 0 0 0 12px rgba(74, 222, 128, 0);
+    box-shadow: 0 0 0 12px rgba(239, 68, 68, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
   }
 }
 
@@ -2507,7 +2514,7 @@ body {
 /* Floating Scroll To Bottom Button */
 .scroll-bottom-btn {
   position: absolute;
-  bottom: 85px;
+  bottom: 145px;
   right: 20px;
   width: 42px;
   height: 42px;
@@ -2529,8 +2536,8 @@ body {
 .scroll-bottom-btn:hover {
   transform: translateY(-2px) scale(1.05);
   background: var(--primary);
-  color: #000;
-  box-shadow: 0 6px 20px rgba(74, 222, 128, 0.4);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
 }
 
 .scroll-unread-badge {
@@ -2570,21 +2577,21 @@ body {
 }
 
 .requests-header-btn:hover {
-  background: rgba(74, 222, 128, 0.12);
-  border-color: rgba(74, 222, 128, 0.3);
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.3);
   color: var(--primary);
   transform: translateY(-1px);
 }
 
 .requests-header-btn.has-requests {
-  background: rgba(74, 222, 128, 0.15);
-  border-color: rgba(74, 222, 128, 0.4);
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
   color: #fff;
-  box-shadow: 0 0 16px rgba(74, 222, 128, 0.25);
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.25);
 }
 
 .requests-badge-pill {
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
   color: #ffffff;
   font-size: 0.72rem;
   font-weight: 800;
@@ -2595,18 +2602,18 @@ body {
   justify-content: center;
   min-width: 18px;
   line-height: 1;
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.5);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.5);
   animation: pulseBadge 2s infinite ease-in-out;
 }
 
 @keyframes pulseBadge {
   0%, 100% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6);
   }
   50% {
     transform: scale(1.08);
-    box-shadow: 0 0 0 6px rgba(74, 222, 128, 0);
+    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
   }
 }
 
@@ -2634,7 +2641,7 @@ body {
   max-height: 85vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 24px rgba(74, 222, 128, 0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 24px rgba(239, 68, 68, 0.15);
   overflow: hidden;
   animation: slideUpModal 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -2711,7 +2718,7 @@ body {
 
 .chat-request-card:hover {
   background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(74, 222, 128, 0.25);
+  border-color: rgba(239, 68, 68, 0.25);
   transform: translateY(-1px);
 }
 
@@ -2727,7 +2734,7 @@ body {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #10b981, #0284c7);
+  background: linear-gradient(135deg, #ef4444, #7f1d1d);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2736,7 +2743,7 @@ body {
   color: #fff;
   flex-shrink: 0;
   position: relative;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
 }
 
 .chat-request-avatar-dot {
@@ -2781,7 +2788,7 @@ body {
 }
 
 .chat-request-btn-accept {
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -2793,12 +2800,12 @@ body {
   align-items: center;
   gap: 5px;
   transition: all 0.2s ease;
-  box-shadow: 0 3px 10px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 3px 10px rgba(239, 68, 68, 0.35);
 }
 
 .chat-request-btn-accept:hover {
   transform: translateY(-1px);
-  box-shadow: 0 5px 14px rgba(16, 185, 129, 0.5);
+  box-shadow: 0 5px 14px rgba(239, 68, 68, 0.5);
   filter: brightness(1.1);
 }
 
@@ -2857,16 +2864,21 @@ body {
   background: rgba(18, 22, 29, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(74, 222, 128, 0.35);
+  border: 1px solid rgba(239, 68, 68, 0.35);
   border-radius: 18px;
   padding: 1.15rem 1.25rem;
   max-width: 380px;
   width: calc(100% - 36px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(74, 222, 128, 0.15);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(239, 68, 68, 0.18);
   animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @media (max-width: 600px) {
+  .scroll-bottom-btn {
+    bottom: calc(205px + env(safe-area-inset-bottom, 0px));
+    right: 16px;
+  }
+
   .floating-requests-banner {
     top: calc(8px + env(safe-area-inset-top));
     right: 10px;
@@ -2889,8 +2901,8 @@ body {
   }
 }
 
-/* Adipoli Malayalam Quick Phrases Bar & Chips */
-.malayalam-quick-bar {
+/* Mass Tamil Quick Phrases Bar & Chips */
+.tamil-quick-bar {
   display: flex;
   gap: 8px;
   overflow-x: auto;
@@ -2898,7 +2910,7 @@ body {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
-.malayalam-quick-bar::-webkit-scrollbar {
+.tamil-quick-bar::-webkit-scrollbar {
   display: none;
 }
 
@@ -2911,5 +2923,5 @@ body {
 .quick-phrase-chip:hover,
 .quick-phrase-chip:active {
   transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 4px 12px rgba(74, 222, 128, 0.2);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
 }

@@ -54,11 +54,11 @@ jobs:
     - name: Upload APK (For direct testing)
       uses: actions/upload-artifact@v4
       with:
-        name: malluchat-app-release.apk
+        name: tamilchat-app-release.apk
         path: malluchat_flutter/build/app/outputs/flutter-apk/app-release.apk
 
     - name: Upload AAB (For Google Play Store)
       uses: actions/upload-artifact@v4
       with:
-        name: malluchat-app-release.aab
+        name: tamilchat-app-release.aab
         path: malluchat_flutter/build/app/outputs/bundle/release/app-release.aab
