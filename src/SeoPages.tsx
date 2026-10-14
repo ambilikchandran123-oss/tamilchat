@@ -542,25 +542,141 @@ export const TamilOpenChatPage = () => {
     );
 };
 
-// Internal Linking Navigation Footer for SEO Pages
-const SeoNavFooter = () => (
-    <div style={{ marginTop: '3rem', paddingTop: '1.5rem', borderTop: '1px solid var(--panel-border)', textAlign: 'center' }}>
-        <h4 style={{ color: 'var(--primary)', marginBottom: '1rem', fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Explore Popular Tamil Chat Lobbies</h4>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem', justifyContent: 'center', fontSize: '0.88rem' }}>
+// Internal Linking Navigation Matrix for Programmatic SEO Pages
+export const SeoNavFooter = () => (
+    <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid var(--panel-border)', textAlign: 'left' }}>
+        <h4 style={{ color: 'var(--primary)', marginBottom: '0.8rem', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+            🏙️ Tamil Nadu District Chat Lobbies
+        </h4>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', marginBottom: '1.5rem', fontSize: '0.88rem' }}>
+            <a href="/chennai-tamil-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Chennai Tamil Chat</a>
+            <a href="/coimbatore-tamil-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Coimbatore Tamil Chat</a>
+            <a href="/madurai-tamil-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Madurai Tamil Chat</a>
+            <a href="/trichy-tamil-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Trichy Tamil Chat</a>
+            <a href="/salem-tamil-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Salem Tamil Chat</a>
+            <a href="/tirunelveli-tamil-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tirunelveli Tamil Chat</a>
+        </div>
+
+        <h4 style={{ color: 'var(--primary)', marginBottom: '0.8rem', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+            🌏 Global Diaspora Tamil Communities
+        </h4>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', marginBottom: '1.5rem', fontSize: '0.88rem' }}>
+            <a href="/singapore-tamil-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Singapore Tamil Chat</a>
+            <a href="/malaysia-tamil-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Malaysia Tamil Chat</a>
+            <a href="/sri-lanka-tamil-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Sri Lanka Tamil Chat</a>
+            <a href="/gulf-nri-tamil-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Gulf NRI Tamil Chat</a>
+        </div>
+
+        <h4 style={{ color: 'var(--primary)', marginBottom: '0.8rem', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+            🎬 Popular Tamil Chat Topics
+        </h4>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', marginBottom: '1.5rem', fontSize: '0.88rem' }}>
+            <a href="/tamil-cinema-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Cinema & Kollywood Chat</a>
+            <a href="/tamil-voice-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Voice Chat & Calls</a>
+            <a href="/tamil-friends-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Friends Chat</a>
+            <a href="/tamil-anonymous-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>100% Anonymous Tamil Chat</a>
+        </div>
+
+        <h4 style={{ color: 'var(--primary)', marginBottom: '0.8rem', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+            ⚡ Primary Chat & Calling Features
+        </h4>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', fontSize: '0.88rem' }}>
             <a href="/" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Chat Live</a>
-            <a href="/tamil-chat-rooms" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Chat Room</a>
-            <a href="/tamil-video-call" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Video Call</a>
-            <a href="/tamil-chatting-website" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Chat Website</a>
-            <a href="/tamil-stranger-chat-website" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Stranger Chat Website</a>
-            <a href="/tamil-random-chatting-website" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Random Chatting Website</a>
-            <a href="/tamil-open-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Open Chat</a>
-            <a href="/tamil-chat-live" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Live Tamil Chat</a>
-            <a href="/tamil-chatting-website" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Chatting Website</a>
-            <a href="/tamil-strangers-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Strangers Chat</a>
-            <a href="/tamil-free-video-call" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Free Video Call</a>
+            <a href="/tamil-chat-rooms" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Chat Rooms</a>
+            <a href="/tamil-video-call" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Video Call Online</a>
             <a href="/tamil-random-video-call" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Random Video Call</a>
-            <a href="/tamil-chat-online" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Chat Online</a>
+            <a href="/tamil-chatting-website" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Chatting Website</a>
+            <a href="/tamil-stranger-chat-website" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Stranger Chat Website</a>
+            <a href="/tamil-open-chat" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Open Chat</a>
             <a href="/tamil-chatting-app" style={{ color: 'var(--text-muted)', textDecoration: 'none', background: 'rgba(255,255,255,0.04)', padding: '6px 12px', borderRadius: '8px' }}>Tamil Chat App</a>
         </div>
     </div>
 );
+
+// Programmatic SEO Page Component (data-driven, Google-compliant, anti-spam)
+export const ProgrammaticSeoPage: React.FC<{ slug: string }> = ({ slug }) => {
+    // Dynamic import simulation via lookup from seo-dataset
+    const [pageData, setPageData] = React.useState<any>(null);
+
+    React.useEffect(() => {
+        import('../seo-dataset.js').then(module => {
+            const data = module.getSeoPageBySlug(slug);
+            setPageData(data);
+        }).catch(() => {});
+    }, [slug]);
+
+    useMeta(
+        pageData?.title || 'TamilChat Online',
+        pageData?.description || 'Tamil Nadu #1 Online Chatting & Calling Platform',
+        `/${slug}`
+    );
+
+    if (!pageData) {
+        return (
+            <div style={containerStyle} className="glass">
+                <Header title="TamilChat Online" />
+                <CallToAction />
+                <SeoNavFooter />
+            </div>
+        );
+    }
+
+    return (
+        <div style={containerStyle} className="glass">
+            <nav aria-label="breadcrumb" style={{ marginBottom: '1rem', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                <a href="/" style={{ color: 'var(--primary)', textDecoration: 'none' }}>Home</a> &gt;{' '}
+                <span>{pageData.categoryLabel}</span> &gt;{' '}
+                <span style={{ color: '#fff' }}>{pageData.h1}</span>
+            </nav>
+
+            <Header title={pageData.h1} />
+            <CallToAction />
+
+            {pageData.tamilSub && (
+                <p style={{ color: '#f87171', fontSize: '1.15rem', fontWeight: 700, marginBottom: '1.2rem' }}>
+                    {pageData.tamilSub}
+                </p>
+            )}
+
+            <div
+                style={{ color: 'var(--text-main)', fontSize: '1.05rem', lineHeight: '1.7', marginBottom: '2rem' }}
+                dangerouslySetInnerHTML={{ __html: pageData.intro }}
+            />
+
+            {pageData.localContext && (
+                <Section title={pageData.localContext.heading}>
+                    {pageData.localContext.paragraphs.map((p: string, i: number) => (
+                        <p key={i} style={{ marginBottom: '1rem', lineHeight: '1.7' }}>{p}</p>
+                    ))}
+                </Section>
+            )}
+
+            {pageData.features && pageData.features.length > 0 && (
+                <Section title="Key Highlights &amp; Features">
+                    <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', marginBottom: '1.5rem', lineHeight: '1.8' }}>
+                        {pageData.features.map((f: { title: string; desc: string }, i: number) => (
+                            <li key={i} style={{ marginBottom: '0.5rem' }}>
+                                <strong style={{ color: '#fff' }}>{f.title}:</strong> {f.desc}
+                            </li>
+                        ))}
+                    </ul>
+                </Section>
+            )}
+
+            {pageData.faqs && pageData.faqs.length > 0 && (
+                <Section title="Frequently Asked Questions (FAQ)">
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '0.8rem' }}>
+                        {pageData.faqs.map((faq: { question: string; answer: string }, i: number) => (
+                            <div key={i} style={{ background: 'rgba(255,255,255,0.03)', padding: '1.2rem', borderRadius: '12px', borderLeft: '3px solid var(--primary)' }}>
+                                <h4 style={{ color: '#fff', margin: '0 0 0.5rem 0', fontSize: '1rem' }}>{faq.question}</h4>
+                                <p style={{ color: 'var(--text-muted)', margin: 0, fontSize: '0.92rem', lineHeight: '1.6' }}>{faq.answer}</p>
+                            </div>
+                        ))}
+                    </div>
+                </Section>
+            )}
+
+            <SeoNavFooter />
+        </div>
+    );
+};
