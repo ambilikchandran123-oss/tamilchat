@@ -2593,7 +2593,7 @@ export default function App() {
 
   const handleAdminLogin = () => {
     // Basic verification logic
-    if (adminEmail === 'admin@tamilchat.online' && adminPassword === 'Admin@123') {
+    if (adminEmail === 'admin@tamilchats.online' && adminPassword === 'Admin@123') {
       setIsAdminAuth(true);
       setShowAdminLogin(false);
       setShowAdminPanel(true);
@@ -2969,7 +2969,7 @@ export default function App() {
 
             {/* Payment Help & Issue Support Button */}
             <a
-              href="https://tamilchat.online/payment-help/"
+              href="https://tamilchats.online/payment-help/"
               target="_blank"
               rel="noopener noreferrer"
               className="payment-issue-btn"
@@ -4003,7 +4003,7 @@ export default function App() {
             >
               <div className="system-message">
                 {viewMode === 'public'
-                  ? '🛕 தமிழ் சாட்டிற்கு நல்வரவு! Welcome to TamilChat.online — Tamil Nadu\'s #1 Live Chat & Random Calling Platform.'
+                  ? '🛕 தமிழ் சாட்டிற்கு நல்வரவு! Welcome to TamilChats.online — Tamil Nadu\'s #1 Live Chat & Random Calling Platform.'
                   : '🔒 Secure Connection Established. Direct peer-to-peer encrypted WebRTC link.'}
               </div>
 

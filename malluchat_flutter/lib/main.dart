@@ -51,7 +51,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
       body: SafeArea(
         child: InAppWebView(
           key: webViewKey,
-          initialUrlRequest: URLRequest(url: WebUri("https://tamilchat.online")),
+          initialUrlRequest: URLRequest(url: WebUri("https://tamilchats.online")),
           initialSettings: settings,
           onWebViewCreated: (controller) {
             webViewController = controller;

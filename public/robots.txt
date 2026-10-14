@@ -34,4 +34,4 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
-Sitemap: https://tamilchat.online/sitemap.xml
+Sitemap: https://tamilchats.online/sitemap.xml

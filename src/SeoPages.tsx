@@ -21,7 +21,7 @@ const useMeta = (title: string, description: string, canonicalPath: string) => {
 
         const canonical = document.querySelector('link[rel="canonical"]');
         if (canonical) {
-            canonical.setAttribute('href', `https://tamilchat.online${canonicalPath}`);
+            canonical.setAttribute('href', `https://tamilchats.online${canonicalPath}`);
         }
     }, [title, description, canonicalPath]);
 };
@@ -269,7 +269,7 @@ export const TamilStrangerChatPage = () => {
 
     useMeta(
         'Tamil Stranger Chat Website - #1 Free Tamil Strangers Chat & Video | TamilChat',
-        'Join the #1 Tamil stranger chat website on TamilChat.online. Instant anonymous Tamil strangers chatting, live Tamil Nadu chat rooms, & 1-on-1 random video calls with zero registration.',
+        'Join the #1 Tamil stranger chat website on TamilChats.online. Instant anonymous Tamil strangers chatting, live Tamil Nadu chat rooms, & 1-on-1 random video calls with zero registration.',
         currentPath
     );
 
@@ -278,7 +278,7 @@ export const TamilStrangerChatPage = () => {
             <Header title="Tamil Stranger Chat Website & Free Tamil Chat Online" />
             <CallToAction />
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Welcome to <strong>TamilChat.online</strong> — Tamil Nadu&apos;s #1 <strong>Tamil stranger chat website</strong> and top destination for anonymous <strong>Tamil strangers chatting</strong>, live Tamil chat rooms, and 1-on-1 random stranger video calls. Connect with Tamil speakers across Chennai, Coimbatore, Madurai, Trichy, Salem, and global Tamils in seconds with zero registration or logins.
+                Welcome to <strong>TamilChats.online</strong> — Tamil Nadu&apos;s #1 <strong>Tamil stranger chat website</strong> and top destination for anonymous <strong>Tamil strangers chatting</strong>, live Tamil chat rooms, and 1-on-1 random stranger video calls. Connect with Tamil speakers across Chennai, Coimbatore, Madurai, Trichy, Salem, and global Tamils in seconds with zero registration or logins.
             </p>
 
             <Section title="Why TamilChat is the #1 Tamil Stranger Chat Website">
@@ -318,7 +318,7 @@ export const TamilChattingWebsitePage = () => {
             <Header title="Tamil Chat Website - Top Tamil Chatting Website" />
             <CallToAction />
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Searching for the best <strong>Tamil Chat Website</strong> and <strong>Tamil Chatting Website</strong>? TamilChat.online is Tamil Nadu&apos;s leading online chat portal offering real-time public rooms, <strong>Tamil Free Chat</strong>, <strong>Tamil Stranger Chat</strong>, and 1-on-1 <strong>Tamil Video Calling</strong> with zero registration.
+                Searching for the best <strong>Tamil Chat Website</strong> and <strong>Tamil Chatting Website</strong>? TamilChats.online is Tamil Nadu&apos;s leading online chat portal offering real-time public rooms, <strong>Tamil Free Chat</strong>, <strong>Tamil Stranger Chat</strong>, and 1-on-1 <strong>Tamil Video Calling</strong> with zero registration.
             </p>
 
             <Section title="Features of Our Tamil Chat Website">
@@ -349,7 +349,7 @@ export const TamilRandomChattingWebsitePage = () => {
             <Header title="Tamil Random Chatting Website - Tamil Stranger Match" />
             <CallToAction />
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Welcome to the leading <strong>Tamil Random Chatting Website</strong> (<a href="https://tamilchat.online/" style={{ color: 'var(--primary)' }}>TamilChat.online</a>)! If you are searching for a fast, anonymous <strong>Tamil random chat</strong> to meet Tamil strangers online, TamilChat connects you in a single tap with live users across Tamil Nadu and worldwide.
+                Welcome to the leading <strong>Tamil Random Chatting Website</strong> (<a href="https://tamilchats.online/" style={{ color: 'var(--primary)' }}>TamilChats.online</a>)! If you are searching for a fast, anonymous <strong>Tamil random chat</strong> to meet Tamil strangers online, TamilChat connects you in a single tap with live users across Tamil Nadu and worldwide.
             </p>
 
             <Section title="Why TamilChat is the Best Tamil Random Chatting Website">
@@ -408,7 +408,7 @@ export const TamilChatLivePage = () => {
 
     useMeta(
         'Tamil Chat Live - Live Tamil Chat & Instant Tamil Nadu Chat Rooms | TamilChat',
-        'Join Live Tamil Chat on TamilChat.online! Enjoy real-time live Tamil chat rooms, instant 1-on-1 stranger video calls, and zero registration.',
+        'Join Live Tamil Chat on TamilChats.online! Enjoy real-time live Tamil chat rooms, instant 1-on-1 stranger video calls, and zero registration.',
         currentPath
     );
 
@@ -440,7 +440,7 @@ export const TamilChatRoomsPage = () => {
 
     useMeta(
         'Tamil Chat Room - #1 Tamil Chat Rooms & Tamil Nadu Live Chat | TamilChat',
-        'Join the #1 Tamil Chat Room on TamilChat.online. Real-time Tamil chat rooms, Tamil Nadu chatroom discussions, stranger video calls, & zero registration.',
+        'Join the #1 Tamil Chat Room on TamilChats.online. Real-time Tamil chat rooms, Tamil Nadu chatroom discussions, stranger video calls, & zero registration.',
         currentPath
     );
 
@@ -449,7 +449,7 @@ export const TamilChatRoomsPage = () => {
             <Header title="Tamil Chat Room - Free Tamil Chat Rooms & Tamil Nadu Live Chat" />
             <CallToAction />
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Welcome to the leading <strong>Tamil Chat Room</strong> and <strong>Tamil Chat Rooms</strong> network on TamilChat.online. Connect with thousands of Tamilians across Chennai, Coimbatore, Madurai, Trichy, Salem, Tirunelveli, Bangalore, Singapore, Malaysia, Dubai, and across the globe. Jump into public lobbies or start private 1-on-1 conversations with zero registration.
+                Welcome to the leading <strong>Tamil Chat Room</strong> and <strong>Tamil Chat Rooms</strong> network on TamilChats.online. Connect with thousands of Tamilians across Chennai, Coimbatore, Madurai, Trichy, Salem, Tirunelveli, Bangalore, Singapore, Malaysia, Dubai, and across the globe. Jump into public lobbies or start private 1-on-1 conversations with zero registration.
             </p>
 
             <Section title="Explore Active Tamil Chat Rooms">
@@ -481,7 +481,7 @@ export const TamilVideoCallPage = () => {
 
     useMeta(
         'Tamil Video Call - Free 1-on-1 Tamil Video Call & Random Chat | TamilChat',
-        'Connect instantly for Tamil Video Call on TamilChat.online. Free 1-on-1 Tamil video call online, Tamil random call matching, and live stranger chat with zero registration.',
+        'Connect instantly for Tamil Video Call on TamilChats.online. Free 1-on-1 Tamil video call online, Tamil random call matching, and live stranger chat with zero registration.',
         currentPath
     );
 
@@ -518,7 +518,7 @@ export const TamilVideoCallPage = () => {
 export const TamilOpenChatPage = () => {
     useMeta(
         'Tamil Open Chat - Free Tamil Live Chat Online | TamilChat',
-        'Experience Tamil Open Chat on TamilChat.online. Fast, open Tamil chat rooms, stranger connections, and instant video calling with zero signups.',
+        'Experience Tamil Open Chat on TamilChats.online. Fast, open Tamil chat rooms, stranger connections, and instant video calling with zero signups.',
         '/tamil-open-chat'
     );
 
@@ -527,7 +527,7 @@ export const TamilOpenChatPage = () => {
             <Header title="Tamil Open Chat - Free Tamil Live Chat Online" />
             <CallToAction />
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Welcome to <strong>Tamil Open Chat</strong> (<a href="https://tamilchat.online/" style={{ color: 'var(--primary)' }}>TamilChat.online</a>), the completely open, free-access Tamil live chat platform. Jump into ongoing open discussions, meet new Tamil friends, and share voice notes or video calls without registration hurdles.
+                Welcome to <strong>Tamil Open Chat</strong> (<a href="https://tamilchats.online/" style={{ color: 'var(--primary)' }}>TamilChats.online</a>), the completely open, free-access Tamil live chat platform. Jump into ongoing open discussions, meet new Tamil friends, and share voice notes or video calls without registration hurdles.
             </p>
 
             <Section title="Highlights of Tamil Open Chat">

@@ -1,6 +1,6 @@
 # TamilChat Online (தமிழ் சாட்)
 
-> **Official Domain:** [https://tamilchat.online/](https://tamilchat.online/)
+> **Official Domain:** [https://tamilchats.online/](https://tamilchats.online/)
 
 Tamil Nadu's #1 free anonymous **Tamil Chatting Website**, **Tamil Random Chatting & Calling**, and **Tamil Stranger Chat** platform. Connect with Tamil speakers across Tamil Nadu (Chennai, Coimbatore, Madurai, Trichy, Salem, Tirunelveli, Vellore) and global Tamils (Singapore, Malaysia, Sri Lanka, Gulf NRIs, USA, UK) with zero registration, zero phone numbers, and zero logins.
 
@@ -39,6 +39,6 @@ npm run preview
 
 ## 🌐 Custom Domain & Deployment
 
-- Custom domain: `tamilchat.online`
+- Custom domain: `tamilchats.online`
 - Configured via `public/CNAME` for GitHub Pages automated deployment.
 - Static SEO routes generated via `node generate-routes.js` during build step.
