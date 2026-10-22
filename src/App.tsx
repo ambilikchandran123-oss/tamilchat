@@ -2981,16 +2981,13 @@ export default function App() {
           </div>
         </div>
       )}
-      {/* Primary Semantic H1 for Search Crawlers & Screen Readers */}
-      <h1 className="sr-only">Tamil Chat Room - Free Online Tamil Chat &amp; Video Chat</h1>
-
       {/* Left Sidebar (Desktop/Tablet) */}
       <div className="sidebar-left glass">
         <div className="sidebar-header">
           <TamilLogo size={38} />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span style={{ fontSize: '1.35rem', lineHeight: '1.2', fontWeight: 800 }}>TamilChat</span>
-            <span style={{ fontSize: '0.72rem', color: 'var(--primary)', fontWeight: '600', letterSpacing: '0.5px' }}>தமிழ் லைவ் சாட் • Free Tamil Chat</span>
+            <h2 style={{ fontSize: '1.35rem', lineHeight: '1.2' }}>TamilChat</h2>
+            <span style={{ fontSize: '0.72rem', color: 'var(--primary)', fontWeight: '600', letterSpacing: '0.5px' }}>தமிழ் லைவ் சாட்</span>
           </div>
         </div>
 
@@ -3798,10 +3795,10 @@ export default function App() {
                     {remoteUsername}
                   </div>
                 ) : (
-                  <div style={{ fontWeight: 700, fontSize: '1.02rem', color: 'var(--text-main)', lineHeight: 1.2 }}>
+                  <div style={{ fontWeight: 600 }}>
                     {viewMode === 'public'
-                      ? 'Tamil Chat Room - Live Online Chat'
-                      : 'Nearby Users • தமிழ் அரட்டை'}
+                      ? 'Tamil Public Chat'
+                      : 'Nearby Users'}
                   </div>
                 )}
                 <div className="header-status">
